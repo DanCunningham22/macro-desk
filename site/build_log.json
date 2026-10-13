@@ -1,0 +1,22 @@
+{
+ "updated": "2026-10-13T20:32Z",
+ "log": [
+  "FRED DGS10 failed: TimeoutError: The read operation timed out",
+  "FRED DGS2 failed: TimeoutError: The read operation timed out",
+  "FRED DFII10 failed: TimeoutError: The read operation timed out",
+  "FRED T10YIE failed: TimeoutError: The read operation timed out",
+  "FRED DFEDTARU failed: TimeoutError: The read operation timed out",
+  "FRED BAMLH0A0HYM2 failed: TimeoutError: The read operation timed out",
+  "FRED DTWEXBGS failed: TimeoutError: The read operation timed out",
+  "FRED DCOILWTICO failed: TimeoutError: The read operation timed out",
+  "FRED VIXCLS failed: TimeoutError: The read operation timed out",
+  "FRED SP500 failed: TimeoutError: The read operation timed out",
+  "FRED WALCL failed: TimeoutError: The read operation timed out",
+  "FRED WTREGEN failed: TimeoutError: The read operation timed out",
+  "FRED RRPONTSYD failed: TimeoutError: The read operation timed out",
+  "FRED: 0/13 series",
+  "prices: 56 tickers",
+  "betas skipped: missing factor series",
+  "wrote data.json: 12 macro series, 55/56 assets priced"
+ ]
+}
