@@ -19,11 +19,12 @@ import numpy as np
 import pandas as pd
 
 sys.path.insert(0, str(Path(__file__).parent))
-from universe import ASSETS, FRED, INVERT, RESTRICTED  # noqa: E402
+from universe import ASSETS, FRED, INVERT, RESTRICTED, RESTRICTED_CATEGORIES  # noqa: E402
 
 ROOT = Path(__file__).resolve().parents[1]
 OUT = ROOT / "site" / "data.json"
 POLICY = ROOT / "pipeline" / "policy.json"
+IDEAS = ROOT / "site" / "connections.json"
 MIDTERM_SUMMARY = "https://dancunningham22.github.io/2026-Midterm/summary.json"
 UA = {"User-Agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 14_0) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/17.0 Safari/605.1.15"}
 LOG: list[str] = []
@@ -276,6 +277,81 @@ def build_policy() -> dict:
     return priors
 
 
+# ---------- connections scorecard ----------
+
+HORIZONS = (5, 10, 20)
+
+
+def score_connections() -> dict | None:
+    """Score each published idea against SPY.
+
+    Entry is the open of the first session that starts after the idea was
+    published (so no idea can benefit from prices it saw). Returns are measured
+    to the close N sessions later. Alpha = side x (stock return - SPY return).
+    """
+    if not IDEAS.exists():
+        return None
+    ideas = json.loads(IDEAS.read_text()).get("ideas", [])
+    if not ideas:
+        return {"ideas": [], "stats": {}}
+    import yfinance as yf
+
+    tickers = sorted({i["ticker"] for i in ideas} | {"SPY"})
+    start = min(pd.Timestamp(i["published"]).tz_convert("America/New_York").date() for i in ideas)
+    raw = yf.download(tickers, start=str(start - pd.Timedelta(days=5)), interval="1d",
+                      auto_adjust=True, progress=False, group_by="column", threads=True)
+    opens, closes = raw["Open"], raw["Close"]
+    if isinstance(opens, pd.Series):
+        opens, closes = opens.to_frame(tickers[0]), closes.to_frame(tickers[0])
+    sessions = closes["SPY"].dropna().index
+
+    scored = []
+    for i in ideas:
+        t, side = i["ticker"], (1 if i.get("side", "long") == "long" else -1)
+        pub = pd.Timestamp(i["published"]).tz_convert("America/New_York")
+        cutoff = pub.normalize() + pd.Timedelta(hours=9, minutes=30)
+        first_day = pub.normalize().tz_localize(None) if pub < cutoff else (pub.normalize() + pd.Timedelta(days=1)).tz_localize(None)
+        later = sessions[sessions >= first_day]
+        row = dict(i)
+        if t not in closes or not len(later):
+            row["status"] = "waiting"
+            scored.append(row)
+            continue
+        d0 = later[0]
+        e, s0 = opens.at[d0, t], opens.at[d0, "SPY"]
+        if pd.isna(e) or pd.isna(s0):
+            row["status"] = "waiting"
+            scored.append(row)
+            continue
+        row.update({"entry_date": d0.strftime("%Y-%m-%d"), "entry": r(e, 4)})
+        held = later  # sessions from entry day onward
+        def ret_at(n):
+            if len(held) < n:
+                return None
+            d = held[n - 1]
+            px, spy = closes.at[d, t], closes.at[d, "SPY"]
+            if pd.isna(px) or pd.isna(spy):
+                return None
+            raw_ret = (px / e - 1) * 100
+            return {"ret": r(side * raw_ret), "alpha": r(side * (raw_ret - (spy / s0 - 1) * 100))}
+        for n in HORIZONS:
+            row[f"d{n}"] = ret_at(n)
+        last = held[-1]
+        row["now"] = ret_at(len(held))
+        row["sessions"] = len(held)
+        h = i.get("horizon", 10)
+        row["status"] = "closed" if len(held) >= h else "open"
+        scored.append(row)
+
+    stats = {}
+    for n in HORIZONS:
+        al = [x[f"d{n}"]["alpha"] for x in scored if x.get(f"d{n}")]
+        if al:
+            stats[f"d{n}"] = {"n": len(al), "hit": r(sum(a > 0 for a in al) / len(al) * 100, 0),
+                              "avg_alpha": r(float(np.mean(al))), "median_alpha": r(float(np.median(al)))}
+    return {"ideas": scored, "stats": stats}
+
+
 # ---------- main ----------
 
 def safe(name, fn, default):
@@ -305,6 +381,8 @@ def main():
         "assets": safe("assets", lambda: build_assets(prices, fred), None) or old.get("assets", []),
         "policy": safe("policy", build_policy, old.get("policy")),
         "restricted": RESTRICTED,
+        "restricted_categories": RESTRICTED_CATEGORIES,
+        "connections": safe("connections", score_connections, old.get("connections")),
     }
     OUT.parent.mkdir(parents=True, exist_ok=True)
     OUT.write_text(json.dumps(data, separators=(",", ":"), allow_nan=False))

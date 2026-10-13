@@ -55,7 +55,7 @@ header.top { display: flex; align-items: baseline; justify-content: space-betwee
 header.top .stamp { font-size: .78rem; color: var(--muted); }
 .brand-mark { color: var(--accent); }
 
-nav.tabs { position: fixed; left: 0; right: 0; bottom: 0; z-index: 10; display: grid; grid-template-columns: repeat(5, 1fr);
+nav.tabs { position: fixed; left: 0; right: 0; bottom: 0; z-index: 10; display: grid; grid-template-columns: repeat(6, 1fr);
   background: var(--panel); border-top: 1px solid var(--line); padding-bottom: env(safe-area-inset-bottom, 0px); }
 nav.tabs button { background: none; border: 0; color: var(--muted); font: 600 .72rem var(--f-body); padding: 10px 2px 9px; cursor: pointer;
   display: flex; flex-direction: column; align-items: center; gap: 3px; }
@@ -159,6 +159,28 @@ td.c, th.c { text-align: center; }
 .list li:last-child { border-bottom: 0; }
 .empty { color: var(--muted); font-size: .86rem; padding: 6px 0; }
 .lock { font-size: .72rem; color: var(--muted); border: 1px solid var(--line); border-radius: 4px; padding: 0 5px; margin-left: 6px; }
+.scorecard { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px; }
+.score { border: 1px solid var(--line); border-radius: 8px; padding: 10px; }
+.score .big { font: 600 1.25rem var(--f-mono); margin-top: 2px; }
+.theme-head { display: flex; align-items: baseline; gap: 10px; margin-top: 4px; }
+.idea { border-top: 1px solid var(--line); padding-top: 14px; display: grid; gap: 10px; }
+.idea:first-of-type { border-top: 0; padding-top: 0; }
+.idea-top { display: flex; justify-content: space-between; align-items: baseline; gap: 10px; flex-wrap: wrap; }
+.idea-top h3 { font-size: 1.05rem; }
+.tags { display: flex; gap: 6px; flex-wrap: wrap; align-items: center; }
+.side { font: 600 .72rem var(--f-mono); letter-spacing: .06em; text-transform: uppercase; border-radius: 4px; padding: 2px 7px; }
+.side.long { background: var(--up-soft); color: var(--up); } .side.short { background: var(--down-soft); color: var(--down); }
+.dots { font-family: var(--f-mono); letter-spacing: 2px; color: var(--accent); }
+.event { font-size: .88rem; color: var(--muted); max-width: 70ch; }
+ol.chain { margin: 0; padding-left: 20px; display: grid; gap: 6px; font-size: .9rem; max-width: 70ch; }
+ol.chain li::marker { font-family: var(--f-mono); color: var(--accent); }
+ol.chain li:last-child { font-weight: 600; }
+.notes { display: grid; grid-template-columns: minmax(0, 1fr); gap: 8px; font-size: .84rem; }
+@media (min-width: 640px) { .notes { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); } }
+.notes div b { display: block; font-size: .72rem; letter-spacing: .06em; text-transform: uppercase; color: var(--muted); }
+.result { display: flex; gap: 14px; flex-wrap: wrap; font-size: .82rem; color: var(--muted); }
+.result b { font: 600 .9rem var(--f-mono); }
+.srcs { font-size: .8rem; display: flex; gap: 12px; flex-wrap: wrap; }
 footer { margin-top: 20px; color: var(--muted); font-size: .76rem; max-width: 72ch; }
 @media (prefers-reduced-motion: no-preference) { .rank-row .bar span, .gauge-bar i { transition: all .25s ease; } }
 </style>
@@ -171,6 +193,7 @@ footer { margin-top: 20px; color: var(--muted); font-size: .76rem; max-width: 72
 
   <nav class="tabs" role="tablist" aria-label="Pages">
     <button role="tab" data-tab="pulse"><svg viewBox="0 0 24 24"><path d="M3 12h4l3-7 4 14 3-7h4"/></svg>Pulse</button>
+    <button role="tab" data-tab="chains"><svg viewBox="0 0 24 24"><circle cx="5" cy="6" r="2.2"/><circle cx="12" cy="18" r="2.2"/><circle cx="19" cy="8" r="2.2"/><path d="M6.6 7.6l4.2 8.6M13.6 16.6l4-6.8"/></svg>Chains</button>
     <button role="tab" data-tab="scen"><svg viewBox="0 0 24 24"><path d="M5 4v16M12 4v16M19 4v16"/><circle cx="5" cy="9" r="2"/><circle cx="12" cy="15" r="2"/><circle cx="19" cy="7" r="2"/></svg>Scenarios</button>
     <button role="tab" data-tab="fx"><svg viewBox="0 0 24 24"><path d="M4 8h13l-3-3M20 16H7l3 3"/></svg>FX</button>
     <button role="tab" data-tab="policy"><svg viewBox="0 0 24 24"><path d="M4 20h16M6 20V10M10 20V10M14 20V10M18 20V10M3 10l9-6 9 6z"/></svg>Policy</button>
@@ -201,6 +224,20 @@ footer { margin-top: 20px; color: var(--muted); font-size: .76rem; max-width: 72
       <header><h2>Rates, credit, dollar, liquidity</h2><span class="eyebrow">FRED</span></header>
       <div class="tiles" id="tiles"></div>
     </div>
+  </section>
+
+  <!-- CHAINS -->
+  <section class="page" id="p-chains" role="tabpanel" hidden>
+    <div class="panel">
+      <header><h2>Scorecard</h2><span class="eyebrow">Return vs. S&amp;P 500 after entry</span></header>
+      <div class="scorecard" id="scorecard"></div>
+      <p class="small muted" style="margin:10px 0 0">Entry is the opening price of the first session after an idea is published. Shorts count as a gain when the stock falls. This is the test of whether the connections make money.</p>
+    </div>
+    <div class="panel" id="scan-panel">
+      <header><h2>Today's read</h2><span class="eyebrow" id="scan-date"></span></header>
+      <p id="scan-summary" style="margin:0;max-width:70ch"></p>
+    </div>
+    <div id="chains"></div>
   </section>
 
   <!-- SCENARIOS -->
@@ -310,7 +347,7 @@ footer { margin-top: 20px; color: var(--muted); font-size: .76rem; max-width: 72
   let selected = null;
 
   // ---------- tabs ----------
-  const tabs = ["pulse", "scen", "fx", "policy", "ideas"];
+  const tabs = ["pulse", "chains", "scen", "fx", "policy", "ideas"];
   function show(tab) {
     if (!tabs.includes(tab)) tab = "pulse";
     $$("nav.tabs button").forEach(b => b.setAttribute("aria-selected", b.dataset.tab === tab));
@@ -517,6 +554,42 @@ footer { margin-top: 20px; color: var(--muted); font-size: .76rem; max-width: 72
         return `<tr><td><b>${esc(a.t)}</b>${a.beta ? "" : '<br><span class="small muted">prior</span>'}</td><td class="c num ${cls(b.ry)}">${fmt(b.ry, 0)}</td><td class="c num ${cls(b.usd)}">${fmt(b.usd, 1)}</td><td class="c num ${cls(b.oil)}">${fmt(b.oil * 10, 1)}</td><td class="c num ${cls(b.hy)}">${fmt(b.hy, 0)}</td><td class="c num ${cls(v)}">${fmt(v, 1)}%</td></tr>`; }).join("") + "</tbody>";
   }
 
+  // ---------- chains ----------
+  let RAW = null;
+  function renderChains() {
+    const scored = (D.connections && D.connections.ideas) || [];
+    const byId = Object.fromEntries(scored.map(i => [i.id, i]));
+    const ideas = ((RAW && RAW.ideas) || scored).map(i => ({ ...i, ...(byId[i.id] || {}) }))
+      .sort((a, b) => (b.published || "").localeCompare(a.published || ""));
+    const stats = (D.connections && D.connections.stats) || {};
+    $("#scorecard").innerHTML = [5, 10, 20].map(n => {
+      const st = stats["d" + n];
+      return `<div class="score"><div class="eyebrow">${n} sessions</div>${st ? `<div class="big ${cls(st.avg_alpha)}">${fmt(st.avg_alpha, 1)}%</div><div class="small muted">${st.hit}% beat SPY · ${st.n} idea${st.n === 1 ? "" : "s"}</div>` : `<div class="big muted">—</div><div class="small muted">No ideas this old yet</div>`}</div>`;
+    }).join("");
+    const scan = RAW && RAW.scans && RAW.scans[RAW.scans.length - 1];
+    $("#scan-panel").hidden = !scan;
+    if (scan) { $("#scan-date").textContent = new Date(scan.date + "T12:00:00").toLocaleDateString(undefined, { weekday: "short", month: "short", day: "numeric" }); $("#scan-summary").textContent = scan.summary; }
+
+    const fresh = ideas.filter(i => i.status !== "closed"), closed = ideas.filter(i => i.status === "closed");
+    const themes = [...new Set(fresh.map(i => i.theme || "Other"))];
+    const card = i => {
+      const res = i.entry != null
+        ? `<div class="result"><span>Entry <b>${i.entry}</b> on ${esc(i.entry_date)}</span>${i.now ? `<span>Since entry <b class="${cls(i.now.ret)}">${fmt(i.now.ret, 1)}%</b></span><span>vs SPY <b class="${cls(i.now.alpha)}">${fmt(i.now.alpha, 1)}%</b></span>` : ""}${[5, 10, 20].filter(n => i["d" + n]).map(n => `<span>${n}d <b class="${cls(i["d" + n].alpha)}">${fmt(i["d" + n].alpha, 1)}%</b></span>`).join("")}</div>`
+        : `<div class="result"><span>Entry: next session's open. Scoring starts after the next data run.</span></div>`;
+      const srcs = [i.source, i.source2].filter(Boolean).map(s => `<a href="${esc(s.url)}" target="_blank" rel="noopener">${esc(s.title)}</a>`).join("");
+      return `<article class="idea">
+        <div class="idea-top"><h3>${esc(i.name)} <span class="mono small muted">${esc(i.ticker)}</span>${restricted(i.ticker) ? '<span class="lock">restricted</span>' : ""}</h3>
+          <div class="tags"><span class="side ${i.side === "short" ? "short" : "long"}">${i.side === "short" ? "Short" : "Long"}</span><span class="small muted">${i.horizon} sessions</span><span class="dots" title="Conviction ${i.conviction} of 3">${"●".repeat(i.conviction || 1)}${"○".repeat(3 - (i.conviction || 1))}</span></div></div>
+        <div class="event">${esc(i.event)}</div>
+        <ol class="chain">${(i.chain || []).map(c => `<li>${esc(c)}</li>`).join("")}</ol>
+        <div class="notes"><div><b>Why it may not be priced</b>${esc(i.priced_in || "")}</div><div><b>Wrong if</b>${esc(i.kill || "")}</div>${i.book ? `<div><b>Your book</b>${esc(i.book)}</div>` : ""}</div>
+        ${res}<div class="srcs">${srcs}</div></article>`;
+    };
+    $("#chains").innerHTML = (themes.map(t => `<div class="panel"><header><h2>${esc(t)}</h2><span class="eyebrow">${fresh.filter(i => (i.theme || "Other") === t).length} idea${fresh.filter(i => (i.theme || "Other") === t).length === 1 ? "" : "s"}</span></header>${fresh.filter(i => (i.theme || "Other") === t).map(card).join("")}</div>`).join("")
+      || `<div class="panel"><p class="empty">No open ideas. The morning scan adds new ones before the open on weekdays.</p></div>`)
+      + (closed.length ? `<div class="panel"><header><h2>Closed</h2><span class="eyebrow">Held to horizon</span></header><div class="tbl-wrap"><table><thead><tr><th>Idea</th><th>Side</th><th class="c">Published</th><th class="c">vs SPY</th></tr></thead><tbody>${closed.map(i => { const h = i["d" + i.horizon] || i.now; return `<tr><td><b>${esc(i.ticker)}</b> <span class="small muted">${esc(i.theme || "")}</span></td><td>${esc(i.side)}</td><td class="c mono small">${esc((i.published || "").slice(0, 10))}</td><td class="c num ${cls(h && h.alpha)}">${h ? fmt(h.alpha, 1) + "%" : "—"}</td></tr>`; }).join("")}</tbody></table></div></div>` : "");
+  }
+
   // ---------- boot ----------
   function boot(data) {
     D = data;
@@ -527,9 +600,10 @@ footer { margin-top: 20px; color: var(--muted); font-size: .76rem; max-width: 72
       const b = $("#banner"); b.hidden = false;
       b.innerHTML = `<b>Starter snapshot.</b> Rates, credit, oil and the VIX are real FRED readings from early October 2026. Trends, prices, the regime score and estimated sensitivities fill in once the scheduled data job runs. Until then, scenarios use rough prior sensitivities.`;
     }
-    renderPulse(); renderControls(); renderScen(); renderFX(); renderPolicy(); renderIdeas();
+    renderPulse(); renderChains(); renderControls(); renderScen(); renderFX(); renderPolicy(); renderIdeas();
     show(location.hash.slice(1) || store.get("tab", "pulse"));
   }
+  fetch("connections.json", { cache: "no-cache" }).then(r => r.ok ? r.json() : null).then(j => { RAW = j; if (D) renderChains(); }).catch(() => {});
   const embedded = document.getElementById("seed");
   fetch("data.json", { cache: "no-cache" }).then(r => { if (!r.ok) throw 0; return r.json(); })
     .catch(() => embedded ? JSON.parse(embedded.textContent) : Promise.reject())

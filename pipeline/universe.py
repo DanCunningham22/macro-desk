@@ -82,7 +82,9 @@ ASSETS = [
 INVERT = {"JPY=X", "CNY=X", "CAD=X", "MXN=X", "BRL=X", "INR=X", "CHF=X"}
 
 # Employer trading restrictions: never surfaced as ideas.
-RESTRICTED = ["MA", "V", "LLY", "PYPL", "FI", "GPN", "AFRM", "SQ"]
+RESTRICTED = ["MA", "V", "LLY", "PYPL", "FI", "FISV", "GPN", "AFRM", "SQ", "XYZ"]
+# Whole categories that are off-limits for ideas (compliance), checked by the daily scan.
+RESTRICTED_CATEGORIES = ["payment networks and processors", "GLP-1 drug makers"]
 
 FRED = {
     "DGS10": ("10y Treasury", "%"),

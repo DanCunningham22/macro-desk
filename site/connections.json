@@ -1,0 +1,139 @@
+{
+  "updated": "2026-10-13T16:55:00-04:00",
+  "scans": [
+    {
+      "date": "2026-10-13",
+      "summary": "Three themes. The global diesel shortage is far bigger than the Russian diesel deal that knocked energy lower. Chile's copper problems are spreading, and producers outside Chile get the price without the outages. Memory stocks sold off together on China's CXMT, but a strike at Micron's Taiwan fabs would help Samsung and SK Hynix, not hurt them."
+    }
+  ],
+  "ideas": [
+    {
+      "id": "2026-10-13-diesel-vlo",
+      "published": "2026-10-13T16:55:00-04:00",
+      "theme": "Diesel shortage",
+      "event": "US eases Russian diesel sanctions for six months; Russia to release 4.8 million tons of diesel",
+      "source": {"title": "Fortune: Trump strikes a diesel deal with Putin", "url": "https://fortune.com/2026/10/09/trump-putin-russian-diesel-deal-zelenskyy-sanctions/"},
+      "source2": {"title": "Dallas Fed: Refinery outages pumping up fuel prices", "url": "https://www.dallasfed.org/research/economics/2026/1008"},
+      "chain": [
+        "4.8 million tons of diesel is about 36 million barrels, roughly 200,000 barrels a day over six months.",
+        "The Dallas Fed puts lost global refining capacity at 6 to 8 million barrels a day, so the deal covers about 3% of the gap.",
+        "Europe's diesel shortage persists and keeps pulling US distillate exports at record margins.",
+        "Valero, the largest US refiner with a big Gulf Coast export footprint, keeps earning those margins."
+      ],
+      "ticker": "VLO",
+      "name": "Valero Energy",
+      "side": "long",
+      "horizon": 20,
+      "conviction": 2,
+      "priced_in": "Crude fell about 2% on the deal and Brent sits near $104. The headline reads as relief; the arithmetic says the shortage barely changes.",
+      "kill": "Strait of Hormuz flows normalize, or European diesel margins fall back toward 2022 levels.",
+      "book": "Not AI-capex. Diversifies the book."
+    },
+    {
+      "id": "2026-10-13-diesel-stng",
+      "published": "2026-10-13T16:55:00-04:00",
+      "theme": "Diesel shortage",
+      "event": "Global refining capacity down as much as 10%; Europe importing more US diesel; Russian diesel flows reopening",
+      "source": {"title": "Dallas Fed: Refinery outages pumping up fuel prices", "url": "https://www.dallasfed.org/research/economics/2026/1008"},
+      "chain": [
+        "Refining has moved away from Europe, and Middle East and Russian plants are damaged.",
+        "Diesel now travels farther: US Gulf to Europe, plus reopened Russian flows that must route around sanctioned buyers.",
+        "Longer voyages tie up more product tankers, so day rates rise.",
+        "Scorpio Tankers runs one of the largest fleets of product tankers."
+      ],
+      "ticker": "STNG",
+      "name": "Scorpio Tankers",
+      "side": "long",
+      "horizon": 20,
+      "conviction": 1,
+      "priced_in": "Tanker equities price off spot day rates, which lag the route changes. Third-order link, lightly covered.",
+      "kill": "Red Sea and Hormuz both reopen, collapsing voyage lengths.",
+      "book": "Not AI-capex."
+    },
+    {
+      "id": "2026-10-13-diesel-jets",
+      "published": "2026-10-13T16:55:00-04:00",
+      "theme": "Diesel shortage",
+      "event": "Middle-distillate shortage: diesel above gasoline by a record margin; jet fuel comes from the same barrel",
+      "source": {"title": "Dallas Fed: Refinery outages pumping up fuel prices", "url": "https://www.dallasfed.org/research/economics/2026/1008"},
+      "chain": [
+        "Jet fuel is a middle distillate, refined from the same part of the barrel as diesel.",
+        "If the diesel deal doesn't close the gap, jet fuel stays expensive relative to crude.",
+        "Airlines hedge crude more than refined jet fuel, so the crack spread hits margins directly.",
+        "This is the other side of the Valero idea: same thesis, opposite exposure."
+      ],
+      "ticker": "JETS",
+      "name": "US airlines ETF",
+      "side": "short",
+      "horizon": 20,
+      "conviction": 1,
+      "priced_in": "Airlines bounced as crude fell on the diesel headline. The bounce assumes relief that the volumes don't support.",
+      "kill": "Jet fuel cracks narrow, or airlines guide fuel costs lower on Q3 calls.",
+      "book": "A short. Only execute if your account and compliance allow it; otherwise track it as a signal."
+    },
+    {
+      "id": "2026-10-13-copper-scco",
+      "published": "2026-10-13T16:55:00-04:00",
+      "theme": "Chile copper",
+      "event": "El Teniente pit shut after a deadly landslide; Centinela strike; fatal accident at Escondida; storms at Los Pelambres",
+      "source": {"title": "MINING.COM: Chile copper supply under pressure as disruptions mount", "url": "https://mining.com/chile-copper-supply-under-pressure-as-disruptions-mount"},
+      "chain": [
+        "An index puts 5.2% of output at Chile's largest copper mines at risk, with El Teniente, Los Pelambres and Escondida highest.",
+        "Chilean disruptions support the copper price while cutting Chilean producers' volumes.",
+        "Producers outside Chile get the higher price without the lost tonnes.",
+        "Southern Copper mines in Peru and Mexico and has the most copper exposure of the large producers."
+      ],
+      "ticker": "SCCO",
+      "name": "Southern Copper",
+      "side": "long",
+      "horizon": 20,
+      "conviction": 1,
+      "priced_in": "Copper is already strong, and Panmure Liberum argues the rally is more financial than physical. That's the main risk.",
+      "kill": "Centinela settles, Escondida supervisors sign, and copper gives back its October gains.",
+      "book": "Replaces some of the copper exposure you had in FCX, without Grasberg risk."
+    },
+    {
+      "id": "2026-10-13-memory-ewy",
+      "published": "2026-10-13T16:55:00-04:00",
+      "theme": "Memory chips",
+      "event": "Micron's Taoyuan union voted 99% to authorize a strike; memory stocks sold off on China's CXMT DRAM roadmap",
+      "source": {"title": "Digitimes: Micron's Taiwan union wins strike vote", "url": "https://www.digitimes.com/news/a20261007PD252/micron-taiwan-strike-labor-ceo.html"},
+      "source2": {"title": "TheStreet: Stock market today, Oct 13", "url": "https://www.thestreet.com/stock-market-today/stock-market-today-dow-jones-sp-500-nasdaq-updates-oct-13-2026"},
+      "chain": [
+        "On Oct 13, Micron, Samsung and SK Hynix all fell together on CXMT's DRAM roadmap, a year-end target years from volume.",
+        "Separately, a strike at Micron's Taiwan fabs, a large share of its DRAM output, would cut supply from the number three producer.",
+        "Less Micron supply means tighter DRAM pricing, which helps the other two producers.",
+        "Samsung and SK Hynix are the largest holdings in the Korea ETF."
+      ],
+      "ticker": "EWY",
+      "name": "South Korea ETF",
+      "side": "long",
+      "horizon": 10,
+      "conviction": 1,
+      "priced_in": "The market sold the whole group as one trade. A strike would split them.",
+      "kill": "Micron and the union settle, or DRAM contract prices roll over.",
+      "book": "Memory is AI-adjacent; counts toward the AI-capex factor."
+    },
+    {
+      "id": "2026-10-13-trading-ms",
+      "published": "2026-10-13T16:55:00-04:00",
+      "theme": "Bank earnings",
+      "event": "Goldman Sachs equities revenue rose 72% to $6.44 billion; EPS $17.01 vs $13.02 expected",
+      "source": {"title": "TheStreet: Stock market today, Oct 13", "url": "https://www.thestreet.com/stock-market-today/stock-market-today-dow-jones-sp-500-nasdaq-updates-oct-13-2026"},
+      "chain": [
+        "Goldman's equities blowout reflects an industry-wide surge in institutional trading and prime brokerage.",
+        "Morgan Stanley runs the largest equities franchise on the Street and reports Q3 shortly after Goldman.",
+        "Its consensus was set before Goldman's print showed how big the quarter was.",
+        "Read-through into Morgan Stanley's report."
+      ],
+      "ticker": "MS",
+      "name": "Morgan Stanley",
+      "side": "long",
+      "horizon": 5,
+      "conviction": 1,
+      "priced_in": "The most obvious link on this list; bank stocks partly moved with Goldman on Oct 13. Short horizon on purpose.",
+      "kill": "Morgan Stanley's equities revenue growth comes in well below Goldman's.",
+      "book": "Not AI-capex."
+    }
+  ]
+}
