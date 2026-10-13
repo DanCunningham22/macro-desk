@@ -9,6 +9,7 @@ from __future__ import annotations
 
 import io
 import json
+import os
 import sys
 import urllib.request
 from datetime import datetime, timezone
@@ -36,18 +37,27 @@ def log(msg: str):
 # ---------- fetching ----------
 
 def fetch_fred(series_id: str, start: str = "2016-01-01") -> pd.Series:
-    url = f"https://fred.stlouisfed.org/graph/fredgraph.csv?id={series_id}&cosd={start}"
-    last_err = None
-    for attempt in range(3):
-        try:
-            req = urllib.request.Request(url, headers=UA)
-            with urllib.request.urlopen(req, timeout=20) as r:
-                df = pd.read_csv(io.BytesIO(r.read()))
-            break
-        except Exception as e:
-            last_err = e
+    """FRED via the official API when FRED_API_KEY is set (reliable from GitHub's
+    servers); otherwise one quick try at the keyless CSV endpoint."""
+    key = os.environ.get("FRED_API_KEY")
+    if key:
+        url = ("https://api.stlouisfed.org/fred/series/observations"
+               f"?series_id={series_id}&api_key={key}&file_type=json&observation_start={start}")
+        last_err = None
+        for attempt in range(3):
+            try:
+                with urllib.request.urlopen(urllib.request.Request(url, headers=UA), timeout=30) as r:
+                    obs = json.load(r)["observations"]
+                break
+            except Exception as e:
+                last_err = e
+        else:
+            raise last_err
+        df = pd.DataFrame(obs)[["date", "value"]]
     else:
-        raise last_err
+        url = f"https://fred.stlouisfed.org/graph/fredgraph.csv?id={series_id}&cosd={start}"
+        with urllib.request.urlopen(urllib.request.Request(url, headers=UA), timeout=8) as r:
+            df = pd.read_csv(io.BytesIO(r.read()))
     df.columns = ["date", "value"]
     df["date"] = pd.to_datetime(df["date"])
     df["value"] = pd.to_numeric(df["value"], errors="coerce")  # FRED uses "." for missing

@@ -25,6 +25,8 @@ jobs:
           python-version: "3.12"
       - run: pip install pandas numpy yfinance
       - run: python pipeline/build.py && python pipeline/make_index.py
+        env:
+          FRED_API_KEY: ${{ secrets.FRED_API_KEY }}
       - name: Commit refreshed data
         run: |
           git config user.name "macro-desk-bot"
