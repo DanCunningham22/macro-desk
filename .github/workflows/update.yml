@@ -5,6 +5,12 @@ on:
     - cron: "17 11 * * 1-5"   # 7:17am New York (EDT) on weekdays
     - cron: "47 21 * * 1-5"   # 5:47pm New York (EDT), after the close
   workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - site/connections.json
+      - site/app.html
+      - pipeline/**
 
 permissions:
   contents: write
