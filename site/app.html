@@ -1,0 +1,522 @@
+<title>Macro Desk</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700&family=IBM+Plex+Sans:wght@400;500;600&family=JetBrains+Mono:wght@400;600&display=swap">
+<style>
+/* Layout: one column of panels, bottom tab bar on phones, top tab rail on wide screens */
+:root {
+  --bg: #0e1216; --panel: #151b21; --line: #232c35; --fg: #e5e9ee; --muted: #8b96a3;
+  --accent: #d6a54b; --up: #3fb39f; --down: #e06a5a; --up-soft: rgba(63,179,159,.16); --down-soft: rgba(224,106,90,.16);
+  --chip: #1c242c;
+  --f-display: "Bricolage Grotesque", "IBM Plex Sans", system-ui, sans-serif;
+  --f-body: "IBM Plex Sans", system-ui, -apple-system, sans-serif;
+  --f-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+  color-scheme: dark;
+}
+@media (prefers-color-scheme: light) { :root:not([data-theme="dark"]) {
+  --bg: #f4f5f2; --panel: #ffffff; --line: #dde1e3; --fg: #161b20; --muted: #5f6a75;
+  --accent: #9a6a12; --up: #13806e; --down: #bf4535; --up-soft: rgba(19,128,110,.12); --down-soft: rgba(191,69,53,.12);
+  --chip: #eceeec; color-scheme: light; } }
+:root[data-theme="light"] {
+  --bg: #f4f5f2; --panel: #ffffff; --line: #dde1e3; --fg: #161b20; --muted: #5f6a75;
+  --accent: #9a6a12; --up: #13806e; --down: #bf4535; --up-soft: rgba(19,128,110,.12); --down-soft: rgba(191,69,53,.12);
+  --chip: #eceeec; color-scheme: light; }
+
+* { box-sizing: border-box; }
+body { background: var(--bg); color: var(--fg); font-family: var(--f-body); font-size: 15px; line-height: 1.45; margin: 0; }
+.wrap { max-width: 980px; margin: 0 auto; padding-inline: 16px; padding-block: 12px 96px; }
+h1, h2, h3 { font-family: var(--f-display); font-weight: 700; text-wrap: balance; margin: 0; }
+h1 { font-size: 1.6rem; letter-spacing: -.01em; }
+h2 { font-size: 1.15rem; }
+h3 { font-size: .98rem; font-weight: 500; }
+.num, .mono { font-family: var(--f-mono); font-variant-numeric: tabular-nums; }
+.muted { color: var(--muted); }
+.small { font-size: .82rem; }
+.eyebrow { font-size: .72rem; letter-spacing: .09em; text-transform: uppercase; color: var(--muted); font-weight: 600; }
+a { color: var(--accent); }
+
+header.top { display: flex; align-items: baseline; justify-content: space-between; gap: 12px; flex-wrap: wrap; padding-block: 8px 4px; }
+header.top .stamp { font-size: .78rem; color: var(--muted); }
+.brand-mark { color: var(--accent); }
+
+nav.tabs { position: fixed; left: 0; right: 0; bottom: 0; z-index: 10; display: grid; grid-template-columns: repeat(5, 1fr);
+  background: var(--panel); border-top: 1px solid var(--line); padding-bottom: env(safe-area-inset-bottom, 0px); }
+nav.tabs button { background: none; border: 0; color: var(--muted); font: 600 .72rem var(--f-body); padding: 10px 2px 9px; cursor: pointer;
+  display: flex; flex-direction: column; align-items: center; gap: 3px; }
+nav.tabs button svg { width: 20px; height: 20px; stroke: currentColor; fill: none; stroke-width: 1.7; }
+nav.tabs button[aria-selected="true"] { color: var(--accent); }
+nav.tabs button:focus-visible { outline: 2px solid var(--accent); outline-offset: -4px; }
+@media (min-width: 760px) {
+  nav.tabs { position: sticky; top: env(safe-area-inset-top, 0px); bottom: auto; border-top: 0; border-bottom: 1px solid var(--line);
+    display: flex; gap: 4px; background: var(--bg); padding: 0; margin-bottom: 8px; }
+  nav.tabs button { flex-direction: row; font-size: .86rem; padding: 12px 14px 10px; border-bottom: 2px solid transparent; }
+  nav.tabs button[aria-selected="true"] { border-bottom-color: var(--accent); }
+  .wrap { padding-block: 12px 48px; }
+}
+
+section.page { display: grid; gap: 16px; }
+.panel { background: var(--panel); border: 1px solid var(--line); border-radius: 10px; padding: 16px; min-width: 0; }
+.panel > header { display: flex; justify-content: space-between; align-items: baseline; gap: 10px; flex-wrap: wrap; margin-bottom: 12px; }
+.banner { border: 1px dashed var(--accent); color: var(--fg); background: transparent; border-radius: 10px; padding: 10px 14px; font-size: .86rem; }
+.banner b { color: var(--accent); }
+
+/* Regime */
+.regime { display: grid; grid-template-columns: minmax(0, 1fr); gap: 16px; }
+@media (min-width: 640px) { .regime { grid-template-columns: 220px minmax(0, 1fr); } }
+.gauge-score { font-family: var(--f-display); font-size: 2.6rem; line-height: 1; }
+.gauge-label { font-weight: 600; margin-top: 4px; }
+.gauge-bar { position: relative; height: 10px; border-radius: 5px; margin-top: 12px;
+  background: linear-gradient(90deg, var(--down) 0%, var(--chip) 50%, var(--up) 100%); }
+.gauge-bar i { position: absolute; top: -4px; width: 4px; height: 18px; border-radius: 2px; background: var(--fg); transform: translateX(-2px); }
+.gauge-ticks { display: flex; justify-content: space-between; font-size: .7rem; color: var(--muted); margin-top: 4px; }
+.comps { display: grid; gap: 8px; }
+.comp { display: grid; grid-template-columns: 92px minmax(0, 1fr) 46px; gap: 10px; align-items: center; font-size: .86rem; }
+.zbar { position: relative; height: 8px; background: var(--chip); border-radius: 4px; }
+.zbar::after { content: ""; position: absolute; left: 50%; top: -2px; bottom: -2px; width: 1px; background: var(--muted); }
+.zbar span { position: absolute; top: 0; bottom: 0; border-radius: 4px; }
+
+/* Macro tiles */
+.tiles { display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 10px; }
+.tile { border: 1px solid var(--line); border-radius: 8px; padding: 10px 12px; min-width: 0; }
+.tile .lbl { font-size: .76rem; color: var(--muted); }
+.tile .val { font-family: var(--f-mono); font-size: 1.15rem; font-weight: 600; margin-top: 2px; }
+.tile .chg { font-family: var(--f-mono); font-size: .76rem; margin-top: 2px; }
+.tile svg { display: block; width: 100%; height: 28px; margin-top: 6px; }
+.read { display: grid; gap: 8px; margin: 0; padding-left: 18px; }
+.read li { max-width: 68ch; }
+
+/* Controls */
+.chips { display: flex; flex-wrap: wrap; gap: 6px; }
+.chip { background: var(--chip); color: var(--fg); border: 1px solid var(--line); border-radius: 999px; padding: 6px 12px;
+  font: 500 .82rem var(--f-body); cursor: pointer; }
+.chip[aria-pressed="true"] { border-color: var(--accent); color: var(--accent); }
+.chip:focus-visible, input[type=range]:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+.sliders { display: grid; grid-template-columns: repeat(auto-fit, minmax(210px, 1fr)); gap: 14px 20px; margin-top: 14px; }
+.slider label { display: flex; justify-content: space-between; gap: 8px; font-size: .86rem; }
+.slider label output { font-family: var(--f-mono); font-weight: 600; color: var(--accent); }
+.slider small { display: block; color: var(--muted); font-size: .74rem; }
+input[type=range] { width: 100%; accent-color: var(--accent); margin: 8px 0 2px; }
+
+/* Heat grid */
+.group-head { display: flex; justify-content: space-between; margin: 14px 0 6px; }
+.group-head:first-child { margin-top: 0; }
+.heat { display: grid; grid-template-columns: repeat(auto-fill, minmax(96px, 1fr)); gap: 6px; }
+.cell { border-radius: 6px; padding: 8px; min-height: 58px; display: flex; flex-direction: column; justify-content: space-between;
+  border: 1px solid var(--line); background: var(--chip); cursor: pointer; text-align: left; color: var(--fg); font: inherit; min-width: 0; }
+.cell .tk { font: 600 .74rem var(--f-mono); color: var(--muted); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.cell .nm { font-size: .8rem; line-height: 1.2; overflow-wrap: anywhere; }
+.cell .v { font: 600 .9rem var(--f-mono); }
+.cell.locked { opacity: .45; cursor: default; }
+.cell:focus-visible { outline: 2px solid var(--accent); }
+
+/* Ranked bars */
+.rank { display: grid; gap: 4px; }
+.rank-row { display: grid; grid-template-columns: 112px minmax(0, 1fr) 58px; gap: 10px; align-items: center; font-size: .84rem; }
+.rank-row .n { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.rank-row .bar { position: relative; height: 14px; }
+.rank-row .bar::before { content: ""; position: absolute; left: 50%; top: -3px; bottom: -3px; width: 1px; background: var(--line); }
+.rank-row .bar span { position: absolute; top: 2px; bottom: 2px; border-radius: 3px; }
+.rank-row .v { text-align: right; font-family: var(--f-mono); }
+.cols2 { display: grid; grid-template-columns: minmax(0, 1fr); gap: 16px; }
+@media (min-width: 760px) { .cols2 { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); } }
+
+/* Detail sheet */
+.sheet { border-top: 1px solid var(--line); margin-top: 14px; padding-top: 14px; display: grid; gap: 10px; }
+.kv { display: grid; grid-template-columns: repeat(auto-fill, minmax(120px, 1fr)); gap: 8px 14px; }
+.kv div { font-size: .8rem; color: var(--muted); }
+.kv div b { display: block; color: var(--fg); font: 600 .92rem var(--f-mono); }
+
+/* Tables */
+.tbl-wrap { overflow-x: auto; }
+table { border-collapse: collapse; width: 100%; font-size: .84rem; }
+th, td { padding: 7px 8px; border-bottom: 1px solid var(--line); text-align: left; vertical-align: top; }
+th { font-size: .72rem; letter-spacing: .06em; text-transform: uppercase; color: var(--muted); font-weight: 600; }
+td.c, th.c { text-align: center; }
+.pill { display: inline-block; min-width: 28px; text-align: center; border-radius: 999px; padding: 1px 7px; font: 600 .78rem var(--f-mono); }
+.up { color: var(--up); } .down { color: var(--down); }
+.bg-up { background: var(--up-soft); color: var(--up); } .bg-down { background: var(--down-soft); color: var(--down); } .bg-flat { background: var(--chip); color: var(--muted); }
+.outcomes { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 8px; }
+.outcome { border: 1px solid var(--line); border-radius: 8px; padding: 10px; }
+.outcome .p { font: 600 1.3rem var(--f-mono); }
+.list { display: grid; gap: 6px; margin: 0; padding: 0; list-style: none; }
+.list li { display: flex; justify-content: space-between; gap: 10px; font-size: .86rem; border-bottom: 1px solid var(--line); padding-bottom: 6px; }
+.list li:last-child { border-bottom: 0; }
+.empty { color: var(--muted); font-size: .86rem; padding: 6px 0; }
+.lock { font-size: .72rem; color: var(--muted); border: 1px solid var(--line); border-radius: 4px; padding: 0 5px; margin-left: 6px; }
+footer { margin-top: 20px; color: var(--muted); font-size: .76rem; max-width: 72ch; }
+@media (prefers-reduced-motion: no-preference) { .rank-row .bar span, .gauge-bar i { transition: all .25s ease; } }
+</style>
+
+<div class="wrap">
+  <header class="top">
+    <h1><span class="brand-mark">◧</span> Macro Desk</h1>
+    <span class="stamp" id="stamp">Loading data…</span>
+  </header>
+
+  <nav class="tabs" role="tablist" aria-label="Pages">
+    <button role="tab" data-tab="pulse"><svg viewBox="0 0 24 24"><path d="M3 12h4l3-7 4 14 3-7h4"/></svg>Pulse</button>
+    <button role="tab" data-tab="scen"><svg viewBox="0 0 24 24"><path d="M5 4v16M12 4v16M19 4v16"/><circle cx="5" cy="9" r="2"/><circle cx="12" cy="15" r="2"/><circle cx="19" cy="7" r="2"/></svg>Scenarios</button>
+    <button role="tab" data-tab="fx"><svg viewBox="0 0 24 24"><path d="M4 8h13l-3-3M20 16H7l3 3"/></svg>FX</button>
+    <button role="tab" data-tab="policy"><svg viewBox="0 0 24 24"><path d="M4 20h16M6 20V10M10 20V10M14 20V10M18 20V10M3 10l9-6 9 6z"/></svg>Policy</button>
+    <button role="tab" data-tab="ideas"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="6"/><path d="M20 20l-4.5-4.5"/></svg>Ideas</button>
+  </nav>
+
+  <div id="banner" class="banner" hidden></div>
+
+  <!-- PULSE -->
+  <section class="page" id="p-pulse" role="tabpanel">
+    <div class="panel">
+      <header><h2>Risk regime</h2><span class="eyebrow">13-week changes vs. last 3 years</span></header>
+      <div class="regime">
+        <div>
+          <div class="gauge-score num" id="g-score">—</div>
+          <div class="gauge-label" id="g-label">Waiting for trend data</div>
+          <div class="gauge-bar"><i id="g-pin" style="left:50%"></i></div>
+          <div class="gauge-ticks"><span>Risk-off −100</span><span>+100 Risk-on</span></div>
+        </div>
+        <div class="comps" id="comps"></div>
+      </div>
+    </div>
+    <div class="panel">
+      <header><h2>The read</h2><span class="eyebrow">Generated from the numbers below</span></header>
+      <ul class="read" id="read"></ul>
+    </div>
+    <div class="panel">
+      <header><h2>Rates, credit, dollar, liquidity</h2><span class="eyebrow">FRED</span></header>
+      <div class="tiles" id="tiles"></div>
+    </div>
+  </section>
+
+  <!-- SCENARIOS -->
+  <section class="page" id="p-scen" role="tabpanel" hidden>
+    <div class="panel">
+      <header><h2>Set the macro move</h2><span class="eyebrow">Over the next 3–6 months</span></header>
+      <div class="chips" id="presets"></div>
+      <div class="sliders" id="sliders"></div>
+    </div>
+    <div class="panel">
+      <header>
+        <h2>What it does to everything</h2>
+        <div class="chips" role="group" aria-label="Color tiles by">
+          <button class="chip" data-color="scen" aria-pressed="true">Scenario</button>
+          <button class="chip" data-color="mom">3-month trend</button>
+        </div>
+      </header>
+      <div id="heat"></div>
+      <div id="detail"></div>
+    </div>
+    <div class="panel">
+      <header><h2>Biggest winners and losers</h2><span class="eyebrow">Implied % move</span></header>
+      <div class="cols2"><div class="rank" id="rank-win"></div><div class="rank" id="rank-lose"></div></div>
+    </div>
+  </section>
+
+  <!-- FX -->
+  <section class="page" id="p-fx" role="tabpanel" hidden>
+    <div class="panel">
+      <header><h2>Currencies vs. the dollar</h2><span class="eyebrow">Up = that currency strengthens</span></header>
+      <div class="tiles" id="fx-tiles"></div>
+    </div>
+    <div class="panel">
+      <header><h2>Under your scenario</h2><span class="eyebrow">Set on the Scenarios page</span></header>
+      <div class="rank" id="fx-rank"></div>
+      <p class="small muted" id="fx-scen-note"></p>
+    </div>
+  </section>
+
+  <!-- POLICY -->
+  <section class="page" id="p-policy" role="tabpanel" hidden>
+    <div class="panel">
+      <header><h2>Midterm odds</h2><span class="eyebrow" id="odds-src">Set your own</span></header>
+      <div class="sliders">
+        <div class="slider"><label for="pHouse">Democrats win the House <output id="pHouse-o"></output></label>
+          <input type="range" id="pHouse" min="0" max="100" step="1"><small>Chance, in percent</small></div>
+        <div class="slider"><label for="pSenate">Democrats win the Senate <output id="pSenate-o"></output></label>
+          <input type="range" id="pSenate" min="0" max="100" step="1"><small>Chance, in percent</small></div>
+      </div>
+      <div class="outcomes" id="outcomes" style="margin-top:14px"></div>
+      <p class="small muted">Outcome chances treat the two chambers as independent, which understates how often they move together.</p>
+    </div>
+    <div class="panel">
+      <header><h2>Sector tilt, weighted by your odds</h2><span class="eyebrow">−2 headwind · +2 tailwind</span></header>
+      <div class="rank" id="tilt-rank"></div>
+    </div>
+    <div class="panel">
+      <header><h2>By outcome</h2></header>
+      <div class="tbl-wrap"><table id="tilt-table"></table></div>
+      <p class="small muted" id="policy-note"></p>
+    </div>
+  </section>
+
+  <!-- IDEAS -->
+  <section class="page" id="p-ideas" role="tabpanel" hidden>
+    <div class="banner"><b>Starting points, not trades.</b> Each list is a mechanical screen. Restricted tickers (<span id="rlist"></span>) never appear.</div>
+    <div class="cols2">
+      <div class="panel"><header><h2>Fits your scenario</h2></header><ol class="list" id="i-scen"></ol></div>
+      <div class="panel"><header><h2>Trend leaders</h2><span class="eyebrow">12-1 momentum, above 200-day</span></header><ol class="list" id="i-lead"></ol></div>
+      <div class="panel"><header><h2>Beaten down, turning up</h2><span class="eyebrow">Weak 12m, positive 1m, above 50-day</span></header><ol class="list" id="i-turn"></ol></div>
+      <div class="panel"><header><h2>Your holdings' exposure</h2><span class="eyebrow">% move per shock</span></header><div class="tbl-wrap"><table id="i-hold"></table></div></div>
+    </div>
+  </section>
+
+  <footer id="foot">Data: Federal Reserve Bank of St. Louis (FRED), Yahoo Finance. Scenario moves are linear sensitivities, not forecasts. Nothing here is investment advice.</footer>
+</div>
+
+<script>
+(() => {
+  const $ = (s, el = document) => el.querySelector(s);
+  const $$ = (s, el = document) => [...el.querySelectorAll(s)];
+  const store = {
+    get(k, d) { try { const v = localStorage.getItem("md:" + k); return v == null ? d : JSON.parse(v); } catch { return d; } },
+    set(k, v) { try { localStorage.setItem("md:" + k, JSON.stringify(v)); } catch {} }
+  };
+  const fmt = (v, nd = 1, sign = true) => v == null || isNaN(v) ? "—" : (sign && v > 0 ? "+" : "") + v.toFixed(nd);
+  const cls = v => v == null ? "" : v > 0 ? "up" : v < 0 ? "down" : "";
+  const esc = s => String(s).replace(/[&<>"]/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" })[c]);
+
+  const SHOCKS = [
+    { k: "ry", label: "10y real yield", unit: "bp", min: -150, max: 150, step: 5, hint: "Fed path and term premium" },
+    { k: "usd", label: "Broad dollar", unit: "%", min: -10, max: 10, step: 0.5, hint: "Trade-weighted vs. 26 currencies" },
+    { k: "oil", label: "WTI crude", unit: "%", min: -50, max: 50, step: 1, hint: "Supply shocks, OPEC, demand" },
+    { k: "hy", label: "Junk bond spread", unit: "bp", min: -150, max: 400, step: 10, hint: "Credit stress and recession fear" },
+  ];
+  const PRESETS = {
+    "Base case": { ry: 0, usd: 0, oil: 0, hy: 0 },
+    "Fed eases, soft landing": { ry: -75, usd: -4, oil: -5, hy: -50 },
+    "Weak-dollar reflation": { ry: -25, usd: -8, oil: 15, hy: -75 },
+    "Stagflation": { ry: 25, usd: 2, oil: 30, hy: 150 },
+    "Bond rout": { ry: 100, usd: 3, oil: 0, hy: 100 },
+    "Hard landing": { ry: -50, usd: 4, oil: -30, hy: 300 },
+  };
+  let D = null;
+  let shock = store.get("shock", { ...PRESETS["Base case"] });
+  let colorBy = store.get("colorBy", "scen");
+  let selected = null;
+
+  // ---------- tabs ----------
+  const tabs = ["pulse", "scen", "fx", "policy", "ideas"];
+  function show(tab) {
+    if (!tabs.includes(tab)) tab = "pulse";
+    $$("nav.tabs button").forEach(b => b.setAttribute("aria-selected", b.dataset.tab === tab));
+    tabs.forEach(t => $("#p-" + t).hidden = t !== tab);
+    store.set("tab", tab);
+    if (location.hash.slice(1) !== tab) history.replaceState(null, "", "#" + tab);
+    window.scrollTo({ top: 0 });
+  }
+  $$("nav.tabs button").forEach(b => b.addEventListener("click", () => show(b.dataset.tab)));
+  window.addEventListener("hashchange", () => show(location.hash.slice(1)));
+
+  // ---------- model ----------
+  const betaOf = a => a.beta ? a.beta : a.prior;
+  const impact = a => { const b = betaOf(a); return b.ry * shock.ry / 100 + b.usd * shock.usd + b.oil * shock.oil + b.hy * shock.hy / 100; };
+  const restricted = t => (D.restricted || []).includes(t);
+  const hasPrices = () => D.assets.some(a => a.last != null);
+
+  function colorFor(v, scale) {
+    if (v == null || isNaN(v)) return "var(--chip)";
+    const a = Math.min(1, Math.abs(v) / scale) * 0.55 + 0.06;
+    return v >= 0 ? `color-mix(in srgb, var(--up) ${a * 100}%, var(--chip))` : `color-mix(in srgb, var(--down) ${a * 100}%, var(--chip))`;
+  }
+
+  function spark(vals) {
+    const v = (vals || []).filter(x => x != null);
+    if (v.length < 3) return "";
+    const lo = Math.min(...v), hi = Math.max(...v), span = hi - lo || 1;
+    const pts = v.map((y, i) => `${(i / (v.length - 1) * 100).toFixed(1)},${(26 - (y - lo) / span * 24).toFixed(1)}`).join(" ");
+    const last = pts.split(" ").pop().split(",");
+    return `<svg viewBox="0 0 100 28" preserveAspectRatio="none" aria-hidden="true"><polyline points="${pts}" fill="none" stroke="var(--muted)" stroke-width="1.3" vector-effect="non-scaling-stroke"/><circle cx="${last[0]}" cy="${last[1]}" r="2" fill="var(--accent)"/></svg>`;
+  }
+
+  // ---------- pulse ----------
+  const TILE_ORDER = ["DFEDTARU", "DGS2", "DGS10", "DFII10", "T10YIE", "CURVE", "BAMLH0A0HYM2", "DTWEXBGS", "DCOILWTICO", "VIXCLS", "SP500", "NETLIQ", "WALCL"];
+  function valStr(m) {
+    const v = m.last;
+    if (m.unit === "%") return v.toFixed(2) + "%";
+    if (m.unit === "$") return "$" + v.toFixed(2);
+    if (m.unit === "$T") return "$" + v.toFixed(2) + "T";
+    if (m.unit === "$M") return "$" + (v / 1e6).toFixed(2) + "T";
+    return v.toLocaleString(undefined, { maximumFractionDigits: 2 });
+  }
+  function renderPulse() {
+    const R = D.regime || {};
+    if (R.score != null) {
+      $("#g-score").textContent = (R.score > 0 ? "+" : "") + R.score;
+      $("#g-label").textContent = R.label;
+      $("#g-label").className = "gauge-label " + (R.score >= 25 ? "up" : R.score <= -25 ? "down" : "");
+      $("#g-pin").style.left = (50 + R.score / 2) + "%";
+      $("#comps").innerHTML = R.components.map(c => {
+        const w = Math.abs(c.z) / 2 * 50, left = c.z >= 0 ? 50 : 50 - w;
+        return `<div class="comp"><span>${esc(c.name)}</span><div class="zbar" title="${esc(c.note)}"><span style="left:${left}%;width:${w}%;background:var(--${c.z >= 0 ? "up" : "down"})"></span></div><span class="num ${cls(c.z)}" style="text-align:right">${fmt(c.z, 1)}σ</span></div>`;
+      }).join("") + `<p class="small muted" style="margin:4px 0 0">Positive bars support risk assets. Each input is its 13-week change scored against three years of history.</p>`;
+    } else {
+      $("#comps").innerHTML = `<p class="empty">The score needs a few years of history for liquidity, real yields, credit, the dollar and volatility. It appears after the first scheduled data run.</p>`;
+    }
+    const M = D.macro;
+    $("#tiles").innerHTML = TILE_ORDER.filter(k => M[k]).map(k => {
+      const m = M[k], c = m.chg1m;
+      const chg = c == null ? `<div class="chg muted">${m.date}</div>` :
+        `<div class="chg ${cls(c)}">${fmt(c, m.chg_kind === "bp" ? 0 : 1)}${m.chg_kind === "bp" ? "bp" : "%"} 1m · ${fmt(m.chg12m, m.chg_kind === "bp" ? 0 : 1)}${m.chg_kind === "bp" ? "bp" : "%"} 1y</div>`;
+      return `<div class="tile"><div class="lbl">${esc(m.label)}</div><div class="val">${valStr(m)}</div>${chg}${spark(m.spark)}</div>`;
+    }).join("");
+    $("#read").innerHTML = readLines(M).map(l => `<li>${l}</li>`).join("");
+  }
+
+  function readLines(M) {
+    const L = [], g = k => M[k] && M[k].last;
+    const ff = g("DFEDTARU"), y2 = g("DGS2"), y10 = g("DGS10"), ry = g("DFII10"), be = g("T10YIE"), hy = g("BAMLH0A0HYM2"), vix = g("VIXCLS"), oil = g("DCOILWTICO");
+    if (ff != null && y2 != null) {
+      const gap = y2 - ff;
+      L.push(gap > 0.25 ? `The 2-year (${y2.toFixed(2)}%) sits ${Math.round(gap * 100)}bp above the funds rate ceiling (${ff.toFixed(2)}%). The bond market is pricing <b>hikes, or no cuts</b>.`
+        : gap < -0.25 ? `The 2-year (${y2.toFixed(2)}%) sits ${Math.round(-gap * 100)}bp below the funds rate ceiling (${ff.toFixed(2)}%). The bond market expects <b>cuts</b>.`
+        : `The 2-year (${y2.toFixed(2)}%) is close to the funds rate ceiling (${ff.toFixed(2)}%). The market expects the Fed to <b>hold</b>.`);
+    }
+    if (ry != null) L.push(ry >= 2 ? `Real 10-year yields at ${ry.toFixed(2)}% are <b>restrictive</b>. That is a headwind for long-duration assets: growth stocks, gold, real estate, crypto.`
+      : ry <= 0.5 ? `Real yields at ${ry.toFixed(2)}% are <b>easy</b>, which historically supports long-duration assets.` : `Real yields at ${ry.toFixed(2)}% are moderate.`);
+    if (y10 != null && y2 != null) { const c = y10 - y2; L.push(c > 0 ? `The curve is <b>positively sloped</b> (${Math.round(c * 100)}bp, 2s10s).${be != null ? ` About ${be.toFixed(2)} points of the 10-year is expected inflation; the rest is real yield.` : ""}` : `The curve is <b>inverted</b> (${Math.round(c * 100)}bp). Markets expect lower rates ahead.`); }
+    if (hy != null) L.push(hy < 3.5 ? `Junk bond spreads at ${(hy * 100).toFixed(0)}bp are <b>tight</b>. Credit markets see little default risk, which also leaves little cushion if growth slips.`
+      : hy > 5 ? `Junk spreads at ${(hy * 100).toFixed(0)}bp show <b>real credit stress</b>.` : `Junk spreads at ${(hy * 100).toFixed(0)}bp are in a normal range.`);
+    if (oil != null) L.push(oil > 90 ? `WTI near $${oil.toFixed(0)} is <b>high</b>. Energy is an inflation input the Fed has to look through or fight, and a tax on oil importers like India, Japan and Europe.` : oil < 60 ? `WTI near $${oil.toFixed(0)} is low: good for importers and consumers, hard on producers.` : `WTI is near $${oil.toFixed(0)}.`);
+    if (vix != null) L.push(vix < 16 ? `The VIX at ${vix.toFixed(1)} says equity markets are <b>calm</b>, so protection is cheap.` : vix > 25 ? `The VIX at ${vix.toFixed(1)} shows fear.` : `The VIX at ${vix.toFixed(1)} is middling.`);
+    return L;
+  }
+
+  // ---------- scenarios ----------
+  function renderControls() {
+    $("#presets").innerHTML = Object.keys(PRESETS).map(n => `<button class="chip" data-preset="${esc(n)}">${esc(n)}</button>`).join("");
+    $("#sliders").innerHTML = SHOCKS.map(s => `<div class="slider"><label for="s-${s.k}">${s.label} <output id="o-${s.k}"></output></label>
+      <input type="range" id="s-${s.k}" min="${s.min}" max="${s.max}" step="${s.step}" value="${shock[s.k]}"><small>${s.hint}</small></div>`).join("");
+    SHOCKS.forEach(s => $("#s-" + s.k).addEventListener("input", e => { shock[s.k] = +e.target.value; changed(); }));
+    $$("#presets .chip").forEach(b => b.addEventListener("click", () => {
+      shock = { ...PRESETS[b.dataset.preset] };
+      SHOCKS.forEach(s => $("#s-" + s.k).value = shock[s.k]);
+      changed();
+    }));
+    $$("[data-color]").forEach(b => b.addEventListener("click", () => { colorBy = b.dataset.color; store.set("colorBy", colorBy); renderScen(); }));
+  }
+  function changed() { store.set("shock", shock); renderScen(); renderFX(); renderIdeas(); }
+
+  function renderScen() {
+    SHOCKS.forEach(s => $("#o-" + s.k).textContent = fmt(shock[s.k], s.step < 1 ? 1 : 0) + s.unit);
+    const active = Object.entries(PRESETS).find(([, p]) => SHOCKS.every(s => p[s.k] === shock[s.k]));
+    $$("#presets .chip").forEach(b => b.setAttribute("aria-pressed", !!active && active[0] === b.dataset.preset));
+    if (colorBy === "mom" && !hasPrices()) colorBy = "scen";
+    $$("[data-color]").forEach(b => b.setAttribute("aria-pressed", b.dataset.color === colorBy));
+
+    const groups = [...new Set(D.assets.map(a => a.group))];
+    $("#heat").innerHTML = groups.map(g => {
+      const cells = D.assets.filter(a => a.group === g).map(a => {
+        const v = colorBy === "scen" ? impact(a) : a.r3m;
+        const lock = restricted(a.t);
+        return `<button class="cell${lock ? " locked" : ""}" data-t="${esc(a.t)}" style="background:${colorFor(v, colorBy === "scen" ? 12 : 20)}">
+          <span class="tk">${esc(a.t.replace("=X", ""))}</span><span class="nm">${esc(a.name)}</span><span class="v">${fmt(v, 1)}%</span></button>`;
+      }).join("");
+      return `<div class="group-head"><span class="eyebrow">${esc(g)}</span></div><div class="heat">${cells}</div>`;
+    }).join("");
+    $$("#heat .cell").forEach(c => c.addEventListener("click", () => { selected = c.dataset.t; renderDetail(); }));
+    renderDetail();
+
+    const ranked = D.assets.filter(a => !restricted(a.t)).map(a => ({ a, v: impact(a) })).sort((x, y) => y.v - x.v);
+    const max = Math.max(1, ...ranked.map(r => Math.abs(r.v)));
+    const row = r => {
+      const w = Math.abs(r.v) / max * 50;
+      return `<div class="rank-row"><span class="n">${esc(r.a.name)}</span><div class="bar"><span style="left:${r.v >= 0 ? 50 : 50 - w}%;width:${w}%;background:var(--${r.v >= 0 ? "up" : "down"})"></span></div><span class="v ${cls(r.v)}">${fmt(r.v, 1)}%</span></div>`;
+    };
+    const nonzero = SHOCKS.some(s => shock[s.k] !== 0);
+    $("#rank-win").innerHTML = nonzero ? ranked.slice(0, 8).map(row).join("") : `<p class="empty">Pick a preset or move a slider.</p>`;
+    $("#rank-lose").innerHTML = nonzero ? ranked.slice(-8).reverse().map(row).join("") : "";
+  }
+
+  function renderDetail() {
+    const a = D.assets.find(x => x.t === selected);
+    if (!a) { $("#detail").innerHTML = `<p class="small muted" style="margin:12px 0 0">Tap any tile for its sensitivities and trend.</p>`; return; }
+    const b = betaOf(a), src = a.beta ? `Estimated from 5 years of weekly data (fit R² ${a.r2})` : "Rough prior: estimated sensitivities replace these after the first data run";
+    $("#detail").innerHTML = `<div class="sheet"><div style="display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap"><h3>${esc(a.name)} <span class="muted mono small">${esc(a.t)}</span>${restricted(a.t) ? '<span class="lock">restricted</span>' : ""}</h3><span class="num ${cls(impact(a))}">${fmt(impact(a), 1)}% in this scenario</span></div>
+      <div class="kv">
+        <div>Per +100bp real yield<b class="${cls(b.ry)}">${fmt(b.ry, 1)}%</b></div>
+        <div>Per +1% dollar<b class="${cls(b.usd)}">${fmt(b.usd, 2)}%</b></div>
+        <div>Per +10% oil<b class="${cls(b.oil)}">${fmt(b.oil * 10, 1)}%</b></div>
+        <div>Per +100bp junk spread<b class="${cls(b.hy)}">${fmt(b.hy, 1)}%</b></div>
+        ${a.last != null ? `<div>1 month<b class="${cls(a.r1m)}">${fmt(a.r1m)}%</b></div><div>3 months<b class="${cls(a.r3m)}">${fmt(a.r3m)}%</b></div><div>12 months<b class="${cls(a.r12m)}">${fmt(a.r12m)}%</b></div><div>vs 200-day<b class="${cls(a.vs200)}">${fmt(a.vs200)}%</b></div><div>Volatility<b>${fmt(a.vol, 0, false)}%</b></div>` : ""}
+      </div><p class="small muted" style="margin:0">${src}</p></div>`;
+  }
+
+  // ---------- FX ----------
+  function renderFX() {
+    const fx = D.assets.filter(a => a.group === "FX");
+    const dxy = D.macro.DTWEXBGS;
+    $("#fx-tiles").innerHTML = (dxy ? `<div class="tile"><div class="lbl">Broad dollar index</div><div class="val">${valStr(dxy)}</div>${dxy.chg1m != null ? `<div class="chg ${cls(dxy.chg1m)}">${fmt(dxy.chg1m)}% 1m · ${fmt(dxy.chg12m)}% 1y</div>` : `<div class="chg muted">${dxy.date}</div>`}${spark(dxy.spark)}</div>` : "") +
+      fx.map(a => `<div class="tile"><div class="lbl">${esc(a.name)}</div><div class="val">${a.last != null ? a.last.toFixed(a.last < 1 ? 4 : 3) : "—"}</div>${a.r1m != null ? `<div class="chg ${cls(a.r1m)}">${fmt(a.r1m)}% 1m · ${fmt(a.r12m)}% 1y</div>` : `<div class="chg muted">Prices after first run</div>`}${spark(a.spark)}</div>`).join("");
+    const ranked = fx.map(a => ({ a, v: impact(a) })).sort((x, y) => y.v - x.v);
+    const max = Math.max(1, ...ranked.map(r => Math.abs(r.v)));
+    $("#fx-rank").innerHTML = ranked.map(r => { const w = Math.abs(r.v) / max * 50;
+      return `<div class="rank-row"><span class="n">${esc(r.a.name)}</span><div class="bar"><span style="left:${r.v >= 0 ? 50 : 50 - w}%;width:${w}%;background:var(--${r.v >= 0 ? "up" : "down"})"></span></div><span class="v ${cls(r.v)}">${fmt(r.v, 1)}%</span></div>`; }).join("");
+    $("#fx-scen-note").textContent = "Current scenario: " + SHOCKS.map(s => `${s.label} ${fmt(shock[s.k], s.step < 1 ? 1 : 0)}${s.unit}`).join(" · ") + ". Shows each currency's move against the dollar.";
+  }
+
+  // ---------- policy ----------
+  function renderPolicy() {
+    const P = D.policy, odds = P.odds;
+    const pH = $("#pHouse"), pS = $("#pSenate");
+    if (!pH.dataset.init) {
+      pH.value = store.get("pHouse", odds ? Math.round(odds.house_d * 100) : 50);
+      pS.value = store.get("pSenate", odds ? Math.round(odds.senate_d * 100) : 50);
+      if (odds) { pH.value = Math.round(odds.house_d * 100); pS.value = Math.round(odds.senate_d * 100); }
+      $("#odds-src").textContent = odds ? "From your midterm model" : "Set your own";
+      [pH, pS].forEach(el => el.addEventListener("input", () => { store.set(el.id, +el.value); renderPolicy(); }));
+      pH.dataset.init = 1;
+    }
+    const h = pH.value / 100, s = pS.value / 100;
+    $("#pHouse-o").textContent = pH.value + "%"; $("#pSenate-o").textContent = pS.value + "%";
+    const pr = { rr: (1 - h) * (1 - s), dr: h * (1 - s), rd: (1 - h) * s, dd: h * s };
+    $("#outcomes").innerHTML = Object.entries(P.outcomes).map(([k, o]) => `<div class="outcome"><div class="eyebrow">${esc(o.short)}</div><div class="p">${Math.round(pr[k] * 100)}%</div><div class="small">${esc(o.label)}</div></div>`).join("");
+    const rows = P.tilts.map(t => ({ t, v: Object.keys(pr).reduce((acc, k) => acc + pr[k] * t[k], 0) })).sort((a, b) => b.v - a.v);
+    $("#tilt-rank").innerHTML = rows.map(r => { const w = Math.abs(r.v) / 2 * 50;
+      return `<div class="rank-row"><span class="n">${esc(r.t.name)}</span><div class="bar"><span style="left:${r.v >= 0 ? 50 : 50 - w}%;width:${w}%;background:var(--${r.v >= 0 ? "up" : "down"})"></span></div><span class="v ${cls(r.v)}">${fmt(r.v, 2)}</span></div>`; }).join("");
+    const pill = v => `<span class="pill ${v > 0 ? "bg-up" : v < 0 ? "bg-down" : "bg-flat"}">${v > 0 ? "+" + v : v}</span>`;
+    $("#tilt-table").innerHTML = `<thead><tr><th>Sector</th>${Object.values(P.outcomes).map(o => `<th class="c">${esc(o.short)}</th>`).join("")}<th>Why</th></tr></thead><tbody>` +
+      P.tilts.map(t => `<tr><td><b>${esc(t.name)}</b><br><span class="mono small muted">${esc(t.t)}</span></td>${Object.keys(P.outcomes).map(k => `<td class="c">${pill(t[k])}</td>`).join("")}<td class="small" style="min-width:220px">${esc(t.why)}</td></tr>`).join("") + "</tbody>";
+    $("#policy-note").textContent = P.note + (P.election ? ` Election day: ${P.election}.` : "");
+  }
+
+  // ---------- ideas ----------
+  function renderIdeas() {
+    $("#rlist").textContent = (D.restricted || []).join(", ");
+    const pool = D.assets.filter(a => !restricted(a.t) && a.group !== "Holdings");
+    const li = (a, right) => `<li><span>${esc(a.name)} <span class="mono small muted">${esc(a.t.replace("=X", ""))}</span></span><span class="num">${right}</span></li>`;
+    const nonzero = SHOCKS.some(s => shock[s.k] !== 0);
+    $("#i-scen").innerHTML = nonzero ? pool.map(a => ({ a, v: impact(a) })).sort((x, y) => y.v - x.v).slice(0, 6).map(r => li(r.a, `<span class="${cls(r.v)}">${fmt(r.v, 1)}%</span>`)).join("")
+      : `<li class="empty">Set a scenario on the Scenarios page.</li>`;
+    if (hasPrices()) {
+      const lead = pool.filter(a => a.mom12_1 != null && a.vs200 > 0).sort((x, y) => y.mom12_1 - x.mom12_1).slice(0, 6);
+      $("#i-lead").innerHTML = lead.length ? lead.map(a => li(a, `<span class="up">${fmt(a.mom12_1, 0)}%</span>`)).join("") : `<li class="empty">Nothing qualifies today.</li>`;
+      const r12 = pool.map(a => a.r12m).filter(v => v != null).sort((x, y) => x - y), med = r12[Math.floor(r12.length / 2)];
+      const turn = pool.filter(a => a.r12m != null && a.r12m < med && a.r1m > 0 && a.vs50 > 0).sort((x, y) => y.r1m - x.r1m).slice(0, 6);
+      $("#i-turn").innerHTML = turn.length ? turn.map(a => li(a, `<span class="muted">${fmt(a.r12m, 0)}% 1y</span> · <span class="up">${fmt(a.r1m, 1)}% 1m</span>`)).join("") : `<li class="empty">Nothing qualifies today.</li>`;
+    } else {
+      $("#i-lead").innerHTML = $("#i-turn").innerHTML = `<li class="empty">Needs price history. Fills in after the first data run.</li>`;
+    }
+    const hold = D.assets.filter(a => a.group === "Holdings");
+    $("#i-hold").innerHTML = `<thead><tr><th>Holding</th><th class="c">+100bp real</th><th class="c">+1% USD</th><th class="c">+10% oil</th><th class="c">+100bp junk</th><th class="c">Scenario</th></tr></thead><tbody>` +
+      hold.map(a => { const b = betaOf(a), v = impact(a);
+        return `<tr><td><b>${esc(a.t)}</b>${a.beta ? "" : '<br><span class="small muted">prior</span>'}</td><td class="c num ${cls(b.ry)}">${fmt(b.ry, 0)}</td><td class="c num ${cls(b.usd)}">${fmt(b.usd, 1)}</td><td class="c num ${cls(b.oil)}">${fmt(b.oil * 10, 1)}</td><td class="c num ${cls(b.hy)}">${fmt(b.hy, 0)}</td><td class="c num ${cls(v)}">${fmt(v, 1)}%</td></tr>`; }).join("") + "</tbody>";
+  }
+
+  // ---------- boot ----------
+  function boot(data) {
+    D = data;
+    if (D.updated) {
+      $("#stamp").textContent = "Updated " + new Date(D.updated.replace("Z", ":00Z")).toLocaleString(undefined, { month: "short", day: "numeric", hour: "numeric", minute: "2-digit" });
+    } else {
+      $("#stamp").textContent = "Snapshot · " + (D.snapshot || "");
+      const b = $("#banner"); b.hidden = false;
+      b.innerHTML = `<b>Starter snapshot.</b> Rates, credit, oil and the VIX are real FRED readings from early October 2026. Trends, prices, the regime score and estimated sensitivities fill in once the scheduled data job runs. Until then, scenarios use rough prior sensitivities.`;
+    }
+    renderPulse(); renderControls(); renderScen(); renderFX(); renderPolicy(); renderIdeas();
+    show(location.hash.slice(1) || store.get("tab", "pulse"));
+  }
+  const embedded = document.getElementById("seed");
+  fetch("data.json", { cache: "no-cache" }).then(r => { if (!r.ok) throw 0; return r.json(); })
+    .catch(() => embedded ? JSON.parse(embedded.textContent) : Promise.reject())
+    .then(boot)
+    .catch(() => { $("#stamp").textContent = "Couldn't load data.json. Check that it sits next to index.html."; });
+})();
+</script>

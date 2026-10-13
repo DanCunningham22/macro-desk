@@ -1,0 +1,19 @@
+{
+  "note": "Hand-set priors, not estimates. Tilts run from -2 (headwind) to +2 (tailwind) relative to markets today. The president keeps the veto under every outcome, so Congress mostly matters through what it blocks, budget and debt-limit fights, and oversight. Edit freely.",
+  "election": "2026-11-03",
+  "outcomes": {
+    "rr": {"label": "Republicans hold both", "short": "R House · R Senate"},
+    "dr": {"label": "Split Congress", "short": "D House · R Senate"},
+    "rd": {"label": "Split, Senate flips", "short": "R House · D Senate"},
+    "dd": {"label": "Democrats win both", "short": "D House · D Senate"}
+  },
+  "tilts": [
+    {"t": "XLF", "name": "Banks & financials", "rr": 1, "dr": 0, "rd": 0, "dd": -1, "why": "Deregulation momentum continues under unified control; a Democratic Congress adds oversight and hearings."},
+    {"t": "XLE", "name": "Oil & gas", "rr": 1, "dr": 0, "rd": 0, "dd": -1, "why": "Permitting and leasing changes need Congress to stick; a Democratic Congress stalls them."},
+    {"t": "ITA", "name": "Defense", "rr": 1, "dr": 0, "rd": 0, "dd": -1, "why": "Defense budgets pass more easily with one party; divided control means continuing resolutions and shutdown risk."},
+    {"t": "ICLN", "name": "Clean energy", "rr": -1, "dr": 1, "rd": 1, "dd": 1, "why": "Either Democratic chamber blocks further rollback of energy tax credits."},
+    {"t": "XLV", "name": "Pharma & managed care", "rr": 0, "dr": 0, "rd": 0, "dd": -1, "why": "Drug pricing and insurer oversight get more floor time under a Democratic Congress."},
+    {"t": "IWM", "name": "Small caps", "rr": 1, "dr": 0, "rd": 0, "dd": -1, "why": "Small caps are the most sensitive to domestic tax and regulatory changes."},
+    {"t": "TLT", "name": "Long Treasuries", "rr": -1, "dr": 1, "rd": 1, "dd": 1, "why": "Gridlock makes new deficit-financed tax or spending bills less likely, which eases supply pressure on long bonds."}
+  ]
+}
