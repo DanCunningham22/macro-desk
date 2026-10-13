@@ -24,16 +24,30 @@ ROOT = Path(__file__).resolve().parents[1]
 OUT = ROOT / "site" / "data.json"
 POLICY = ROOT / "pipeline" / "policy.json"
 MIDTERM_SUMMARY = "https://dancunningham22.github.io/2026-Midterm/summary.json"
-UA = {"User-Agent": "macro-desk/1.0"}
+UA = {"User-Agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 14_0) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/17.0 Safari/605.1.15"}
+LOG: list[str] = []
+
+
+def log(msg: str):
+    print(msg, flush=True)
+    LOG.append(msg)
 
 
 # ---------- fetching ----------
 
 def fetch_fred(series_id: str, start: str = "2016-01-01") -> pd.Series:
     url = f"https://fred.stlouisfed.org/graph/fredgraph.csv?id={series_id}&cosd={start}"
-    req = urllib.request.Request(url, headers=UA)
-    with urllib.request.urlopen(req, timeout=30) as r:
-        df = pd.read_csv(io.BytesIO(r.read()))
+    last_err = None
+    for attempt in range(3):
+        try:
+            req = urllib.request.Request(url, headers=UA)
+            with urllib.request.urlopen(req, timeout=20) as r:
+                df = pd.read_csv(io.BytesIO(r.read()))
+            break
+        except Exception as e:
+            last_err = e
+    else:
+        raise last_err
     df.columns = ["date", "value"]
     df["date"] = pd.to_datetime(df["date"])
     df["value"] = pd.to_numeric(df["value"], errors="coerce")  # FRED uses "." for missing
@@ -197,12 +211,17 @@ def estimate_betas(px: pd.Series, factors: pd.DataFrame):
 
 def build_assets(prices: pd.DataFrame, fred: dict[str, pd.Series]) -> list[dict]:
     w = lambda sid: fred[sid].resample("W-FRI").last()
-    factors = pd.concat({
-        "ry": w("DFII10").diff(),                    # percentage points = per 100bp
-        "usd": w("DTWEXBGS").pct_change() * 100,
-        "oil": w("DCOILWTICO").pct_change() * 100,
-        "hy": w("BAMLH0A0HYM2").diff(),
-    }, axis=1)
+    need = ("DFII10", "DTWEXBGS", "DCOILWTICO", "BAMLH0A0HYM2")
+    factors = None
+    if all(k in fred for k in need):
+        factors = pd.concat({
+            "ry": w("DFII10").diff(),                    # percentage points = per 100bp
+            "usd": w("DTWEXBGS").pct_change() * 100,
+            "oil": w("DCOILWTICO").pct_change() * 100,
+            "hy": w("BAMLH0A0HYM2").diff(),
+        }, axis=1)
+    else:
+        log("betas skipped: missing factor series")
 
     out = []
     for t, name, group, prior in ASSETS:
@@ -228,7 +247,7 @@ def build_assets(prices: pd.DataFrame, fred: dict[str, pd.Series]) -> list[dict]
                 "vol": r(daily.std() * np.sqrt(252) * 100, 1),
                 "spark": weekly_spark(s),
             })
-            beta, r2 = estimate_betas(s, factors)
+            beta, r2 = estimate_betas(s, factors) if factors is not None else (None, None)
             if beta:
                 row["beta"], row["r2"] = beta, r2
         out.append(row)
@@ -249,27 +268,39 @@ def build_policy() -> dict:
 
 # ---------- main ----------
 
+def safe(name, fn, default):
+    try:
+        return fn()
+    except Exception as e:
+        log(f"{name} failed: {type(e).__name__}: {e}")
+        return default
+
+
 def main():
     fred = {}
     for sid in FRED:
         try:
             fred[sid] = fetch_fred(sid)
         except Exception as e:
-            print(f"FRED {sid} failed: {e}")
-    prices = fetch_prices([a[0] for a in ASSETS])
+            log(f"FRED {sid} failed: {type(e).__name__}: {e}")
+    log(f"FRED: {len(fred)}/{len(FRED)} series")
+    prices = safe("prices", lambda: fetch_prices([a[0] for a in ASSETS]), pd.DataFrame())
+    log(f"prices: {prices.shape[1] if len(prices) else 0} tickers")
 
+    old = json.loads(OUT.read_text()) if OUT.exists() else {}
     data = {
         "updated": datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%MZ"),
-        "macro": build_macro(fred),
-        "regime": build_regime(fred),
-        "assets": build_assets(prices, fred),
-        "policy": build_policy(),
+        "macro": safe("macro", lambda: build_macro(fred), {}) or old.get("macro", {}),
+        "regime": safe("regime", lambda: build_regime(fred), {"score": None, "label": None, "components": []}),
+        "assets": safe("assets", lambda: build_assets(prices, fred), None) or old.get("assets", []),
+        "policy": safe("policy", build_policy, old.get("policy")),
         "restricted": RESTRICTED,
     }
     OUT.parent.mkdir(parents=True, exist_ok=True)
     OUT.write_text(json.dumps(data, separators=(",", ":"), allow_nan=False))
     n_px = sum(1 for a in data["assets"] if "last" in a)
-    print(f"wrote {OUT} · {len(data['macro'])} macro series · {n_px}/{len(ASSETS)} assets priced")
+    log(f"wrote data.json: {len(data['macro'])} macro series, {n_px}/{len(ASSETS)} assets priced")
+    (OUT.parent / "build_log.json").write_text(json.dumps({"updated": data["updated"], "log": LOG}, indent=1))
 
 
 if __name__ == "__main__":

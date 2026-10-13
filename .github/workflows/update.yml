@@ -29,7 +29,7 @@ jobs:
         run: |
           git config user.name "macro-desk-bot"
           git config user.email "actions@users.noreply.github.com"
-          git add site/data.json site/index.html
+          git add site/data.json site/index.html site/build_log.json
           git diff --cached --quiet || git commit -m "Refresh data"
           git push
       - uses: actions/configure-pages@v5
