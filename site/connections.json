@@ -1,9 +1,13 @@
 {
-  "updated": "2026-10-13T16:55:00-04:00",
+  "updated": "2026-10-14T07:49:00-04:00",
   "scans": [
     {
       "date": "2026-10-13",
       "summary": "Three themes. The global diesel shortage is far bigger than the Russian diesel deal that knocked energy lower. Chile's copper problems are spreading, and producers outside Chile get the price without the outages. Memory stocks sold off together on China's CXMT, but a strike at Micron's Taiwan fabs would help Samsung and SK Hynix, not hurt them."
+    },
+    {
+      "date": "2026-10-14",
+      "summary": "Two themes. UnitedHealth says commercial medical cost trend is running above 11% and will persist into 2027; that is revenue for hospitals and a cost for employers that carry their workers' health risk through UnitedHealthcare, such as Insperity. Givaudan's fine fragrance sales grew about 31% in Q3, a supplier signal that perfume brands have not yet traded on."
     }
   ],
   "ideas": [
@@ -12,8 +16,14 @@
       "published": "2026-10-13T16:55:00-04:00",
       "theme": "Diesel shortage",
       "event": "US eases Russian diesel sanctions for six months; Russia to release 4.8 million tons of diesel",
-      "source": {"title": "Fortune: Trump strikes a diesel deal with Putin", "url": "https://fortune.com/2026/10/09/trump-putin-russian-diesel-deal-zelenskyy-sanctions/"},
-      "source2": {"title": "Dallas Fed: Refinery outages pumping up fuel prices", "url": "https://www.dallasfed.org/research/economics/2026/1008"},
+      "source": {
+        "title": "Fortune: Trump strikes a diesel deal with Putin",
+        "url": "https://fortune.com/2026/10/09/trump-putin-russian-diesel-deal-zelenskyy-sanctions/"
+      },
+      "source2": {
+        "title": "Dallas Fed: Refinery outages pumping up fuel prices",
+        "url": "https://www.dallasfed.org/research/economics/2026/1008"
+      },
       "chain": [
         "4.8 million tons of diesel is about 36 million barrels, roughly 200,000 barrels a day over six months.",
         "The Dallas Fed puts lost global refining capacity at 6 to 8 million barrels a day, so the deal covers about 3% of the gap.",
@@ -34,7 +44,10 @@
       "published": "2026-10-13T16:55:00-04:00",
       "theme": "Diesel shortage",
       "event": "Global refining capacity down as much as 10%; Europe importing more US diesel; Russian diesel flows reopening",
-      "source": {"title": "Dallas Fed: Refinery outages pumping up fuel prices", "url": "https://www.dallasfed.org/research/economics/2026/1008"},
+      "source": {
+        "title": "Dallas Fed: Refinery outages pumping up fuel prices",
+        "url": "https://www.dallasfed.org/research/economics/2026/1008"
+      },
       "chain": [
         "Refining has moved away from Europe, and Middle East and Russian plants are damaged.",
         "Diesel now travels farther: US Gulf to Europe, plus reopened Russian flows that must route around sanctioned buyers.",
@@ -55,7 +68,10 @@
       "published": "2026-10-13T16:55:00-04:00",
       "theme": "Diesel shortage",
       "event": "Middle-distillate shortage: diesel above gasoline by a record margin; jet fuel comes from the same barrel",
-      "source": {"title": "Dallas Fed: Refinery outages pumping up fuel prices", "url": "https://www.dallasfed.org/research/economics/2026/1008"},
+      "source": {
+        "title": "Dallas Fed: Refinery outages pumping up fuel prices",
+        "url": "https://www.dallasfed.org/research/economics/2026/1008"
+      },
       "chain": [
         "Jet fuel is a middle distillate, refined from the same part of the barrel as diesel.",
         "If the diesel deal doesn't close the gap, jet fuel stays expensive relative to crude.",
@@ -76,7 +92,10 @@
       "published": "2026-10-13T16:55:00-04:00",
       "theme": "Chile copper",
       "event": "El Teniente pit shut after a deadly landslide; Centinela strike; fatal accident at Escondida; storms at Los Pelambres",
-      "source": {"title": "MINING.COM: Chile copper supply under pressure as disruptions mount", "url": "https://mining.com/chile-copper-supply-under-pressure-as-disruptions-mount"},
+      "source": {
+        "title": "MINING.COM: Chile copper supply under pressure as disruptions mount",
+        "url": "https://mining.com/chile-copper-supply-under-pressure-as-disruptions-mount"
+      },
       "chain": [
         "An index puts 5.2% of output at Chile's largest copper mines at risk, with El Teniente, Los Pelambres and Escondida highest.",
         "Chilean disruptions support the copper price while cutting Chilean producers' volumes.",
@@ -97,8 +116,14 @@
       "published": "2026-10-13T16:55:00-04:00",
       "theme": "Memory chips",
       "event": "Micron's Taoyuan union voted 99% to authorize a strike; memory stocks sold off on China's CXMT DRAM roadmap",
-      "source": {"title": "Digitimes: Micron's Taiwan union wins strike vote", "url": "https://www.digitimes.com/news/a20261007PD252/micron-taiwan-strike-labor-ceo.html"},
-      "source2": {"title": "TheStreet: Stock market today, Oct 13", "url": "https://www.thestreet.com/stock-market-today/stock-market-today-dow-jones-sp-500-nasdaq-updates-oct-13-2026"},
+      "source": {
+        "title": "Digitimes: Micron's Taiwan union wins strike vote",
+        "url": "https://www.digitimes.com/news/a20261007PD252/micron-taiwan-strike-labor-ceo.html"
+      },
+      "source2": {
+        "title": "TheStreet: Stock market today, Oct 13",
+        "url": "https://www.thestreet.com/stock-market-today/stock-market-today-dow-jones-sp-500-nasdaq-updates-oct-13-2026"
+      },
       "chain": [
         "On Oct 13, Micron, Samsung and SK Hynix all fell together on CXMT's DRAM roadmap, a year-end target years from volume.",
         "Separately, a strike at Micron's Taiwan fabs, a large share of its DRAM output, would cut supply from the number three producer.",
@@ -119,7 +144,10 @@
       "published": "2026-10-13T16:55:00-04:00",
       "theme": "Bank earnings",
       "event": "Goldman Sachs equities revenue rose 72% to $6.44 billion; EPS $17.01 vs $13.02 expected",
-      "source": {"title": "TheStreet: Stock market today, Oct 13", "url": "https://www.thestreet.com/stock-market-today/stock-market-today-dow-jones-sp-500-nasdaq-updates-oct-13-2026"},
+      "source": {
+        "title": "TheStreet: Stock market today, Oct 13",
+        "url": "https://www.thestreet.com/stock-market-today/stock-market-today-dow-jones-sp-500-nasdaq-updates-oct-13-2026"
+      },
       "chain": [
         "Goldman's equities blowout reflects an industry-wide surge in institutional trading and prime brokerage.",
         "Morgan Stanley runs the largest equities franchise on the Street and reports Q3 shortly after Goldman.",
@@ -134,6 +162,90 @@
       "priced_in": "The most obvious link on this list; bank stocks partly moved with Goldman on Oct 13. Short horizon on purpose.",
       "kill": "Morgan Stanley's equities revenue growth comes in well below Goldman's.",
       "book": "Not AI-capex."
+    },
+    {
+      "id": "2026-10-14-medtrend-nsp",
+      "published": "2026-10-14T07:49:00-04:00",
+      "theme": "Medical cost trend",
+      "event": "UnitedHealth said on Oct 13 that commercial medical cost trend is running north of the 11% it assumed for 2026, driven by acute-care intensity, specialty drugs and No Surprises Act arbitration, and that it expects the trend to persist into 2027.",
+      "source": {
+        "title": "Motley Fool: UnitedHealth Q3 2026 earnings call transcript",
+        "url": "https://www.fool.com/earnings/call-transcripts/2026/10/13/unitedhealth-unh-q3-2026-earnings-call-transcript/"
+      },
+      "source2": {
+        "title": "Business Wire: Insperity Q3 2025 results and new UnitedHealthcare contract",
+        "url": "https://www.businesswire.com/news/home/20251103020205/en/Insperity-Announces-Third-Quarter-Results-and-New-UnitedHealthcare-Contract"
+      },
+      "chain": [
+        "UnitedHealth sees commercial claims cost trend above 11% and is not assuming any slowdown into 2027.",
+        "UnitedHealthcare carries the health plan that Insperity offers to its clients' worksite employees, under a contract extended through 2028.",
+        "Insperity bears the gap between what it charges clients and the plan's claims cost: in Q3 2025 the same inpatient, outpatient and pharmacy trend cut its gross profit 15%.",
+        "Insperity (NSP), up about 36% this year and reporting Q3 on Oct 29 with an EPS guide of -$0.09 to $0.41, is exposed to a second year of above-plan trend."
+      ],
+      "ticker": "NSP",
+      "name": "Insperity",
+      "side": "short",
+      "horizon": 20,
+      "conviction": 2,
+      "priced_in": "Insurer read-throughs usually go to other insurers, not to employers that self-insure through a carrier. NSP rose into early October (about $49, up 36% YTD) with no sign of reacting to the UnitedHealth call. Risk: the lower $500,000 large-claim pooling level in the new contract shifts some cost back to UnitedHealthcare.",
+      "kill": "Insperity's Oct 29 report shows benefits costs at or below plan and keeps the midpoint of its 2026 EPS guidance.",
+      "book": "No AI-capex exposure; a short in staffing/HR services diversifies the book."
+    },
+    {
+      "id": "2026-10-14-medtrend-hca",
+      "published": "2026-10-14T07:49:00-04:00",
+      "theme": "Medical cost trend",
+      "event": "UnitedHealth said on Oct 13 that commercial medical cost trend is running north of 11%, citing acute healthcare service intensity among the drivers, and is pricing 2027 for the trend to persist.",
+      "source": {
+        "title": "Motley Fool: UnitedHealth Q3 2026 earnings call transcript",
+        "url": "https://www.fool.com/earnings/call-transcripts/2026/10/13/unitedhealth-unh-q3-2026-earnings-call-transcript/"
+      },
+      "source2": {
+        "title": "inkl: HCA Healthcare's Q3 2026 earnings, what to expect",
+        "url": "https://www.inkl.com/news/hca-healthcares-q3-2026-earnings-what-to-expect"
+      },
+      "chain": [
+        "An insurer's medical cost trend is a hospital's price and acuity mix seen from the other side.",
+        "UnitedHealth names acute-care service intensity in commercial plans as a driver of trend above 11%, the highest-margin payer class for hospitals.",
+        "The market has priced HCA for a worse payer mix after ACA subsidies lapsed: shares are about 18% below their 52-week high and Q3 EPS is expected to fall 3.3% to $6.73.",
+        "HCA, the largest US hospital operator, reports Oct 27, inside the horizon, with commercial intensity as a possible offset to the coverage losses."
+      ],
+      "ticker": "HCA",
+      "name": "HCA Healthcare",
+      "side": "long",
+      "horizon": 10,
+      "conviction": 1,
+      "priced_in": "HCA traded flat on Oct 13 while healthcare stocks lagged on J&J. The UnitedHealth call was read for UnitedHealth's own margins, not as a revenue signal for hospitals. Risk: lost exchange coverage outweighs higher commercial intensity.",
+      "kill": "HCA's Oct 27 report shows same-facility revenue per equivalent admission growth below 3%, or another large insurer reports a clear slowdown in commercial cost trend before then.",
+      "book": "No AI-capex exposure; diversifies the book."
+    },
+    {
+      "id": "2026-10-14-fragrance-ipar",
+      "published": "2026-10-14T07:49:00-04:00",
+      "theme": "Fine fragrance",
+      "event": "Givaudan reported Q3 like-for-like sales growth of 8.6% versus a 4.7% consensus on Oct 13, with Fragrance & Beauty up 13.5% versus 6.6% expected; analysts estimate fine fragrance grew about 31%.",
+      "source": {
+        "title": "ESM Magazine (Reuters): Givaudan exceeds organic sales growth expectations in Q3",
+        "url": "https://www.esmmagazine.com/retail/givaudan-sales-beat-market-view-on-fine-fragrance-strength-boosting-shares-323626"
+      },
+      "source2": {
+        "title": "Investing.com: Givaudan shares hit 15-month high as fragrance-led sales beat",
+        "url": "https://in.investing.com/news/earnings/givaudan-shares-hit-15month-high-as-fragranceled-sales-beat-forecasts-5629803"
+      },
+      "chain": [
+        "Givaudan makes the fragrance oils that perfume brands buy before they fill and ship bottles.",
+        "Its fine fragrance sales grew about 31% in Q3 and 15.3% over nine months, well above what analysts expected, even as luxury fashion weakens.",
+        "Supplier orders at that pace point to strong brand shipments over the next quarter or two.",
+        "Interparfums (IPAR), a fine-fragrance licensing pure play downgraded twice last month, reports on Nov 4."
+      ],
+      "ticker": "IPAR",
+      "name": "Interparfums",
+      "side": "long",
+      "horizon": 20,
+      "conviction": 1,
+      "priced_in": "Givaudan rose 6.5-9% and European peers 1.6-3.1%, but IPAR gained only 1.5% on Oct 13 (to $114, versus a $129 52-week high). Part of Givaudan's growth is price increases passed on to customers, and its mix of brand customers is not disclosed.",
+      "kill": "Interparfums cuts 2026 sales guidance on Nov 4, or Coty or Estee Lauder report falling fragrance sales before then.",
+      "book": "Consumer, no AI-capex exposure; diversifies the book."
     }
   ]
 }
