@@ -1,5 +1,5 @@
 {
-  "updated": "2026-10-14T07:49:00-04:00",
+  "updated": "2026-10-15T07:36:00-04:00",
   "scans": [
     {
       "date": "2026-10-13",
@@ -8,6 +8,10 @@
     {
       "date": "2026-10-14",
       "summary": "Two themes. UnitedHealth says commercial medical cost trend is running above 11% and will persist into 2027; that is revenue for hospitals and a cost for employers that carry their workers' health risk through UnitedHealthcare, such as Insperity. Givaudan's fine fragrance sales grew about 31% in Q3, a supplier signal that perfume brands have not yet traded on."
+    },
+    {
+      "date": "2026-10-15",
+      "summary": "No new ideas met the bar today. A hotter-than-expected September CPI (3.7%) pushed the 10-year above 5.25% and set off a global tech sell-off (SOX -4.5%, KOSPI about -8%, Nikkei about -5%), while CoreWeave bond yields above 15% and record Oracle CDS spread fears about debt-funded AI build-outs; the read-throughs examined (Mondi to Smurfit Westrock, CMC to Nucor, TSMC to GlobalFoundries, Ericsson and Softcat to memory suppliers) were either already priced, too small, or traded the same day in London. Morgan Stanley's equities growth of 41% trailed Goldman's 72%, closing out the kill condition on that idea."
     }
   ],
   "ideas": [
@@ -159,7 +163,7 @@
       "side": "long",
       "horizon": 5,
       "conviction": 1,
-      "priced_in": "The most obvious link on this list; bank stocks partly moved with Goldman on Oct 13. Short horizon on purpose.",
+      "priced_in": "The most obvious link on this list; bank stocks partly moved with Goldman on Oct 13. Short horizon on purpose. Update Oct 15: Morgan Stanley reported on Oct 14 with equity net revenues up 41% to $5.80 billion, versus 72% growth at Goldman, which meets the kill condition; the stock fell about 2.8% on the day.",
       "kill": "Morgan Stanley's equities revenue growth comes in well below Goldman's.",
       "book": "Not AI-capex."
     },
