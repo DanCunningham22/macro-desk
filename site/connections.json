@@ -1,5 +1,5 @@
 {
-  "updated": "2026-10-15T07:36:00-04:00",
+  "updated": "2026-10-16T07:30:00-04:00",
   "scans": [
     {
       "date": "2026-10-13",
@@ -12,6 +12,10 @@
     {
       "date": "2026-10-15",
       "summary": "No new ideas met the bar today. A hotter-than-expected September CPI (3.7%) pushed the 10-year above 5.25% and set off a global tech sell-off (SOX -4.5%, KOSPI about -8%, Nikkei about -5%), while CoreWeave bond yields above 15% and record Oracle CDS spread fears about debt-funded AI build-outs; the read-throughs examined (Mondi to Smurfit Westrock, CMC to Nucor, TSMC to GlobalFoundries, Ericsson and Softcat to memory suppliers) were either already priced, too small, or traded the same day in London. Morgan Stanley's equities growth of 41% trailed Goldman's 72%, closing out the kill condition on that idea."
+    },
+    {
+      "date": "2026-10-16",
+      "summary": "Two new ideas, both shorts on policy news that broke after Thursday's close and has not been priced. A Fifth Circuit ruling against the body that runs the $9 billion Universal Service Fund threatens GCI, which gets about 40% of its revenue from the fund, and the stalled US-Mexico tariff talks delay demand from Ternium's auto and industrial customers. Read-throughs examined and rejected: auto dealers after the Penske buyout (peers already up 5-9%), FMC's price cuts to American Vanguard and Corteva (micro-cap, or already down), Zijin's Bisha zinc halt (about 0.05% of world supply), and the TSMC and ASML beats (a first-order link that adds to the AI-capex factor)."
     }
   ],
   "ideas": [
@@ -111,7 +115,7 @@
       "side": "long",
       "horizon": 20,
       "conviction": 1,
-      "priced_in": "Copper is already strong, and Panmure Liberum argues the rally is more financial than physical. That's the main risk.",
+      "priced_in": "Copper is already strong, and Panmure Liberum argues the rally is more financial than physical. That's the main risk. Update Oct 16: Part of the kill condition has been met. Escondida supervisors ratified their contract on Oct 14, and copper fell three straight sessions to about $14,360/t on the LME (its weakest since Oct 5). Centinela workers remain on strike and copper is still above its early-October level, so the full condition has not been met.",
       "kill": "Centinela settles, Escondida supervisors sign, and copper gives back its October gains.",
       "book": "Replaces some of the copper exposure you had in FCX, without Grasberg risk."
     },
@@ -250,6 +254,62 @@
       "priced_in": "Givaudan rose 6.5-9% and European peers 1.6-3.1%, but IPAR gained only 1.5% on Oct 13 (to $114, versus a $129 52-week high). Part of Givaudan's growth is price increases passed on to customers, and its mix of brand customers is not disclosed.",
       "kill": "Interparfums cuts 2026 sales guidance on Nov 4, or Coty or Estee Lauder report falling fragrance sales before then.",
       "book": "Consumer, no AI-capex exposure; diversifies the book."
+    },
+    {
+      "id": "2026-10-16-usf-glibk",
+      "published": "2026-10-16T07:30:00-04:00",
+      "theme": "USF ruling",
+      "event": "On Oct 15 the Fifth Circuit ruled that the FCC lacked authority to create USAC, the body that collects about $9 billion a year for the Universal Service Fund, and vacated the fourth-quarter 2025 contribution factor; the FCC said the order would not take effect for at least two months.",
+      "source": {
+        "title": "Investing.com (Reuters): US appeals court invalidates federal $9 billion telecom subsidy fund",
+        "url": "https://www.investing.com/news/stock-market-news/us-appeals-court-invalidates-federal-9-billion-telecom-subsidy-fund-4952982"
+      },
+      "source2": {
+        "title": "Broadband Breakfast: GCI Liberty CEO says Universal Service Fund is essential for Alaska",
+        "url": "https://broadbandbreakfast.com/gci-liberty-ceo-says-universal-service-fund-is-essential-for-alaska/"
+      },
+      "chain": [
+        "The ruling attacks the body that collects and pays out the fund's money (schools and libraries, rural health care, rural broadband), not just one program.",
+        "GCI gets about 40% of its roughly $1 billion in annual revenue from the fund and is the largest E-Rate recipient in Alaska (nearly $700 million since July 2021), with $52 million of Rural Health Care receivables at year-end 2025.",
+        "Any pause or restructuring of collections puts both the revenue and the timing of those receivables at risk ahead of GCI's Nov 5 report.",
+        "GCI Liberty (GLIBK), probably the most fund-dependent listed US carrier, rose 2.6% on the day of the ruling, so the risk does not look priced."
+      ],
+      "ticker": "GLIBK",
+      "name": "GCI Liberty (Series C)",
+      "side": "short",
+      "horizon": 10,
+      "conviction": 1,
+      "priced_in": "GLIBK closed up 2.64% at $20.60 on Oct 15, and the Reuters story on the ruling ran that evening. The stock already sits near its 52-week low ($19.30, versus a $41.18 high), insiders bought about $13.6 million of shares over the past 90 days, and the Supreme Court upheld the fund's financing in June 2025. The FCC is likely to seek rehearing or a stay, so payments may never stop.",
+      "kill": "The Fifth Circuit stays its order or grants rehearing en banc, Congress authorizes USAC, or the FCC confirms that disbursements will continue uninterrupted, before GCI's Nov 5 report.",
+      "book": "Alaska telecom with no AI-capex link; diversifies the book. A short, so track it as a signal."
+    },
+    {
+      "id": "2026-10-16-mexico-tx",
+      "published": "2026-10-16T07:30:00-04:00",
+      "theme": "Mexico tariffs",
+      "event": "The Wall Street Journal reported on the evening of Oct 15 that US-Mexico talks to cut the 25% US tariff on Mexican cars and the 50% tariffs on steel and aluminum have stalled over Commerce Secretary Lutnick's objections; officials on both sides say talks continue.",
+      "source": {
+        "title": "Investing.com: U.S.-Mexico tariff deal stalls over Lutnick objections, WSJ reports",
+        "url": "https://www.investing.com/news/stock-market-news/usmexico-tariff-deal-stalls-over-lutnick-objections-wsj-reports-93CH-4953055"
+      },
+      "source2": {
+        "title": "StockAnalysis: Ternium Q2 2026 earnings call transcript",
+        "url": "https://stockanalysis.com/stocks/tx/transcripts/661316-q2-2026/"
+      },
+      "chain": [
+        "The stalled deal would have cut Section 232 tariffs on Mexican cars, steel, aluminum and finished goods made from steel and aluminum.",
+        "On its Q2 call, Ternium said the tariffs make its Mexican industrial customers cautious, and that US-owned customers and auto makers (Mexico builds about 4 million vehicles a year) are waiting for a resolution before committing.",
+        "A stall pushes that demand back past Ternium's Nov 3 report and into 2027 contract talks.",
+        "Ternium (TX), a steelmaker focused on Mexico, trades near its 52-week high ($59.32) with its market value up 56% over the year, so a long delay is not priced."
+      ],
+      "ticker": "TX",
+      "name": "Ternium",
+      "side": "short",
+      "horizon": 10,
+      "conviction": 1,
+      "priced_in": "TX fell 2.85% to $56.88 on Oct 15, before the report came out at about 8 PM ET. Mexico's deputy trade minister says talks are progressing, so the stall may be short. Ternium does not disclose how much of its volume goes to US-bound customers, and it is also gaining share from Asian imports in Mexico.",
+      "kill": "The US and Mexico announce cuts to the Section 232 steel or auto tariffs, or Ternium guides higher Mexican shipments for Q4 on Nov 3.",
+      "book": "Latin American steel with no AI-capex link; diversifies the book (CAT is the closest industrial overlap). A short, so track it as a signal."
     }
   ]
 }
