@@ -1,5 +1,5 @@
 {
-  "updated": "2026-10-16T07:30:00-04:00",
+  "updated": "2026-10-19T07:41:00-04:00",
   "scans": [
     {
       "date": "2026-10-13",
@@ -16,6 +16,10 @@
     {
       "date": "2026-10-16",
       "summary": "Two new ideas, both shorts on policy news that broke after Thursday's close and has not been priced. A Fifth Circuit ruling against the body that runs the $9 billion Universal Service Fund threatens GCI, which gets about 40% of its revenue from the fund, and the stalled US-Mexico tariff talks delay demand from Ternium's auto and industrial customers. Read-throughs examined and rejected: auto dealers after the Penske buyout (peers already up 5-9%), FMC's price cuts to American Vanguard and Corteva (micro-cap, or already down), Zijin's Bisha zinc halt (about 0.05% of world supply), and the TSMC and ASML beats (a first-order link that adds to the AI-capex factor)."
+    },
+    {
+      "date": "2026-10-19",
+      "summary": "Two new ideas. The US shadow-fleet proposal would free only about 24 sanctioned supertankers by Kpler's count, yet DHT gave back its whole gain from Q4 bookings at about three times Q3 spot rates; and China's September coal output fell 6.8% while Australian coal exporters rose 4-5% before US-listed Peabody had traded. Read-throughs examined and rejected: West Fraser's softwood duty cut (final rate close to the April preliminary), Aixtron's laser-tool orders to Veeco (Axcelis merger status unclear) and AXT, Disc Medicine's EPP trial win to Clinuvel (no liquid US listing), the Russia sanctions waiver to India (Indian stocks fell on the day), and TSMC's HBM base-die win (first-order, adds to the AI-capex factor). Centinela's strike settlement meets a second part of the SCCO kill condition."
     }
   ],
   "ideas": [
@@ -115,7 +119,7 @@
       "side": "long",
       "horizon": 20,
       "conviction": 1,
-      "priced_in": "Copper is already strong, and Panmure Liberum argues the rally is more financial than physical. That's the main risk. Update Oct 16: Part of the kill condition has been met. Escondida supervisors ratified their contract on Oct 14, and copper fell three straight sessions to about $14,360/t on the LME (its weakest since Oct 5). Centinela workers remain on strike and copper is still above its early-October level, so the full condition has not been met.",
+      "priced_in": "Copper is already strong, and Panmure Liberum argues the rally is more financial than physical. That's the main risk. Update Oct 16: Part of the kill condition has been met. Escondida supervisors ratified their contract on Oct 14, and copper fell three straight sessions to about $14,360/t on the LME (its weakest since Oct 5). Centinela workers remain on strike and copper is still above its early-October level, so the full condition has not been met. Update Oct 19: Centinela workers ratified a new contract on Oct 18 with 94.5% approval, so two of the three parts of the kill condition have now been met. LME copper recovered to about $14,500/t on Oct 16 and is still above its early-October level, so the full condition has not been met.",
       "kill": "Centinela settles, Escondida supervisors sign, and copper gives back its October gains.",
       "book": "Replaces some of the copper exposure you had in FCX, without Grasberg risk."
     },
@@ -310,6 +314,62 @@
       "priced_in": "TX fell 2.85% to $56.88 on Oct 15, before the report came out at about 8 PM ET. Mexico's deputy trade minister says talks are progressing, so the stall may be short. Ternium does not disclose how much of its volume goes to US-bound customers, and it is also gaining share from Asian imports in Mexico.",
       "kill": "The US and Mexico announce cuts to the Section 232 steel or auto tariffs, or Ternium guides higher Mexican shipments for Q4 on Nov 3.",
       "book": "Latin American steel with no AI-capex link; diversifies the book (CAT is the closest industrial overlap). A short, so track it as a signal."
+    },
+    {
+      "id": "2026-10-19-tankers-dht",
+      "published": "2026-10-19T07:41:00-04:00",
+      "theme": "Tanker sanctions",
+      "event": "Reuters reported on Oct 15 that the US is weighing letting buyers take sanctioned shadow-fleet tankers into mainstream trade; Kpler estimates only about 24 of the roughly 160 sanctioned supertankers could realistically rejoin.",
+      "source": {
+        "title": "Benzinga: Trump weighs shadow fleet sanctions relief; DHT, Frontline, International Seaways face rate risk",
+        "url": "https://www.benzinga.com/markets/commodities/26/10/62428405/trump-weighs-shadow-fleet-sanctions-relief-dht-frontline-international-seaways-face-rate-risk"
+      },
+      "source2": {
+        "title": "DHT Holdings: Business update (Oct 12)",
+        "url": "https://www.dhtankers.com/dht-holdings-inc-business-update-19/"
+      },
+      "chain": [
+        "About 160 VLCCs, roughly 22% of the commercial fleet, are under US sanctions; after age and Iranian ownership, Kpler counts only about 24 (about 3% of the fleet) that could rejoin mainstream trade.",
+        "CREA finds sanctioned tankers carried 57% of Russia's seaborne oil in September, so ships that switch would mostly leave a gap in the Russian trade rather than add net capacity.",
+        "DHT, a pure VLCC owner, had booked about 50% of its Q4 spot days at $509,100 per day, about three times the $167,100 its spot VLCCs earned in Q3.",
+        "DHT gave back its whole post-update gain on the relief talk, though the realistic capacity release is small; the Q4 bookings it already has are not in the price."
+      ],
+      "ticker": "DHT",
+      "name": "DHT Holdings",
+      "side": "long",
+      "horizon": 10,
+      "conviction": 2,
+      "priced_in": "DHT rose about 6.5% to $26.24 after its Oct 12 update, then fell to $23.60 by Oct 16 (about -10%) as the Gulf-China VLCC rate eased from Worldscale 841 to 776 on the relief talk and lower Gulf exports; premarket on Oct 19 it was $23.90. The VLCC ST3 was hit off Al Jubail on Oct 16, the IRGC claimed two supertankers hit mines on Oct 17 (unconfirmed), and about 217 ships were waiting at anchor off Fujairah and Khorfakkan on Oct 18, all after the close. Risk: attacks also cut Gulf export volumes, which Kpler says has already softened demand on the main VLCC route.",
+      "kill": "Treasury clears substantially more than about 24 sanctioned VLCCs for mainstream trade, or DHT's Q3 report shows Q4 spot bookings well below the $509,100 per day disclosed on Oct 12.",
+      "book": "Crude shipping with no AI-capex link; diversifies the book. Shares the Hormuz factor with the open STNG product-tanker idea."
+    },
+    {
+      "id": "2026-10-19-coal-btu",
+      "published": "2026-10-19T07:41:00-04:00",
+      "theme": "China coal",
+      "event": "China's statistics bureau reported on Oct 19 that September coal output fell 6.8% year on year to 385 million tons, as safety checks after a deadly May mine disaster kept Shanxi mines suspended heading into winter.",
+      "source": {
+        "title": "Oilprice.com: China's coal production slumps 6.8% as winter supply fears grow",
+        "url": "https://oilprice.com/Latest-Energy-News/World-News/Chinas-Coal-Production-Slumps-68-as-Winter-Supply-Fears-Grow.html"
+      },
+      "source2": {
+        "title": "Peabody: Results for the quarter ended June 30, 2026",
+        "url": "https://www.prnewswire.com/news-releases/peabody-reports-results-for-the-quarter-ended-june-30-2026-302837096.html"
+      },
+      "chain": [
+        "Chinese output keeps falling into the heating season, with domestic thermal coal at three-year highs, coal prices up about 24% since mid-July, and Newcastle futures up 1.1% to $154.60/t.",
+        "Australian exporters repriced on Oct 19 (Whitehaven +4.8%, Yancoal +4.5%, New Hope +4.0%), after US markets had closed for the weekend.",
+        "Peabody's July guidance left about 4.1-4.7 million tons of 2026 seaborne thermal exports unpriced, roughly half of them priced off Newcastle, against a Q2 realized export price of $95.87/t.",
+        "Peabody (BTU), the US-listed owner of Australian thermal mines, has not traded since the data and reports Q3 around Oct 29; it closed Oct 16 at $23.89, in the lower part of its $20.06-41.14 range."
+      ],
+      "ticker": "BTU",
+      "name": "Peabody Energy",
+      "side": "long",
+      "horizon": 10,
+      "conviction": 1,
+      "priced_in": "BTU fell 0.5% on Oct 16. The stock has lagged coal prices because of commissioning problems at its Centurion met mine and weak Powder River Basin volumes, which remain the main risk to the idea. China's output has been declining since April, so part of the price strength is already known; the new facts are the September figure and the Australian repricing that US-listed coal has not yet matched.",
+      "kill": "Newcastle coal futures fall back below about $140/t, or Peabody's Q3 report cuts seaborne thermal volume guidance or Centurion targets again.",
+      "book": "Coal with no AI-capex link; diversifies the book (minor overlap with CAT through mining demand)."
     }
   ]
 }
