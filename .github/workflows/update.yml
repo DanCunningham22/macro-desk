@@ -44,6 +44,7 @@ jobs:
         timeout-minutes: 20
         env:
           FORCE_SLOW: ${{ github.event.inputs.force_slow }}
+          COMTRADE_BUDGET_S: "900"
       - name: Commit refreshed data
         run: |
           git config user.name "macro-desk-bot"

@@ -296,6 +296,8 @@ def fetch_product_annual(code: str, years: list[int]):
             by_year.setdefault(y, {})[iso] = by_year.get(y, {}).get(iso, 0) + float(v)
         res[flow] = by_year
     # Taiwan's exports, mirrored from what everyone else reports importing from "Other Asia, nes" (code 490)
+    if code not in TAIWAN_MIRROR:
+        return res
     try:
         rows = []
         for y in years:
@@ -342,11 +344,32 @@ def disruption_note(name, exp, imp):
     return txt
 
 
-def build_trade_slow(prev: dict) -> dict:
+TAIWAN_MIRROR = {"8542", "8486", "8471", "8517", "8504", "8507", "8541", "8708"}  # tech, where Taiwan matters
+
+
+def fresh(ts, days=6):
+    try:
+        return datetime.now(timezone.utc) - datetime.fromisoformat(ts) < timedelta(days=days)
+    except Exception:
+        return False
+
+
+def build_trade_slow(prev: dict, force: bool) -> dict:
+    """Fetch products whose data is missing or older than a week, oldest first,
+    until the Comtrade time budget runs out. Later runs pick up the rest."""
     this_year = date.today().year
     years = [this_year - 2, this_year - 1]
-    products = []
-    for code, name, group, tickers in PRODUCTS:
+    old_by = {p.get("code"): p for p in (prev.get("products") or [])}
+    for p in old_by.values():  # rows from before per-product timestamps
+        if p.get("exporters") and not p.get("fetched") and prev.get("slow_fetched"):
+            p["fetched"] = prev["slow_fetched"]
+    order = sorted(PRODUCTS, key=lambda x: (old_by.get(x[0]) or {}).get("fetched") or "")
+    done = {}
+    for code, name, group, tickers in order:
+        old = old_by.get(code)
+        if old and old.get("exporters") and fresh(old.get("fetched")) and not force:
+            done[code] = old
+            continue
         row = {"code": code, "name": name, "group": group, "tickers": tickers,
                "book": [t for t in tickers if t in BOOK]}
         try:
@@ -355,22 +378,24 @@ def build_trade_slow(prev: dict) -> dict:
             ym = pick_year(d["M"], years)
             exp, ex_tot = shares(d["X"].get(yx, {})) if yx else ([], 0)
             imp, im_tot = shares(d["M"].get(ym, {})) if ym else ([], 0)
-            # year-over-year change for the top exporters
             prev_y = str(int(yx) - 1) if yx else None
             if prev_y and prev_y in d["X"]:
                 for e in exp:
                     p = d["X"][prev_y].get(e["c"])
                     e["yoy"] = round((e["v"] * 1e9 / p - 1) * 100, 1) if p else None
             row.update({"year_x": yx, "year_m": ym, "exporters": exp, "importers": imp,
-                        "world_bn": ex_tot, "if_disrupted": disruption_note(name, exp, imp)})
+                        "world_bn": ex_tot, "if_disrupted": disruption_note(name, exp, imp),
+                        "fetched": datetime.now(timezone.utc).replace(microsecond=0).isoformat()})
+            done[code] = row
         except Exception as e:
-            log(f"Comtrade {code} {name} failed: {type(e).__name__}: {e}")
-            old = next((p for p in (prev.get("products") or []) if p.get("code") == code), None)
+            if "budget" not in str(e) and "skipped" not in str(e):
+                log(f"Comtrade {code} {name} failed: {type(e).__name__}: {e}")
             if old:
-                row = old
-        products.append(row)
+                done[code] = old
+    products = [done.get(c) or {"code": c, "name": n, "group": g, "tickers": t, "book": [x for x in t if x in BOOK]}
+                for c, n, g, t in PRODUCTS]
     ok = sum(1 for p in products if p.get("exporters"))
-    log(f"Comtrade annual: {ok}/{len(PRODUCTS)} products")
+    log(f"Comtrade annual: {ok}/{len(PRODUCTS)} products have data")
     return {"products": products}
 
 
@@ -386,18 +411,26 @@ def month_list(n_back: int, lag: int = 2):
     return out
 
 
-def build_shifts() -> list:
+def build_shifts(prev: dict, force: bool) -> tuple[list, dict]:
     """Biggest year-on-year shifts in monthly exports: last 3 reported months vs the same months a year earlier."""
     recent = month_list(6, lag=2)  # Comtrade monthly data lags 2–4 months
     year_ago = [f"{int(p[:4]) - 1}{p[4:]}" for p in recent]
     periods = ",".join(recent + year_ago)
     reporters = ",".join(str(v) for v in MONTHLY_REPORTERS.values())
     shifts = []
-    for code, name, group, tickers in PRODUCTS:
+    seen = dict(prev.get("shift_fetched") or {})
+    old_shifts = prev.get("shifts") or []
+    for code, name, group, tickers in sorted(PRODUCTS, key=lambda x: seen.get(x[0]) or ""):
+        if fresh(seen.get(code)) and not force:
+            shifts += [x for x in old_shifts if x.get("code") == code]
+            continue
         try:
             rows = comtrade("M", period=periods, reporterCode=reporters, cmdCode=code, flowCode="X", partnerCode=0)
+            seen[code] = datetime.now(timezone.utc).replace(microsecond=0).isoformat()
         except Exception as e:
-            log(f"Comtrade monthly {code} failed: {type(e).__name__}: {e}")
+            if "budget" not in str(e) and "skipped" not in str(e):
+                log(f"Comtrade monthly {code} failed: {type(e).__name__}: {e}")
+            shifts += [x for x in old_shifts if x.get("code") == code]
             continue
         by = {}
         for r in rows:
@@ -420,10 +453,12 @@ def build_shifts() -> list:
     # Rank by the dollar size of the change, damped so tiny bases with huge % moves don't dominate
     shifts = [s for s in shifts if s["then_bn"] >= 0.15]
     for s in shifts:
+        if "score" in s:
+            continue
         s["score"] = round(abs(s["now_bn"] - s["then_bn"]) * np.sqrt(min(abs(s["yoy"]), 200) / 100), 3)
     shifts.sort(key=lambda s: -s["score"])
-    log(f"Comtrade monthly: {len(shifts)} reporter-product shifts")
-    return shifts[:60]
+    log(f"Comtrade monthly: {sum(1 for c in seen if fresh(seen[c]))}/{len(PRODUCTS)} products scanned this week, {len(shifts)} shifts")
+    return shifts[:80], seen
 
 
 # ---------------------------------------------------------------------------
@@ -514,20 +549,12 @@ def main():
         slow_w = {k: prev_w.get(k) for k in ("imf", "bis", "imf_years", "slow_fetched")}
         log("IMF/BIS: cached")
 
-    # ---- slow: Comtrade (weekly). World is written first so a slow Comtrade never costs the rest.
-    trade_stale = stale(prev_t)
-    if trade_stale:
-        trade = {k: prev_t.get(k) for k in ("products", "shifts", "slow_fetched")}
-        write_world(slow_w, trade, now_iso)
-    if trade_stale:
-        t = build_trade_slow(prev_t)
-        shifts = build_shifts() or prev_t.get("shifts", [])
-        got = any(p.get("exporters") for p in t["products"])
-        trade = {"products": t["products"], "shifts": shifts,
-                 "slow_fetched": now_iso if got else prev_t.get("slow_fetched")}
-    else:
-        trade = {k: prev_t.get(k) for k in ("products", "shifts", "slow_fetched")}
-        log("Comtrade: cached")
+    # ---- slow: Comtrade, product by product. World is written first so a slow Comtrade never costs the rest.
+    trade = {k: prev_t.get(k) for k in ("products", "shifts")}
+    write_world(slow_w, trade, now_iso)
+    t = build_trade_slow(prev_t, force)
+    shifts, seen = build_shifts(prev_t, force)
+    trade = {"products": t["products"], "shifts": shifts, "shift_fetched": seen}
 
     write_world(slow_w, trade, now_iso)
     trade_out = {"updated": now_iso, **trade, "book": BOOK, "names": NAME,

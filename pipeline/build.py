@@ -23,9 +23,7 @@ from universe import ASSETS, FRED, INVERT, RESTRICTED, RESTRICTED_CATEGORIES  # 
 
 ROOT = Path(__file__).resolve().parents[1]
 OUT = ROOT / "site" / "data.json"
-POLICY = ROOT / "pipeline" / "policy.json"
 IDEAS = ROOT / "site" / "connections.json"
-MIDTERM_SUMMARY = "https://dancunningham22.github.io/2026-Midterm/summary.json"
 UA = {"User-Agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 14_0) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/17.0 Safari/605.1.15"}
 LOG: list[str] = []
 
@@ -266,18 +264,6 @@ def build_assets(prices: pd.DataFrame, fred: dict[str, pd.Series]) -> list[dict]
     return out
 
 
-# ---------- policy bridge ----------
-
-def build_policy() -> dict:
-    priors = json.loads(POLICY.read_text())
-    summary = fetch_json(MIDTERM_SUMMARY)
-    odds = None
-    if isinstance(summary, dict) and "house_d" in summary and "senate_d" in summary:
-        odds = {k: summary.get(k) for k in ("house_d", "senate_d", "updated")}
-    priors["odds"] = odds
-    return priors
-
-
 # ---------- connections scorecard ----------
 
 HORIZONS = (5, 10, 20)
@@ -453,7 +439,6 @@ def main():
         "macro": safe("macro", lambda: build_macro(fred), {}) or old.get("macro", {}),
         "regime": safe("regime", lambda: build_regime(fred), {"score": None, "label": None, "components": []}),
         "assets": safe("assets", lambda: build_assets(prices, fred), None) or old.get("assets", []),
-        "policy": safe("policy", build_policy, old.get("policy")),
         "restricted": RESTRICTED,
         "restricted_categories": RESTRICTED_CATEGORIES,
         "connections": safe("connections", score_connections, old.get("connections")),

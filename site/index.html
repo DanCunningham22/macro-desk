@@ -55,9 +55,9 @@ header.top { display: flex; align-items: baseline; justify-content: space-betwee
 header.top .stamp { font-size: .78rem; color: var(--muted); }
 .brand-mark { color: var(--accent); }
 
-nav.tabs { position: fixed; left: 0; right: 0; bottom: 0; z-index: 10; display: grid; grid-template-columns: repeat(8, 1fr);
+nav.tabs { position: fixed; left: 0; right: 0; bottom: 0; z-index: 10; display: grid; grid-template-columns: repeat(7, 1fr);
   background: var(--panel); border-top: 1px solid var(--line); padding-bottom: env(safe-area-inset-bottom, 0px); }
-nav.tabs button { background: none; border: 0; color: var(--muted); font: 600 .64rem var(--f-body); padding: 10px 0 9px; min-width: 0; cursor: pointer;
+nav.tabs button { background: none; border: 0; color: var(--muted); font: 600 .68rem var(--f-body); padding: 10px 0 9px; min-width: 0; cursor: pointer;
   display: flex; flex-direction: column; align-items: center; gap: 3px; }
 nav.tabs button svg { width: 20px; height: 20px; stroke: currentColor; fill: none; stroke-width: 1.7; }
 nav.tabs button[aria-selected="true"] { color: var(--accent); }
@@ -227,9 +227,8 @@ button.linkish:hover { text-decoration-color: var(--accent); }
     <button role="tab" data-tab="chains"><svg viewBox="0 0 24 24"><circle cx="5" cy="6" r="2.2"/><circle cx="12" cy="18" r="2.2"/><circle cx="19" cy="8" r="2.2"/><path d="M6.6 7.6l4.2 8.6M13.6 16.6l4-6.8"/></svg>Chains</button>
     <button role="tab" data-tab="world"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.5"/><ellipse cx="12" cy="12" rx="3.6" ry="8.5"/><path d="M3.8 9h16.4M3.8 15h16.4"/></svg>World</button>
     <button role="tab" data-tab="trade"><svg viewBox="0 0 24 24"><path d="M3 15h18l-2.5 5h-13z"/><path d="M6 15V9h5v6M13 15V6h5v9"/></svg>Trade</button>
-    <button role="tab" data-tab="scen"><svg viewBox="0 0 24 24"><path d="M5 4v16M12 4v16M19 4v16"/><circle cx="5" cy="9" r="2"/><circle cx="12" cy="15" r="2"/><circle cx="19" cy="7" r="2"/></svg>Scenario</button>
+    <button role="tab" data-tab="scen"><svg viewBox="0 0 24 24"><path d="M5 4v16M12 4v16M19 4v16"/><circle cx="5" cy="9" r="2"/><circle cx="12" cy="15" r="2"/><circle cx="19" cy="7" r="2"/></svg>Scenarios</button>
     <button role="tab" data-tab="fx"><svg viewBox="0 0 24 24"><path d="M4 8h13l-3-3M20 16H7l3 3"/></svg>FX</button>
-    <button role="tab" data-tab="policy"><svg viewBox="0 0 24 24"><path d="M4 20h16M6 20V10M10 20V10M14 20V10M18 20V10M3 10l9-6 9 6z"/></svg>Policy</button>
     <button role="tab" data-tab="ideas"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="6"/><path d="M20 20l-4.5-4.5"/></svg>Ideas</button>
   </nav>
 
@@ -346,30 +345,6 @@ button.linkish:hover { text-decoration-color: var(--accent); }
     </div>
   </section>
 
-  <!-- POLICY -->
-  <section class="page" id="p-policy" role="tabpanel" hidden>
-    <div class="panel">
-      <header><h2>Midterm odds</h2><span class="eyebrow" id="odds-src">Set your own</span></header>
-      <div class="sliders">
-        <div class="slider"><label for="pHouse">Democrats win the House <output id="pHouse-o"></output></label>
-          <input type="range" id="pHouse" min="0" max="100" step="1"><small>Chance, in percent</small></div>
-        <div class="slider"><label for="pSenate">Democrats win the Senate <output id="pSenate-o"></output></label>
-          <input type="range" id="pSenate" min="0" max="100" step="1"><small>Chance, in percent</small></div>
-      </div>
-      <div class="outcomes" id="outcomes" style="margin-top:14px"></div>
-      <p class="small muted">Outcome chances treat the two chambers as independent, which understates how often they move together.</p>
-    </div>
-    <div class="panel">
-      <header><h2>Sector tilt, weighted by your odds</h2><span class="eyebrow">−2 headwind · +2 tailwind</span></header>
-      <div class="rank" id="tilt-rank"></div>
-    </div>
-    <div class="panel">
-      <header><h2>By outcome</h2></header>
-      <div class="tbl-wrap"><table id="tilt-table"></table></div>
-      <p class="small muted" id="policy-note"></p>
-    </div>
-  </section>
-
   <!-- IDEAS -->
   <section class="page" id="p-ideas" role="tabpanel" hidden>
     <div class="banner"><b>Starting points, not trades.</b> Each list is a mechanical screen. Restricted tickers (<span id="rlist"></span>) never appear.</div>
@@ -416,7 +391,7 @@ button.linkish:hover { text-decoration-color: var(--accent); }
   let selected = null;
 
   // ---------- tabs ----------
-  const tabs = ["pulse", "chains", "world", "trade", "scen", "fx", "policy", "ideas"];
+  const tabs = ["pulse", "chains", "world", "trade", "scen", "fx", "ideas"];
   function show(tab) {
     if (!tabs.includes(tab)) tab = "pulse";
     $$("nav.tabs button").forEach(b => b.setAttribute("aria-selected", b.dataset.tab === tab));
@@ -574,31 +549,6 @@ button.linkish:hover { text-decoration-color: var(--accent); }
     $("#fx-rank").innerHTML = ranked.map(r => { const w = Math.abs(r.v) / max * 50;
       return `<div class="rank-row"><span class="n">${esc(r.a.name)}</span><div class="bar"><span style="left:${r.v >= 0 ? 50 : 50 - w}%;width:${w}%;background:var(--${r.v >= 0 ? "up" : "down"})"></span></div><span class="v ${cls(r.v)}">${fmt(r.v, 1)}%</span></div>`; }).join("");
     $("#fx-scen-note").textContent = "Current scenario: " + SHOCKS.map(s => `${s.label} ${fmt(shock[s.k], s.step < 1 ? 1 : 0)}${s.unit}`).join(" · ") + ". Shows each currency's move against the dollar.";
-  }
-
-  // ---------- policy ----------
-  function renderPolicy() {
-    const P = D.policy, odds = P.odds;
-    const pH = $("#pHouse"), pS = $("#pSenate");
-    if (!pH.dataset.init) {
-      pH.value = store.get("pHouse", odds ? Math.round(odds.house_d * 100) : 50);
-      pS.value = store.get("pSenate", odds ? Math.round(odds.senate_d * 100) : 50);
-      if (odds) { pH.value = Math.round(odds.house_d * 100); pS.value = Math.round(odds.senate_d * 100); }
-      $("#odds-src").textContent = odds ? "From your midterm model" : "Set your own";
-      [pH, pS].forEach(el => el.addEventListener("input", () => { store.set(el.id, +el.value); renderPolicy(); }));
-      pH.dataset.init = 1;
-    }
-    const h = pH.value / 100, s = pS.value / 100;
-    $("#pHouse-o").textContent = pH.value + "%"; $("#pSenate-o").textContent = pS.value + "%";
-    const pr = { rr: (1 - h) * (1 - s), dr: h * (1 - s), rd: (1 - h) * s, dd: h * s };
-    $("#outcomes").innerHTML = Object.entries(P.outcomes).map(([k, o]) => `<div class="outcome"><div class="eyebrow">${esc(o.short)}</div><div class="p">${Math.round(pr[k] * 100)}%</div><div class="small">${esc(o.label)}</div></div>`).join("");
-    const rows = P.tilts.map(t => ({ t, v: Object.keys(pr).reduce((acc, k) => acc + pr[k] * t[k], 0) })).sort((a, b) => b.v - a.v);
-    $("#tilt-rank").innerHTML = rows.map(r => { const w = Math.abs(r.v) / 2 * 50;
-      return `<div class="rank-row"><span class="n">${esc(r.t.name)}</span><div class="bar"><span style="left:${r.v >= 0 ? 50 : 50 - w}%;width:${w}%;background:var(--${r.v >= 0 ? "up" : "down"})"></span></div><span class="v ${cls(r.v)}">${fmt(r.v, 2)}</span></div>`; }).join("");
-    const pill = v => `<span class="pill ${v > 0 ? "bg-up" : v < 0 ? "bg-down" : "bg-flat"}">${v > 0 ? "+" + v : v}</span>`;
-    $("#tilt-table").innerHTML = `<thead><tr><th>Sector</th>${Object.values(P.outcomes).map(o => `<th class="c">${esc(o.short)}</th>`).join("")}<th>Why</th></tr></thead><tbody>` +
-      P.tilts.map(t => `<tr><td><b>${esc(t.name)}</b><br><span class="mono small muted">${esc(t.t)}</span></td>${Object.keys(P.outcomes).map(k => `<td class="c">${pill(t[k])}</td>`).join("")}<td class="small" style="min-width:220px">${esc(t.why)}</td></tr>`).join("") + "</tbody>";
-    $("#policy-note").textContent = P.note + (P.election ? ` Election day: ${P.election}.` : "");
   }
 
   // ---------- ideas ----------
@@ -876,7 +826,7 @@ button.linkish:hover { text-decoration-color: var(--accent); }
       const b = $("#banner"); b.hidden = false;
       b.innerHTML = `<b>Starter snapshot.</b> Rates, credit, oil and the VIX are real FRED readings from early October 2026. Trends, prices, the regime score and estimated sensitivities fill in once the scheduled data job runs. Until then, scenarios use rough prior sensitivities.`;
     }
-    renderPulse(); renderChains(); renderControls(); renderScen(); renderFX(); renderPolicy(); renderIdeas();
+    renderPulse(); renderChains(); renderControls(); renderScen(); renderFX(); renderIdeas();
     show(location.hash.slice(1) || store.get("tab", "pulse"));
   }
   fetch("connections.json", { cache: "no-cache" }).then(r => r.ok ? r.json() : null).then(j => { RAW = j; if (D) renderChains(); }).catch(() => {});
