@@ -559,7 +559,8 @@ def main():
     write_world(slow_w, trade, now_iso)
     trade_out = {"updated": now_iso, **trade, "book": BOOK, "names": NAME,
                  "note": "UN Comtrade annual data (latest mostly-complete year) and monthly exports for 25 major reporters. "
-                         "Monthly data lags 2–4 months, so shifts show slow-moving trends, not news."}
+                         "Monthly data lags 2–4 months, so shifts show slow-moving trends, not news. "
+                         "Countries that don't report to the UN (Russia since 2022, for example) are missing from the shares."}
     TRADE_OUT.write_text(json.dumps(trade_out, separators=(",", ":"), allow_nan=False))
     log(f"wrote trade.json ({sum(1 for p in trade_out.get('products') or [] if p.get('exporters'))} products, "
         f"{len(trade_out.get('shifts') or [])} shifts; Comtrade calls {COMTRADE_STATE['calls']}, failed {COMTRADE_STATE['fails']})")
