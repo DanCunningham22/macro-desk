@@ -128,7 +128,8 @@ def build_macro(fred: dict[str, pd.Series]) -> dict:
                 return None
             return r((s.iloc[-1] / past - 1) * 100) if pct else r((s.iloc[-1] - past) * 100, 0)
         out[sid] = {
-            "label": label, "unit": unit, "last": r(s.iloc[-1], 3),
+            "label": LABEL_OVERRIDE.get(sid, label), "unit": unit, "last": r(s.iloc[-1], 3),
+            "src": SRC.get(sid, "FRED"),
             "date": s.index[-1].strftime("%Y-%m-%d"),
             "chg_kind": "pct" if pct else "bp",
             "chg1m": chg(30), "chg3m": chg(91), "chg12m": chg(365),
@@ -362,18 +363,83 @@ def safe(name, fn, default):
         return default
 
 
+SRC: dict[str, str] = {}   # series id -> where it came from this run
+LABEL_OVERRIDE: dict[str, str] = {}
+
+
+def fill_from_fallbacks(fred: dict[str, pd.Series], old: dict):
+    """Rebuild any missing FRED series from primary sources (see altdata.py)."""
+    import altdata as A
+    missing = lambda *ids: [i for i in ids if i not in fred]
+
+    def put(sid, s, src, label=None):
+        if s is not None and len(s.dropna()) > 30:
+            fred[sid] = s.dropna()
+            SRC[sid] = src
+            if label:
+                LABEL_OVERRIDE[sid] = label
+
+    if missing("DGS10", "DGS2", "DFII10", "T10YIE"):
+        try:
+            for sid, s in A.treasury().items():
+                if sid not in fred:
+                    put(sid, s, "US Treasury")
+        except Exception as e:
+            log(f"fallback Treasury failed: {type(e).__name__}: {e}")
+    for sid, fn, src, label in (
+        ("DFEDTARU", A.fed_target_upper, "New York Fed", None),
+        ("RRPONTSYD", A.reverse_repo, "New York Fed", None),
+        ("WTREGEN", A.tga, "Treasury Fiscal Data", None),
+        ("WALCL", A.soma_total, "New York Fed SOMA", "Fed holdings (SOMA)"),
+    ):
+        if sid in fred:
+            continue
+        try:
+            put(sid, fn(), src, label)
+        except Exception as e:
+            log(f"fallback {sid} failed: {type(e).__name__}: {e}")
+
+    need_y = [sid for sid in A.YAHOO_MAP if sid not in fred]
+    need_hy = "BAMLH0A0HYM2" not in fred
+    if need_y or need_hy:
+        try:
+            px = A.yahoo_series([A.YAHOO_MAP[s] for s in need_y] + (["HYG", "IEF"] if need_hy else []))
+            for sid in need_y:
+                t = A.YAHOO_MAP[sid]
+                if t in px:
+                    put(sid, px[t], "Yahoo " + t,
+                        "Dollar index (DXY)" if sid == "DTWEXBGS" else ("WTI crude (front month)" if sid == "DCOILWTICO" else None))
+            if need_hy and {"HYG", "IEF"} <= set(px.columns):
+                prev = (old.get("macro") or {}).get("BAMLH0A0HYM2") or {}
+                anchor = prev.get("last") or 3.0
+                anchor_date = prev.get("date") or "2026-10-01"
+                put("BAMLH0A0HYM2", A.hy_spread_estimate(px, float(anchor), anchor_date),
+                    f"Estimated from HYG vs IEF, anchored to FRED {anchor_date}", "High-yield spread (est.)")
+        except Exception as e:
+            log(f"fallback Yahoo failed: {type(e).__name__}: {e}")
+
+
 def main():
+    old = json.loads(OUT.read_text()) if OUT.exists() else {}
     fred = {}
+    keyed = bool(os.environ.get("FRED_API_KEY"))
     for sid in FRED:
         try:
             fred[sid] = fetch_fred(sid)
+            SRC[sid] = "FRED"
         except Exception as e:
             log(f"FRED {sid} failed: {type(e).__name__}: {e}")
+            if not keyed:  # keyless FRED is all-or-nothing from GitHub; don't wait on the rest
+                log("FRED keyless endpoint unreachable; using primary-source fallbacks")
+                break
     log(f"FRED: {len(fred)}/{len(FRED)} series")
+    if len(fred) < len(FRED):
+        fill_from_fallbacks(fred, old)
+        log("sources: " + ", ".join(f"{k}={v}" for k, v in SRC.items() if v != "FRED"))
+    log(f"macro series available: {len(fred)}/{len(FRED)}")
     prices = safe("prices", lambda: fetch_prices([a[0] for a in ASSETS]), pd.DataFrame())
     log(f"prices: {prices.shape[1] if len(prices) else 0} tickers")
 
-    old = json.loads(OUT.read_text()) if OUT.exists() else {}
     data = {
         "updated": datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%MZ"),
         "macro": safe("macro", lambda: build_macro(fred), {}) or old.get("macro", {}),

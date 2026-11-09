@@ -55,9 +55,9 @@ header.top { display: flex; align-items: baseline; justify-content: space-betwee
 header.top .stamp { font-size: .78rem; color: var(--muted); }
 .brand-mark { color: var(--accent); }
 
-nav.tabs { position: fixed; left: 0; right: 0; bottom: 0; z-index: 10; display: grid; grid-template-columns: repeat(6, 1fr);
+nav.tabs { position: fixed; left: 0; right: 0; bottom: 0; z-index: 10; display: grid; grid-template-columns: repeat(8, 1fr);
   background: var(--panel); border-top: 1px solid var(--line); padding-bottom: env(safe-area-inset-bottom, 0px); }
-nav.tabs button { background: none; border: 0; color: var(--muted); font: 600 .72rem var(--f-body); padding: 10px 2px 9px; cursor: pointer;
+nav.tabs button { background: none; border: 0; color: var(--muted); font: 600 .64rem var(--f-body); padding: 10px 0 9px; min-width: 0; cursor: pointer;
   display: flex; flex-direction: column; align-items: center; gap: 3px; }
 nav.tabs button svg { width: 20px; height: 20px; stroke: currentColor; fill: none; stroke-width: 1.7; }
 nav.tabs button[aria-selected="true"] { color: var(--accent); }
@@ -182,6 +182,37 @@ ol.chain li:last-child { font-weight: 600; }
 .result b { font: 600 .9rem var(--f-mono); }
 .srcs { font-size: .8rem; display: flex; gap: 12px; flex-wrap: wrap; }
 footer { margin-top: 20px; color: var(--muted); font-size: .76rem; max-width: 72ch; }
+
+/* World */
+.globe-wrap { position: relative; display: grid; place-items: center; margin-top: 12px; }
+#globe { width: 100%; max-width: 520px; aspect-ratio: 1; touch-action: pan-y; cursor: grab; user-select: none; -webkit-user-select: none; }
+#globe:active { cursor: grabbing; }
+#globe .sphere { fill: var(--bg); stroke: var(--line); }
+#globe .grat { fill: none; stroke: var(--line); stroke-width: .5; }
+#globe .land { stroke: var(--panel); stroke-width: .5; }
+#globe .land.nodata { fill: color-mix(in srgb, var(--line) 70%, var(--bg)); }
+#globe .land.sel { stroke: var(--accent); stroke-width: 1.6; }
+.legend { display: flex; justify-content: space-between; gap: 8px; width: 100%; max-width: 520px; font-size: .72rem; color: var(--muted); margin-top: 6px; }
+.legend i { flex: 1; height: 8px; border-radius: 4px; align-self: center;
+  background: linear-gradient(90deg, color-mix(in srgb, var(--down) 61%, var(--chip)), var(--chip), color-mix(in srgb, var(--up) 61%, var(--chip))); }
+.chip-row { display: flex; flex-wrap: wrap; gap: 6px; }
+a.tk { font: 600 .78rem var(--f-mono); text-decoration: none; border: 1px solid var(--line); border-radius: 4px; padding: 2px 7px; color: var(--fg); background: var(--chip); }
+a.tk.book { border-color: var(--accent); color: var(--accent); }
+.sub { font-size: .72rem; letter-spacing: .06em; text-transform: uppercase; color: var(--muted); font-weight: 600; margin: 4px 0 6px; }
+.facts { display: grid; gap: 8px; }
+.fact { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 4px 10px; align-items: baseline; font-size: .86rem; border-bottom: 1px solid var(--line); padding-bottom: 8px; }
+.fact:last-child { border-bottom: 0; padding-bottom: 0; }
+.fact .chip-row { grid-column: 1 / -1; }
+button.linkish { background: none; border: 0; padding: 0; color: var(--fg); font: inherit; text-align: left; cursor: pointer; text-decoration: underline; text-decoration-color: var(--line); text-underline-offset: 3px; }
+button.linkish:hover { text-decoration-color: var(--accent); }
+.share { display: grid; grid-template-columns: 104px minmax(0, 1fr) 46px 52px; gap: 8px; align-items: center; font-size: .84rem; }
+.share .bar { height: 12px; background: var(--chip); border-radius: 3px; position: relative; overflow: hidden; }
+.share .bar span { position: absolute; left: 0; top: 0; bottom: 0; background: var(--accent); opacity: .75; border-radius: 3px; }
+.share .n { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.share .v { text-align: right; font-family: var(--f-mono); }
+.rank.wide .rank-row { grid-template-columns: 112px minmax(0, 1fr) 78px; }
+.callout { border-left: 3px solid var(--accent); padding: 6px 12px; font-size: .88rem; max-width: 70ch; }
+@media (max-width: 420px) { .share { grid-template-columns: 88px minmax(0, 1fr) 42px 48px; gap: 6px; } }
 @media (prefers-reduced-motion: no-preference) { .rank-row .bar span, .gauge-bar i { transition: all .25s ease; } }
 </style>
 
@@ -194,7 +225,9 @@ footer { margin-top: 20px; color: var(--muted); font-size: .76rem; max-width: 72
   <nav class="tabs" role="tablist" aria-label="Pages">
     <button role="tab" data-tab="pulse"><svg viewBox="0 0 24 24"><path d="M3 12h4l3-7 4 14 3-7h4"/></svg>Pulse</button>
     <button role="tab" data-tab="chains"><svg viewBox="0 0 24 24"><circle cx="5" cy="6" r="2.2"/><circle cx="12" cy="18" r="2.2"/><circle cx="19" cy="8" r="2.2"/><path d="M6.6 7.6l4.2 8.6M13.6 16.6l4-6.8"/></svg>Chains</button>
-    <button role="tab" data-tab="scen"><svg viewBox="0 0 24 24"><path d="M5 4v16M12 4v16M19 4v16"/><circle cx="5" cy="9" r="2"/><circle cx="12" cy="15" r="2"/><circle cx="19" cy="7" r="2"/></svg>Scenarios</button>
+    <button role="tab" data-tab="world"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.5"/><ellipse cx="12" cy="12" rx="3.6" ry="8.5"/><path d="M3.8 9h16.4M3.8 15h16.4"/></svg>World</button>
+    <button role="tab" data-tab="trade"><svg viewBox="0 0 24 24"><path d="M3 15h18l-2.5 5h-13z"/><path d="M6 15V9h5v6M13 15V6h5v9"/></svg>Trade</button>
+    <button role="tab" data-tab="scen"><svg viewBox="0 0 24 24"><path d="M5 4v16M12 4v16M19 4v16"/><circle cx="5" cy="9" r="2"/><circle cx="12" cy="15" r="2"/><circle cx="19" cy="7" r="2"/></svg>Scenario</button>
     <button role="tab" data-tab="fx"><svg viewBox="0 0 24 24"><path d="M4 8h13l-3-3M20 16H7l3 3"/></svg>FX</button>
     <button role="tab" data-tab="policy"><svg viewBox="0 0 24 24"><path d="M4 20h16M6 20V10M10 20V10M14 20V10M18 20V10M3 10l9-6 9 6z"/></svg>Policy</button>
     <button role="tab" data-tab="ideas"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="6"/><path d="M20 20l-4.5-4.5"/></svg>Ideas</button>
@@ -238,6 +271,42 @@ footer { margin-top: 20px; color: var(--muted); font-size: .76rem; max-width: 72
       <p id="scan-summary" style="margin:0;max-width:70ch"></p>
     </div>
     <div id="chains"></div>
+  </section>
+
+<!-- WORLD -->
+  <section class="page" id="p-world" role="tabpanel" hidden>
+    <div class="panel">
+      <header><h2>World</h2><span class="eyebrow" id="w-stamp">Loading…</span></header>
+      <div class="chips" id="w-metric" role="group" aria-label="Color the map by"></div>
+      <div class="globe-wrap">
+        <svg id="globe" viewBox="0 0 520 520" role="img" aria-label="Globe colored by the selected measure. Drag to spin, tap a country."></svg>
+        <div class="legend"><span id="w-lo"></span><i></i><span id="w-hi"></span></div>
+      </div>
+      <p class="small muted" style="margin:8px 0 0">Drag to spin, tap a country. Gray countries have no data here.</p>
+    </div>
+    <div class="panel" id="w-detail"><p class="empty">Tap a country on the globe or in the list below.</p></div>
+    <div class="panel"><header><h2 id="w-rank-title">Ranked</h2><span class="eyebrow">Tap to open</span></header><div class="rank wide" id="w-rank"></div></div>
+  </section>
+
+  <!-- TRADE -->
+  <section class="page" id="p-trade" role="tabpanel" hidden>
+    <div class="banner"><b>How to use this.</b> When news hits a supplier or a buyer, look up the product. The top supplier's stocks move first. Rival suppliers, big buyers and the stocks tied to the product usually take days or weeks to adjust, and that lag is the window for a Chains idea.</div>
+    <div class="panel">
+      <header><h2>Who supplies what</h2><span class="eyebrow" id="t-stamp">UN Comtrade</span></header>
+      <div class="chips" id="t-groups" role="group" aria-label="Product group"></div>
+      <div class="chips" id="t-products" role="group" aria-label="Product" style="margin-top:8px"></div>
+      <div id="t-detail" class="sheet"></div>
+    </div>
+    <div class="panel">
+      <header><h2>Export shifts</h2><span class="eyebrow">Last reported months vs. a year earlier</span></header>
+      <div class="chips" id="t-shift-filter" role="group" aria-label="Filter shifts"></div>
+      <div class="facts" id="t-shifts" style="margin-top:12px"></div>
+      <p class="small muted" id="t-note"></p>
+    </div>
+    <div class="panel">
+      <header><h2>Your book's trade links</h2><span class="eyebrow">Holdings tied to a traded product</span></header>
+      <div class="facts" id="t-book"></div>
+    </div>
   </section>
 
   <!-- SCENARIOS -->
@@ -312,7 +381,7 @@ footer { margin-top: 20px; color: var(--muted); font-size: .76rem; max-width: 72
     </div>
   </section>
 
-  <footer id="foot">Data: Federal Reserve Bank of St. Louis (FRED), Yahoo Finance. Scenario moves are linear sensitivities, not forecasts. Nothing here is investment advice.</footer>
+  <footer id="foot">Data: FRED, US Treasury, New York Fed, Yahoo Finance, IMF World Economic Outlook, BIS policy rates, UN Comtrade. Scenario moves are linear sensitivities, not forecasts. Nothing here is investment advice.</footer>
 </div>
 
 <script>
@@ -347,7 +416,7 @@ footer { margin-top: 20px; color: var(--muted); font-size: .76rem; max-width: 72
   let selected = null;
 
   // ---------- tabs ----------
-  const tabs = ["pulse", "chains", "scen", "fx", "policy", "ideas"];
+  const tabs = ["pulse", "chains", "world", "trade", "scen", "fx", "policy", "ideas"];
   function show(tab) {
     if (!tabs.includes(tab)) tab = "pulse";
     $$("nav.tabs button").forEach(b => b.setAttribute("aria-selected", b.dataset.tab === tab));
@@ -355,6 +424,7 @@ footer { margin-top: 20px; color: var(--muted); font-size: .76rem; max-width: 72
     store.set("tab", tab);
     if (location.hash.slice(1) !== tab) history.replaceState(null, "", "#" + tab);
     window.scrollTo({ top: 0 });
+    if (tab === "world") initGlobe();
   }
   $$("nav.tabs button").forEach(b => b.addEventListener("click", () => show(b.dataset.tab)));
   window.addEventListener("hashchange", () => show(location.hash.slice(1)));
@@ -589,6 +659,212 @@ footer { margin-top: 20px; color: var(--muted); font-size: .76rem; max-width: 72
       || `<div class="panel"><p class="empty">No open ideas. The morning scan adds new ones before the open on weekdays.</p></div>`)
       + (closed.length ? `<div class="panel"><header><h2>Closed</h2><span class="eyebrow">Held to horizon</span></header><div class="tbl-wrap"><table><thead><tr><th>Idea</th><th>Side</th><th class="c">Published</th><th class="c">vs SPY</th></tr></thead><tbody>${closed.map(i => { const h = i["d" + i.horizon] || i.now; return `<tr><td><b>${esc(i.ticker)}</b> <span class="small muted">${esc(i.theme || "")}</span></td><td>${esc(i.side)}</td><td class="c mono small">${esc((i.published || "").slice(0, 10))}</td><td class="c num ${cls(h && h.alpha)}">${h ? fmt(h.alpha, 1) + "%" : "—"}</td></tr>`; }).join("")}</tbody></table></div></div>` : "");
   }
+
+  // ---------- world + trade ----------
+  let W = null, T = null, wSel = store.get("wSel", null), wMetric = store.get("wMetric", "rel3m");
+  let tGroup = store.get("tGroup", null), tProd = store.get("tProd", null), tShift = "all";
+  const ETFS = new Set(["SPY", "SMH", "XLE", "CPER", "GLD", "TAN", "EWC", "EWW", "EWZ", "ARGT", "ECH", "EPU", "GXG", "EWU", "EWG", "EWQ", "EWI", "EWP", "EWN", "EWL", "EWD", "ENOR", "EPOL", "TUR", "EIS", "KSA", "UAE", "EZA", "INDA", "MCHI", "EWT", "EWY", "EWJ", "EIDO", "VNM", "THD", "EPHE", "EWM", "EWA"]);
+  const bookSet = () => new Set((T && T.book) || []);
+  const tkLink = t => `<a class="tk${bookSet().has(t) ? " book" : ""}" href="https://stockanalysis.com/${ETFS.has(t) ? "etf" : "stocks"}/${t.toLowerCase()}/" target="_blank" rel="noopener" title="${bookSet().has(t) ? "In your book" : "Quote"}">${esc(t)}</a>`;
+  const tks = list => `<div class="chip-row">${(list || []).filter(t => !restricted(t)).map(tkLink).join("")}</div>`;
+  const cname = iso => (T && T.names && T.names[iso]) || (W && (W.countries.find(c => c.iso === iso) || {}).name) || iso;
+  const hasPage = iso => W && W.countries.some(c => c.iso === iso);
+  const cbtn = iso => hasPage(iso) ? `<button class="linkish" data-country="${iso}">${esc(cname(iso))}</button>` : esc(cname(iso));
+  const monthsLabel = m => { const [a, b] = String(m).split("–"); const f = x => new Date(+x.slice(0, 4), +x.slice(4) - 1, 1).toLocaleDateString(undefined, { month: "short" }); return a && b ? `${f(a)}–${f(b)} ${b.slice(0, 4)}` : m; };
+
+  const year = (i) => W && W.imf_years ? String(W.imf_years[i]) : null;
+  const METRICS = () => [
+    { k: "rel3m", label: "Stocks vs. S&P, 3m", get: c => c.etf && c.etf.rel3m, scale: 12, unit: " pts", lo: "Lagging", hi: "Leading", note: "Country ETF's 3-month return minus the S&P 500's, in dollars." },
+    { k: "rel12m", label: "Stocks vs. S&P, 1y", get: c => c.etf && c.etf.rel12m, scale: 25, unit: " pts", lo: "Lagging", hi: "Leading", note: "Country ETF's 12-month return minus the S&P 500's." },
+    { k: "fx3m", label: "Currency, 3m", get: c => c.fx && c.fx.r3m, scale: 6, unit: "%", lo: "Weaker", hi: "Stronger", note: "Currency's move against the dollar over 3 months." },
+    { k: "gdp", label: `GDP growth ${year(1) || ""}`, get: c => c.macro && c.macro.gdp && c.macro.gdp[year(1)], center: 2.5, scale: 3, unit: "%", lo: "Slower", hi: "Faster", note: "IMF forecast of real GDP growth." },
+    { k: "cpi", label: `Inflation ${year(1) || ""}`, get: c => c.macro && c.macro.cpi && c.macro.cpi[year(1)], center: 3, scale: 4, invert: true, unit: "%", lo: "Hotter", hi: "Cooler", note: "IMF forecast of consumer-price inflation." },
+    { k: "rate", label: "Rate change, 1y", get: c => c.policy && c.policy.chg12m, scale: 1.5, invert: true, unit: " pts", lo: "Hiking", hi: "Cutting", note: "Change in the central-bank policy rate over 12 months (BIS)." },
+  ];
+  const metric = () => METRICS().find(m => m.k === wMetric) || METRICS()[0];
+  const mval = (m, c) => { const v = m.get(c); return v == null || isNaN(v) ? null : v; };
+  const mcolor = (m, c) => { const v = mval(m, c); if (v == null) return null; const x = (v - (m.center || 0)) * (m.invert ? -1 : 1); return colorFor(x, m.scale); };
+
+  // globe
+  let G = null;
+  function loadScript(src) { return new Promise((ok, no) => { const el = document.createElement("script"); el.src = src; el.onload = ok; el.onerror = no; document.head.appendChild(el); }); }
+  async function initGlobe() {
+    if (G || !W) return;
+    G = { pending: true };
+    try {
+      if (!window.d3) await loadScript("https://cdn.jsdelivr.net/npm/d3@7/dist/d3.min.js");
+      if (!window.topojson) await loadScript("https://cdn.jsdelivr.net/npm/topojson-client@3/dist/topojson-client.min.js");
+      const topo = await fetch("https://cdn.jsdelivr.net/npm/world-atlas@2/countries-110m.json").then(r => r.json());
+      const land = topojson.feature(topo, topo.objects.countries).features;
+      const proj = d3.geoOrthographic().scale(250).translate([260, 260]).clipAngle(90).precision(.4);
+      const path = d3.geoPath(proj);
+      const svg = $("#globe");
+      const start = W.countries.find(c => c.iso === wSel);
+      G = { land, proj, path, svg, rot: [-10, -20, 0] };
+      if (start) { const f = land.find(f => f.id === start.id); if (f) { const [lo, la] = d3.geoCentroid(f); G.rot = [-lo, -la * .8, 0]; } }
+      svg.innerHTML = `<path class="sphere"/><path class="grat"/><g class="lands">${land.map(f => `<path class="land" data-id="${f.id}"><title>${esc((W.countries.find(c => c.id === f.id) || {}).name || f.properties.name)}</title></path>`).join("")}</g>`;
+      G.grat = d3.geoGraticule10();
+      // drag to rotate, tap to select
+      let down = null;
+      svg.addEventListener("pointerdown", e => { down = { x: e.clientX, y: e.clientY, rot: [...G.rot], moved: false, id: e.pointerId }; });
+      svg.addEventListener("pointermove", e => {
+        if (!down) return;
+        const dx = e.clientX - down.x, dy = e.clientY - down.y;
+        if (Math.abs(dx) + Math.abs(dy) > 5) { down.moved = true; try { svg.setPointerCapture(down.id); } catch {} }
+        if (!down.moved) return;
+        const k = 0.35 * 520 / svg.getBoundingClientRect().width;
+        G.rot = [down.rot[0] + dx * k, e.pointerType === "touch" ? down.rot[1] : Math.max(-80, Math.min(80, down.rot[1] - dy * k)), 0];
+        drawGlobe();
+      });
+      const up = e => {
+        if (down && !down.moved) {
+          const el = document.elementFromPoint(e.clientX, e.clientY);
+          const id = el && el.closest && el.closest(".land") && el.closest(".land").dataset.id;
+          const c = id && W.countries.find(c => c.id === id);
+          if (c) selectCountry(c.iso, false);
+        }
+        down = null;
+      };
+      svg.addEventListener("pointerup", up);
+      svg.addEventListener("pointercancel", () => { down = null; });
+      drawGlobe();
+    } catch (err) {
+      G = null;
+      $("#globe").outerHTML = `<p class="empty" id="globe">The globe couldn't load (it needs d3 from jsdelivr.net). The list below still works.</p>`;
+    }
+  }
+  function drawGlobe() {
+    if (!G || !G.proj) return;
+    G.proj.rotate(G.rot);
+    const m = metric();
+    $(".sphere", G.svg).setAttribute("d", G.path({ type: "Sphere" }));
+    $(".grat", G.svg).setAttribute("d", G.path(G.grat));
+    const byId = Object.fromEntries(W.countries.map(c => [c.id, c]));
+    $$(".land", G.svg).forEach((el, i) => {
+      const f = G.land[i], c = byId[f.id];
+      el.setAttribute("d", G.path(f) || "");
+      const col = c ? mcolor(m, c) : null;
+      el.classList.toggle("nodata", !col);
+      el.style.fill = col || "";
+      el.classList.toggle("sel", !!c && c.iso === wSel);
+    });
+  }
+  function spinTo(iso) {
+    if (!G || !G.proj) return;
+    const c = W.countries.find(c => c.iso === iso), f = c && G.land.find(f => f.id === c.id);
+    if (!f) return;
+    const [lo, la] = d3.geoCentroid(f), from = [...G.rot], to = [-lo, -la * .8, 0];
+    let d = to[0] - from[0]; d = ((d + 540) % 360) - 180; to[0] = from[0] + d;
+    const t0 = performance.now(), dur = matchMedia("(prefers-reduced-motion: reduce)").matches ? 1 : 650;
+    const step = now => { const k = Math.min(1, (now - t0) / dur), e = 1 - Math.pow(1 - k, 3);
+      G.rot = [from[0] + (to[0] - from[0]) * e, from[1] + (to[1] - from[1]) * e, 0]; drawGlobe(); if (k < 1) requestAnimationFrame(step); };
+    requestAnimationFrame(step);
+  }
+  function selectCountry(iso, scroll = true) {
+    wSel = iso; store.set("wSel", iso);
+    renderWorldDetail(); drawGlobe(); spinTo(iso); renderWorldRank();
+    if (scroll) $("#p-world").scrollIntoView({ behavior: "smooth", block: "start" });
+    else $("#w-detail").scrollIntoView({ behavior: "smooth", block: "nearest" });
+  }
+
+  function renderWorld() {
+    if (!W) { $("#w-stamp").textContent = "World data arrives after the next data run"; return; }
+    $("#w-stamp").textContent = "Prices " + new Date(W.updated).toLocaleDateString(undefined, { month: "short", day: "numeric" });
+    $("#w-metric").innerHTML = METRICS().map(m => `<button class="chip" aria-pressed="${m.k === wMetric}" data-k="${m.k}">${esc(m.label)}</button>`).join("");
+    $$("#w-metric .chip").forEach(b => b.onclick = () => { wMetric = b.dataset.k; store.set("wMetric", wMetric); renderWorld(); drawGlobe(); });
+    const m = metric();
+    $("#w-lo").textContent = m.lo; $("#w-hi").textContent = m.hi;
+    renderWorldRank(); renderWorldDetail();
+  }
+  function renderWorldRank() {
+    const m = metric();
+    $("#w-rank-title").textContent = m.label;
+    const rows = W.countries.map(c => ({ c, v: mval(m, c) })).filter(r => r.v != null)
+      .sort((a, b) => ((b.v - (m.center || 0)) * (m.invert ? -1 : 1)) - ((a.v - (m.center || 0)) * (m.invert ? -1 : 1)));
+    const max = Math.max(...rows.map(r => Math.abs(r.v - (m.center || 0))), 0.01);
+    $("#w-rank").innerHTML = rows.length ? rows.map(r => { const x = (r.v - (m.center || 0)), good = x * (m.invert ? -1 : 1) >= 0, w = Math.abs(x) / max * 50;
+      return `<div class="rank-row"><button class="linkish n" data-country="${r.c.iso}" ${r.c.iso === wSel ? 'style="color:var(--accent)"' : ""}>${esc(r.c.name)}</button><div class="bar"><span style="left:${x >= 0 ? 50 : 50 - w}%;width:${w}%;background:var(--${good ? "up" : "down"})"></span></div><span class="v">${fmt(r.v, 1, !m.center)}${m.unit}</span></div>`; }).join("")
+      + `<p class="small muted" style="margin:8px 0 0">${esc(m.note)}${m.center ? ` Bars center on ${m.center}%.` : ""}</p>`
+      : `<p class="empty">No data for this measure yet.</p>`;
+  }
+  function renderWorldDetail() {
+    const c = W && W.countries.find(c => c.iso === wSel);
+    if (!c) return;
+    const e = c.etf || {}, fx = c.fx, ys = (W.imf_years || []).map(String), mm = c.macro || {};
+    const relCell = (lbl, v) => `<div>${lbl}<b class="${cls(v)}">${v == null ? "—" : fmt(v, 1) + " pts"}</b></div>`;
+    const imfRow = (k, lbl) => mm[k] ? `<tr><td>${lbl}</td>${ys.map(y => `<td class="c num">${mm[k][y] == null ? "—" : mm[k][y].toFixed(1)}</td>`).join("")}</tr>` : "";
+    const prodFact = (p, verb) => `<div class="fact"><span>${verb} <b>#${p.rank}</b> in <button class="linkish" data-prod="${p.code}">${esc(p.name)}</button></span><span class="num">${p.s.toFixed(0)}% of world</span>${tks(p.tickers)}</div>`;
+    $("#w-detail").innerHTML = `
+      <header><h2>${esc(c.name)}</h2><span class="eyebrow">${e.t ? `${esc(e.t)} ${e.last != null ? "$" + e.last.toFixed(2) : ""}` : "No US-listed country ETF"}</span></header>
+      ${c.reads && c.reads.length ? `<ul class="read">${c.reads.map(r => `<li>${esc(r)}</li>`).join("")}</ul>` : `<p class="small muted" style="margin:0">Nothing unusual on the trend, currency, growth or rate screens.</p>`}
+      <div class="sheet">
+        ${e.last != null ? `<div class="sub">Country ETF vs. the S&P 500</div><div class="kv">${relCell("1 month", e.rel1m)}${relCell("3 months", e.rel3m)}${relCell("12 months", e.rel12m)}<div>vs. 200-day<b class="${cls(e.vs200)}">${fmt(e.vs200, 1)}%</b></div>${fx ? `<div>Currency 3m<b class="${cls(fx.r3m)}">${fmt(fx.r3m, 1)}%</b></div><div>Currency 1y<b class="${cls(fx.r12m)}">${fmt(fx.r12m, 1)}%</b></div>` : ""}</div><div class="tile" style="border:0;padding:0">${spark(e.spark)}</div>` : ""}
+        ${Object.keys(mm).length ? `<div class="sub">IMF outlook</div><div class="tbl-wrap"><table><thead><tr><th></th>${ys.map(y => `<th class="c">${y}</th>`).join("")}</tr></thead><tbody>${imfRow("gdp", "GDP growth %")}${imfRow("cpi", "Inflation %")}${imfRow("unemp", "Unemployment %")}${imfRow("ca", "Current account, % GDP")}${imfRow("debt", "Gov. debt, % GDP")}</tbody></table></div>` : ""}
+        ${c.policy ? `<div class="kv"><div>Policy rate<b>${c.policy.rate.toFixed(2)}%</b></div><div>12-month change<b class="${cls(-c.policy.chg12m)}">${fmt(c.policy.chg12m, 2)} pts</b></div><div>As of<b>${esc(c.policy.asof)}</b></div></div>` : ""}
+        ${c.supplies && c.supplies.length ? `<div class="sub">Top-3 world supplier of</div><div class="facts">${c.supplies.map(p => prodFact(p, "Exporter")).join("")}</div>` : ""}
+        ${c.buys && c.buys.length ? `<div class="sub">Top-3 world buyer of</div><div class="facts">${c.buys.map(p => prodFact(p, "Importer")).join("")}</div>` : ""}
+        ${c.shifts && c.shifts.length ? `<div class="sub">Export shifts</div><div class="facts">${c.shifts.map(s => `<div class="fact"><span><button class="linkish" data-prod="${s.code}">${esc(s.product)}</button> <span class="small muted">${esc(monthsLabel(s.months))}</span></span><span class="num ${cls(s.yoy)}">${fmt(s.yoy, 0)}% y/y</span>${tks(s.tickers)}</div>`).join("")}</div>` : ""}
+        ${c.names && c.names.length ? `<div class="sub">US-listed companies</div>${tks(c.names)}` : ""}
+        ${c.note ? `<p class="small muted" style="margin:0">${esc(c.note)}</p>` : ""}
+      </div>`;
+  }
+
+  function renderTrade() {
+    const prods = (T && T.products || []).filter(p => p.exporters && p.exporters.length);
+    if (!prods.length) {
+      $("#t-detail").innerHTML = `<p class="empty">Trade data arrives after the first weekly UN Comtrade pull.</p>`;
+      $("#t-shifts").innerHTML = ""; $("#t-book").innerHTML = ""; return;
+    }
+    const groups = [...new Set(prods.map(p => p.group))];
+    if (!groups.includes(tGroup)) tGroup = groups[0];
+    if (!prods.some(p => p.code === tProd)) tProd = (prods.find(p => p.group === tGroup) || prods[0]).code;
+    const P = prods.find(p => p.code === tProd); tGroup = P.group;
+    $("#t-stamp").textContent = `UN Comtrade · ${P.year_x || ""}`;
+    $("#t-groups").innerHTML = groups.map(g => `<button class="chip" aria-pressed="${g === tGroup}" data-g="${esc(g)}">${esc(g)}</button>`).join("");
+    $("#t-products").innerHTML = prods.filter(p => p.group === tGroup).map(p => `<button class="chip" aria-pressed="${p.code === tProd}" data-prod="${p.code}">${esc(p.name)}</button>`).join("");
+    $$("#t-groups .chip").forEach(b => b.onclick = () => { tGroup = b.dataset.g; tProd = prods.find(p => p.group === tGroup).code; store.set("tGroup", tGroup); store.set("tProd", tProd); renderTrade(); });
+    const bars = (list, yoy) => { const max = Math.max(...list.map(x => x.s), 1);
+      return list.map(x => `<div class="share"><span class="n">${cbtn(x.c)}</span><div class="bar"><span style="width:${x.s / max * 100}%"></span></div><span class="v">${x.s.toFixed(0)}%</span><span class="v small ${yoy ? cls(x.yoy) : "muted"}">${yoy ? (x.yoy == null ? "" : fmt(x.yoy, 0) + "%") : "$" + (x.v >= 10 ? x.v.toFixed(0) : x.v.toFixed(1)) + "B"}</span></div>`).join(""); };
+    $("#t-detail").innerHTML = `
+      <div><h3 style="font-weight:700">${esc(P.name)} <span class="mono small muted">HS ${esc(P.code)}</span></h3>
+        <p class="small muted" style="margin:4px 0 0">World exports about $${P.world_bn >= 10 ? P.world_bn.toFixed(0) : P.world_bn}B in ${esc(P.year_x)}.</p></div>
+      ${P.if_disrupted ? `<div class="callout">${esc(P.if_disrupted)}</div>` : ""}
+      <div class="sub">Stocks tied to it</div>${tks(P.tickers)}
+      ${P.book && P.book.length ? `<p class="small" style="margin:0;color:var(--accent)">In your book: ${P.book.map(esc).join(", ")}</p>` : ""}
+      <div class="cols2">
+        <div><div class="sub">Top exporters · share · change y/y</div><div class="rank">${bars(P.exporters, true)}</div></div>
+        <div><div class="sub">Top importers · share · value</div><div class="rank">${bars(P.importers || [], false)}</div>${P.year_m && P.year_m !== P.year_x ? `<p class="small muted">Importer data for ${esc(P.year_m)}.</p>` : ""}</div>
+      </div>`;
+    // shifts
+    const sh = (T.shifts || []).filter(s => tShift === "all" || (tShift === "up" ? s.yoy > 0 : s.yoy < 0) || (tShift === "book" && s.tickers.some(t => bookSet().has(t))));
+    $("#t-shift-filter").innerHTML = [["all", "Biggest"], ["up", "Rising"], ["down", "Falling"], ["book", "Tied to your book"]].map(([k, l]) => `<button class="chip" aria-pressed="${k === tShift}" data-f="${k}">${l}</button>`).join("");
+    $$("#t-shift-filter .chip").forEach(b => b.onclick = () => { tShift = b.dataset.f; renderTrade(); });
+    $("#t-shifts").innerHTML = sh.length ? sh.slice(0, 25).map(s => `<div class="fact"><span>${cbtn(s.c)} · <button class="linkish" data-prod="${s.code}">${esc(s.product)}</button></span><span class="num ${cls(s.yoy)}">${fmt(s.yoy, 0)}% y/y</span><span class="small muted" style="grid-column:1/-1">$${s.then_bn.toFixed(1)}B → $${s.now_bn.toFixed(1)}B in exports, ${esc(monthsLabel(s.months))} vs. a year earlier</span>${tks(s.tickers)}</div>`).join("") : `<p class="empty">No shifts in this filter.</p>`;
+    $("#t-note").textContent = (T.note || "") + " A shift that shows up here is a slow trend the market may not have connected to the stocks yet, not breaking news.";
+    // book links
+    const book = prods.filter(p => p.book && p.book.length);
+    $("#t-book").innerHTML = book.length ? book.map(p => `<div class="fact"><span><b>${p.book.map(esc).join(", ")}</b> · <button class="linkish" data-prod="${p.code}">${esc(p.name)}</button></span><span></span><span class="small muted" style="grid-column:1/-1">Top exporters: ${p.exporters.slice(0, 3).map(x => `${esc(cname(x.c))} ${x.s.toFixed(0)}%`).join(" · ")}</span></div>`).join("") : `<p class="empty">None of your holdings are mapped to a product yet.</p>`;
+  }
+  function openProduct(code) {
+    const p = (T && T.products || []).find(p => p.code === code);
+    if (!p) return;
+    tProd = code; tGroup = p.group; store.set("tProd", tProd); store.set("tGroup", tGroup);
+    show("trade"); renderTrade();
+  }
+  document.addEventListener("click", e => {
+    const pb = e.target.closest("[data-prod]"); if (pb) { openProduct(pb.dataset.prod); return; }
+    const cb = e.target.closest("[data-country]");
+    if (cb) { if (!$("#p-world").hidden) selectCountry(cb.dataset.country); else { wSel = cb.dataset.country; store.set("wSel", wSel); show("world"); renderWorldDetail(); renderWorldRank(); drawGlobe(); spinTo(wSel); } }
+  });
+  Promise.all([
+    fetch("world.json", { cache: "no-cache" }).then(r => r.ok ? r.json() : null).catch(() => null),
+    fetch("trade.json", { cache: "no-cache" }).then(r => r.ok ? r.json() : null).catch(() => null),
+  ]).then(([w, t]) => {
+    W = w; T = t;
+    if (W && !wSel) wSel = "CHN";
+    const go = () => { if (!D) return setTimeout(go, 100); renderWorld(); renderTrade(); if (!$("#p-world").hidden) initGlobe(); };
+    go();
+  });
 
   // ---------- boot ----------
   function boot(data) {

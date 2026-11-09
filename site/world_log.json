@@ -1,0 +1,9 @@
+{
+ "updated": "2026-11-09T18:10:08+00:00",
+ "log": [
+  "IMF/BIS: cached",
+  "Comtrade: cached",
+  "prices: 62 tickers",
+  "wrote world.json (35 countries, 34 ETFs priced) and trade.json (37 products, 60 shifts)"
+ ]
+}

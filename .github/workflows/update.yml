@@ -5,6 +5,11 @@ on:
     - cron: "17 11 * * 1-5"   # 7:17am New York (EDT) on weekdays
     - cron: "47 21 * * 1-5"   # 5:47pm New York (EDT), after the close
   workflow_dispatch:
+    inputs:
+      force_slow:
+        description: "Refetch IMF, BIS and Comtrade even if cached (1 = yes)"
+        required: false
+        default: "0"
   push:
     branches: [main]
     paths:
@@ -33,12 +38,20 @@ jobs:
       - run: python pipeline/build.py && python pipeline/make_index.py
         env:
           FRED_API_KEY: ${{ secrets.FRED_API_KEY }}
+      - name: World and trade data
+        run: python pipeline/world.py
+        continue-on-error: true
+        timeout-minutes: 25
+        env:
+          FORCE_SLOW: ${{ github.event.inputs.force_slow }}
       - name: Commit refreshed data
         run: |
           git config user.name "macro-desk-bot"
           git config user.email "actions@users.noreply.github.com"
           git add site/data.json site/index.html site/build_log.json
+          git add site/world.json site/trade.json site/world_log.json 2>/dev/null || true
           git diff --cached --quiet || git commit -m "Refresh data"
+          git pull --rebase || true
           git push
       - uses: actions/configure-pages@v5
       - uses: actions/upload-pages-artifact@v3
