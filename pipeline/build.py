@@ -403,9 +403,17 @@ def fill_from_fallbacks(fred: dict[str, pd.Series], old: dict):
     need_hy = "BAMLH0A0HYM2" not in fred
     if need_y or need_hy:
         try:
-            px = A.yahoo_series([A.YAHOO_MAP[s] for s in need_y] + (["HYG", "IEF"] if need_hy else []))
+            alts = [t for s in need_y for t, _ in A.YAHOO_ALT.get(s, [])]
+            px = A.yahoo_series([A.YAHOO_MAP[s] for s in need_y] + alts + (["HYG", "IEF"] if need_hy else []))
             for sid in need_y:
                 t = A.YAHOO_MAP[sid]
+                if (t not in px or px[t].dropna().shape[0] <= 30) and sid in A.YAHOO_ALT:
+                    for alt, alt_label in A.YAHOO_ALT[sid]:
+                        if alt in px and px[alt].dropna().shape[0] > 30:
+                            log(f"{sid}: {t} empty, using {alt}")
+                            put(sid, px[alt], "Yahoo " + alt, alt_label)
+                            break
+                    continue
                 if t in px:
                     put(sid, px[t], "Yahoo " + t,
                         "Dollar index (DXY)" if sid == "DTWEXBGS" else ("WTI crude (front month)" if sid == "DCOILWTICO" else None))

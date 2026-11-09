@@ -188,12 +188,32 @@ def is_country_row(row) -> bool:
     return len(iso) == 3 and iso.isalpha() and iso not in AGGREGATE_ISO and code not in (0, 97, 490) and code < 899
 
 
+COMTRADE_STATE = {"start": None, "calls": 0, "fails": 0, "dead": False}
+COMTRADE_BUDGET_S = int(os.environ.get("COMTRADE_BUDGET_S", "780"))  # ~13 minutes per run
+
+
 def comtrade(freq: str, **params):
+    st = COMTRADE_STATE
+    st["start"] = st["start"] or time.time()
+    if st["dead"]:
+        raise RuntimeError("Comtrade skipped (unreachable earlier this run)")
+    if time.time() - st["start"] > COMTRADE_BUDGET_S:
+        raise RuntimeError("Comtrade time budget used up")
     q = {"includeDesc": "true", "breakdownMode": "classic", "partner2Code": "0",
          "customsCode": "C00", "motCode": "0"}
     q.update({k: str(v) for k, v in params.items() if v is not None})
     url = COMTRADE.format(freq=freq) + "?" + urllib.parse.urlencode(q, safe=",")
-    j = get_json(url, timeout=60, tries=4, pause=3.0)
+    st["calls"] += 1
+    try:
+        j = get_json(url, timeout=30, tries=2, pause=3.0)
+    except Exception as e:
+        st["fails"] += 1
+        if st["fails"] <= 3:
+            log(f"Comtrade call {st['calls']} failed: {type(e).__name__}: {str(e)[:160]}")
+        if st["calls"] == st["fails"] and st["fails"] >= 3:  # nothing has ever worked: stop trying
+            st["dead"] = True
+            log(f"Comtrade unreachable ({type(e).__name__}: {e}); skipping the rest this run. URL tried: {url[:160]}")
+        raise
     time.sleep(1.3)  # stay under the public API's rate limit
     if isinstance(j, dict) and j.get("error"):
         raise RuntimeError(j["error"])
@@ -211,7 +231,7 @@ def fetch_imf(years):
     out = {}
     for ind, key in IMF_IND.items():
         try:
-            j = get_json(f"https://www.imf.org/external/datamapper/api/v1/{ind}?periods={','.join(map(str, years))}")
+            j = get_json(f"https://www.imf.org/external/datamapper/api/v1/{ind}?periods={','.join(map(str, years))}", timeout=30, tries=2)
             vals = (j.get("values") or {}).get(ind) or {}
             for iso, series in vals.items():
                 if iso in ISO3:
@@ -219,6 +239,8 @@ def fetch_imf(years):
                                                     for y in years}
         except Exception as e:
             log(f"IMF {ind} failed: {type(e).__name__}: {e}")
+            if not out:  # first indicator failed: the API is down or blocked, don't wait on the rest
+                break
     log(f"IMF: {len(out)} countries")
     return out
 
@@ -492,8 +514,12 @@ def main():
         slow_w = {k: prev_w.get(k) for k in ("imf", "bis", "imf_years", "slow_fetched")}
         log("IMF/BIS: cached")
 
-    # ---- slow: Comtrade (weekly)
-    if stale(prev_t):
+    # ---- slow: Comtrade (weekly). World is written first so a slow Comtrade never costs the rest.
+    trade_stale = stale(prev_t)
+    if trade_stale:
+        trade = {k: prev_t.get(k) for k in ("products", "shifts", "slow_fetched")}
+        write_world(slow_w, trade, now_iso)
+    if trade_stale:
         t = build_trade_slow(prev_t)
         shifts = build_shifts() or prev_t.get("shifts", [])
         got = any(p.get("exporters") for p in t["products"])
@@ -503,9 +529,25 @@ def main():
         trade = {k: prev_t.get(k) for k in ("products", "shifts", "slow_fetched")}
         log("Comtrade: cached")
 
+    write_world(slow_w, trade, now_iso)
+    trade_out = {"updated": now_iso, **trade, "book": BOOK, "names": NAME,
+                 "note": "UN Comtrade annual data (latest mostly-complete year) and monthly exports for 25 major reporters. "
+                         "Monthly data lags 2–4 months, so shifts show slow-moving trends, not news."}
+    TRADE_OUT.write_text(json.dumps(trade_out, separators=(",", ":"), allow_nan=False))
+    log(f"wrote trade.json ({sum(1 for p in trade_out.get('products') or [] if p.get('exporters'))} products, "
+        f"{len(trade_out.get('shifts') or [])} shifts; Comtrade calls {COMTRADE_STATE['calls']}, failed {COMTRADE_STATE['fails']})")
+    (ROOT / "site" / "world_log.json").write_text(json.dumps({"updated": now_iso, "log": LOG}, indent=1))
+
+
+PX_CACHE = {}
+
+
+def write_world(slow_w, trade, now_iso):
     # ---- fast: prices
     try:
-        px = fetch_prices()
+        px = PX_CACHE.get("px")
+        if px is None:
+            px = PX_CACHE["px"] = fetch_prices()
         log(f"prices: {px.shape[1]} tickers")
     except Exception as e:
         log(f"prices failed: {type(e).__name__}: {e}")
@@ -554,16 +596,13 @@ def main():
         countries.append(row)
 
     world = {"updated": now_iso, "countries": countries, **slow_w}
-    trade_out = {"updated": now_iso, **trade, "book": BOOK, "names": NAME,
-                 "note": "UN Comtrade annual data (latest mostly-complete year) and monthly exports for 25 major reporters. "
-                         "Monthly data lags 2–4 months, so shifts show slow-moving trends, not news."}
     WORLD_OUT.write_text(json.dumps(world, separators=(",", ":"), allow_nan=False))
-    TRADE_OUT.write_text(json.dumps(trade_out, separators=(",", ":"), allow_nan=False))
     n_etf = sum(1 for c in countries if (c.get("etf") or {}).get("last"))
-    log(f"wrote world.json ({len(countries)} countries, {n_etf} ETFs priced) and trade.json "
-        f"({sum(1 for p in trade_out.get('products') or [] if p.get('exporters'))} products, {len(trade_out.get('shifts') or [])} shifts)")
-    (ROOT / "site" / "world_log.json").write_text(json.dumps({"updated": now_iso, "log": LOG}, indent=1))
+    log(f"wrote world.json ({len(countries)} countries, {n_etf} ETFs priced)")
 
 
 if __name__ == "__main__":
-    main()
+    try:
+        main()
+    finally:
+        (ROOT / "site" / "world_log.json").write_text(json.dumps({"updated": datetime.now(timezone.utc).isoformat(), "log": LOG}, indent=1))

@@ -138,6 +138,8 @@ def tga(start: str = "2019-01-01") -> pd.Series:
 # ---------- Yahoo-based series ----------
 
 YAHOO_MAP = {"VIXCLS": "^VIX", "SP500": "^GSPC", "DCOILWTICO": "CL=F", "DTWEXBGS": "DX-Y.NYB"}
+# tried in order if the first ticker returns nothing
+YAHOO_ALT = {"DCOILWTICO": [("BZ=F", "Brent crude (front month)"), ("USO", "Oil (USO fund price)")]}
 
 
 def yahoo_series(tickers: list[str]) -> pd.DataFrame:
