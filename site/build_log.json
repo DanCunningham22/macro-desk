@@ -1,13 +1,12 @@
 {
- "updated": "2026-11-09T18:19Z",
+ "updated": "2026-11-09T18:51Z",
  "log": [
   "FRED DGS10 failed: TimeoutError: The read operation timed out",
   "FRED keyless endpoint unreachable; using primary-source fallbacks",
   "FRED: 0/13 series",
-  "sources: DGS10=US Treasury, DGS2=US Treasury, DFII10=US Treasury, T10YIE=US Treasury, DFEDTARU=New York Fed, RRPONTSYD=New York Fed, WTREGEN=Treasury Fiscal Data, WALCL=New York Fed SOMA, VIXCLS=Yahoo ^VIX, SP500=Yahoo ^GSPC, DTWEXBGS=Yahoo DX-Y.NYB, BAMLH0A0HYM2=Estimated from HYG vs IEF, anchored to FRED 2026-10-08",
-  "macro series available: 12/13",
+  "sources: DGS10=US Treasury, DGS2=US Treasury, DFII10=US Treasury, T10YIE=US Treasury, DFEDTARU=New York Fed, RRPONTSYD=New York Fed, WTREGEN=Treasury Fiscal Data, WALCL=New York Fed SOMA, VIXCLS=Yahoo ^VIX, SP500=Yahoo ^GSPC, DCOILWTICO=Yahoo CL=F, DTWEXBGS=Yahoo DX-Y.NYB, BAMLH0A0HYM2=Estimated from HYG vs IEF, anchored to FRED 2026-11-09",
+  "macro series available: 13/13",
   "prices: 56 tickers",
-  "betas skipped: missing factor series",
-  "wrote data.json: 14 macro series, 56/56 assets priced"
+  "wrote data.json: 15 macro series, 56/56 assets priced"
  ]
 }
