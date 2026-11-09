@@ -1,13 +1,34 @@
 {
- "updated": "2026-11-09T19:27:31.421952+00:00",
+ "updated": "2026-11-09T21:45:38.531183+00:00",
  "log": [
   "IMF/BIS: cached",
   "prices: 62 tickers",
   "wrote world.json (35 countries, 33 ETFs priced)",
-  "Comtrade annual: 22/37 products have data",
+  "Comtrade annual: 37/37 products have data",
+  "Comtrade call 61 failed: HTTPError: HTTP Error 400: Bad Request",
+  "Comtrade monthly 2603 failed: HTTPError: HTTP Error 400: Bad Request",
+  "Comtrade call 62 failed: HTTPError: HTTP Error 400: Bad Request",
+  "Comtrade monthly 7403 failed: HTTPError: HTTP Error 400: Bad Request",
+  "Comtrade call 63 failed: HTTPError: HTTP Error 400: Bad Request",
+  "Comtrade monthly 2601 failed: HTTPError: HTTP Error 400: Bad Request",
+  "Comtrade monthly 7601 failed: HTTPError: HTTP Error 400: Bad Request",
+  "Comtrade monthly 283691 failed: HTTPError: HTTP Error 400: Bad Request",
+  "Comtrade monthly 2846 failed: HTTPError: HTTP Error 400: Bad Request",
+  "Comtrade monthly 7108 failed: HTTPError: HTTP Error 400: Bad Request",
+  "Comtrade monthly 2709 failed: HTTPError: HTTP Error 400: Bad Request",
+  "Comtrade monthly 2710 failed: HTTPError: HTTP Error 400: Bad Request",
+  "Comtrade monthly 2711 failed: HTTPError: HTTP Error 400: Bad Request",
+  "Comtrade monthly 2701 failed: HTTPError: HTTP Error 400: Bad Request",
+  "Comtrade monthly 8542 failed: HTTPError: HTTP Error 400: Bad Request",
+  "Comtrade monthly 8486 failed: HTTPError: HTTP Error 400: Bad Request",
+  "Comtrade monthly 8471 failed: HTTPError: HTTP Error 400: Bad Request",
+  "Comtrade monthly 8517 failed: HTTPError: HTTP Error 400: Bad Request",
+  "Comtrade monthly 8504 failed: HTTPError: HTTP Error 400: Bad Request",
+  "Comtrade monthly 8507 failed: HTTPError: HTTP Error 400: Bad Request",
+  "Comtrade monthly 8541 failed: HTTPError: HTTP Error 400: Bad Request",
   "Comtrade monthly: 0/37 products scanned this week, 0 shifts",
   "prices: 62 tickers",
   "wrote world.json (35 countries, 33 ETFs priced)",
-  "wrote trade.json (22 products, 0 shifts; Comtrade calls 71, failed 0)"
+  "wrote trade.json (37 products, 0 shifts; Comtrade calls 78, failed 18)"
  ]
 }
