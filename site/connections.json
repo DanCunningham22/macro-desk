@@ -1,5 +1,5 @@
 {
-  "updated": "2026-11-10T07:26:00-05:00",
+  "updated": "2026-11-11T07:28:00-05:00",
   "scans": [
     {
       "date": "2026-10-13",
@@ -24,6 +24,10 @@
     {
       "date": "2026-11-10",
       "summary": "No new ideas met the bar today; quote pages could not be opened during the scan, so no candidate could be checked for how much it had already moved. Themes examined: the oil war-premium collapse (Brent below $90 from $113 on Oct 30) against a still-tight physical market (US distillate stocks at a 23-year low, Gulf product exports about half of normal, QatarEnergy force majeure through December), the drone strike on Russia's Kirishi refinery (about 7% of Russian capacity, with diesel exports already banned), China's copper squeeze (SHFE stocks under one day of use, record Yangshan premium) with miners already up about 6%, Ionis's Tryngolza guidance cut as a read-through to Arrowhead (direction ambiguous), Sanmina's AI-rack guidance (adds to the AI-capex factor), NRG's 4.9 GW plant sale to LS Power (price not confirmed in the release), and SoftBank's $3.7 billion power-equipment write-down (supplier not named). None of the open ideas' kill conditions could be confirmed as met from sources opened today."
+    },
+    {
+      "date": "2026-11-11",
+      "summary": "One new idea. SoftBank's $3.7 billion charge on reserved US power equipment knocked GE Vernova down about 4%, while Siemens Energy reported gas orders up 46% and US orders up 71%; GE Vernova keeps non-refundable deposits on any released slots. Read-throughs examined and rejected: Ukraine's strikes on 30% of Russian refining capacity, including Kirishi, as a threat to Russia's planned November diesel exports to Brazil and Turkey (European diesel imports and margins were falling and refiner quotes could not be opened), the USDA corn yield cut (a 2% futures move with stocks still ample), Honda's EV restructuring charges (suppliers not named), the Nvidia China-shipment report as a read-through to server makers (Dell and Super Micro already down 4-6%), and China's two-month extensions of its rare-earth and port-fee pauses (no change in flows). Most quote pages could not be opened."
     }
   ],
   "ideas": [
@@ -374,6 +378,34 @@
       "priced_in": "BTU fell 0.5% on Oct 16. The stock has lagged coal prices because of commissioning problems at its Centurion met mine and weak Powder River Basin volumes, which remain the main risk to the idea. China's output has been declining since April, so part of the price strength is already known; the new facts are the September figure and the Australian repricing that US-listed coal has not yet matched.",
       "kill": "Newcastle coal futures fall back below about $140/t, or Peabody's Q3 report cuts seaborne thermal volume guidance or Centurion targets again.",
       "book": "Coal with no AI-capex link; diversifies the book (minor overlap with CAT through mining demand)."
+    },
+    {
+      "id": "2026-11-11-turbines-gev",
+      "published": "2026-11-11T07:28:00-05:00",
+      "theme": "Gas turbine demand",
+      "event": "SoftBank booked a $3.7 billion charge on power equipment for US data-center sites, and GE Vernova fell about 4% on Nov 10; on Nov 11 Siemens Energy reported record orders and a EUR 164 billion backlog.",
+      "source": {
+        "title": "TIKR: GE Vernova falls 4% as SoftBank's Ohio data center undergoes a thorough reassessment",
+        "url": "https://www.tikr.com/blog/ge-vernova-falls-4-as-softbanks-ohio-data-center-undergoes-a-thorough-reassessment"
+      },
+      "source2": {
+        "title": "FourWeekMBA: Siemens Energy adds EUR 9B buyback as backlog hits EUR 164B record",
+        "url": "https://fourweekmba.com/ai-siemens-energy-adds-9b-buyback-as-backlog-hits-164b-record/"
+      },
+      "chain": [
+        "SoftBank's $3.7 billion charge is mostly money already paid ($2.9 billion non-refundable) for turbines reserved for an Ohio gas plant, and its CFO says the Ohio project is being reassessed, not scaled back.",
+        "GE Vernova says its deposits and slot reservations are non-refundable, so a released slot keeps its deposit and returns to a queue of about 122 GW of gas equipment under contract.",
+        "Siemens Energy, the closest rival, reported gas-services orders up 46% to EUR 32.8 billion and US orders up 71% to EUR 27.7 billion, and guides gas revenue up 24-26% for fiscal 2027.",
+        "GE Vernova (GEV), sold on a customer-specific charge and about 33% below its 52-week high of $1,196, has its demand picture confirmed by the peer's order book."
+      ],
+      "ticker": "GEV",
+      "name": "GE Vernova",
+      "side": "long",
+      "horizon": 10,
+      "conviction": 1,
+      "priced_in": "GEV closed Nov 9 at $829 and fell about 4% on Nov 10 (about $779 at 2:30 PM, low $747), after a 9% and 7% drop on Nov 4-5. Siemens Energy rose about 7% in Frankfurt on Nov 11, so part of the read-through may show at the US open, and CNBC and TIKR already argue the selloff is overdone. Pre-market GEV quotes could not be opened during the scan.",
+      "kill": "SoftBank or another developer cancels reserved GE Vernova turbine slots that are not resold, or GEV closes below its Nov 10 low of $747.",
+      "book": "Adds to the AI-capex and power factor; overlaps with CAT (Solar Turbines gas gensets) and VRT."
     }
   ]
 }
