@@ -1,5 +1,5 @@
 {
-  "updated": "2026-11-11T07:28:00-05:00",
+  "updated": "2026-11-12T07:22:00-05:00",
   "scans": [
     {
       "date": "2026-10-13",
@@ -28,6 +28,10 @@
     {
       "date": "2026-11-11",
       "summary": "One new idea. SoftBank's $3.7 billion charge on reserved US power equipment knocked GE Vernova down about 4%, while Siemens Energy reported gas orders up 46% and US orders up 71%; GE Vernova keeps non-refundable deposits on any released slots. Read-throughs examined and rejected: Ukraine's strikes on 30% of Russian refining capacity, including Kirishi, as a threat to Russia's planned November diesel exports to Brazil and Turkey (European diesel imports and margins were falling and refiner quotes could not be opened), the USDA corn yield cut (a 2% futures move with stocks still ample), Honda's EV restructuring charges (suppliers not named), the Nvidia China-shipment report as a read-through to server makers (Dell and Super Micro already down 4-6%), and China's two-month extensions of its rare-earth and port-fee pauses (no change in flows). Most quote pages could not be opened."
+    },
+    {
+      "date": "2026-11-12",
+      "summary": "One new idea. Siemens reported triple-digit growth in data-center orders and electrification orders up 62%, a read-through to Powell Industries, which fell 28% in a month on post-midterm data-center fears and reports on Nov 16. Examined and rejected: Corteva's 31% drop in Latin American sales on Brazil credit stress (AGCO, Mosaic and FMC had already reported and repriced the same weakness), the Formosa Point Comfort polyethylene force majeure (unit and capacity unconfirmed, two weeks old), Hormuz mine strikes on tankers (no change in flows, which were already near zero), Nvidia's leadership crisis (first-order), India's ban on battery black-mass exports (no US-listed link) and Lithium Americas' 31% Thacker Pass cost increase (first-order). Most quote pages could not be opened; the open GE Vernova idea's kill condition has not hit."
     }
   ],
   "ideas": [
@@ -406,6 +410,34 @@
       "priced_in": "GEV closed Nov 9 at $829 and fell about 4% on Nov 10 (about $779 at 2:30 PM, low $747), after a 9% and 7% drop on Nov 4-5. Siemens Energy rose about 7% in Frankfurt on Nov 11, so part of the read-through may show at the US open, and CNBC and TIKR already argue the selloff is overdone. Pre-market GEV quotes could not be opened during the scan.",
       "kill": "SoftBank or another developer cancels reserved GE Vernova turbine slots that are not resold, or GEV closes below its Nov 10 low of $747.",
       "book": "Adds to the AI-capex and power factor; overlaps with CAT (Solar Turbines gas gensets) and VRT."
+    },
+    {
+      "id": "2026-11-12-switchgear-powl",
+      "published": "2026-11-12T07:22:00-05:00",
+      "theme": "Data-center electrification",
+      "event": "Siemens reported record fiscal Q4 orders on Nov 12, with Smart Infrastructure orders up about 40% to EUR 8.7 billion on triple-digit growth in data-center orders, and its CEO said nothing about US data-center demand worries it for the next couple of years.",
+      "source": {
+        "title": "Kuwait Times (AFP): Siemens sees no AI slowdown despite Republican rout in US",
+        "url": "https://kuwaittimes.com/article/53517/world/siemens-sees-no-ai-slowdown-despite-republican-rout-in-us/"
+      },
+      "source2": {
+        "title": "Malay Mail (AFP): Data centres are a goldmine for Siemens: record profit and 40pc order jump in smart infrastructure",
+        "url": "https://www.malaymail.com/news/money/2026/11/12/data-centres-are-a-goldmine-for-siemens-record-profit-and-40pc-order-jump-in-smart-infrastructure/242985"
+      },
+      "chain": [
+        "After Democrats won Congress on Nov 3, fears of curbs on US data-center construction hit power-equipment stocks; Powell Industries fell about 15% in five sessions and 28% in a month to $138 on Nov 10.",
+        "Siemens, the largest switchgear and electrical-distribution rival, reported triple-digit growth in data-center orders, electrification orders up 62%, and plans materially higher capex to add data-center capacity; ABB reported 40% order growth for July-September.",
+        "Powell sells the same medium-voltage switchgear and power rooms; its last quarter brought record orders of $934 million, including a data-center award above $400 million, and a backlog above $2.4 billion.",
+        "Powell Industries (POWL) reports fiscal Q4 on Nov 16, inside the horizon, and the rival order books argue its backlog is not shrinking."
+      ],
+      "ticker": "POWL",
+      "name": "Powell Industries",
+      "side": "long",
+      "horizon": 10,
+      "conviction": 1,
+      "priced_in": "Siemens rose about 4% in Frankfurt on Nov 12, but US power-equipment names had not yet traded on it, and Nvidia's leadership turmoil had US futures lower before the open. POWL's Nov 11 close could not be opened (Nov 10 close $138.21, 52-week range $92.59-$328). Powell missed consensus in each of its first three fiscal 2026 quarters, so the Nov 16 report is a two-sided risk.",
+      "kill": "Powell's Nov 16 report shows backlog below $2.2 billion or a cancelled data-center order, or POWL closes below $120.",
+      "book": "Adds to the AI-capex and power factor; overlaps with VRT, CAT and the open GEV idea."
     }
   ]
 }
