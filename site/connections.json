@@ -1,5 +1,5 @@
 {
-  "updated": "2026-11-12T07:22:00-05:00",
+  "updated": "2026-11-13T07:20:00-05:00",
   "scans": [
     {
       "date": "2026-10-13",
@@ -32,6 +32,10 @@
     {
       "date": "2026-11-12",
       "summary": "One new idea. Siemens reported triple-digit growth in data-center orders and electrification orders up 62%, a read-through to Powell Industries, which fell 28% in a month on post-midterm data-center fears and reports on Nov 16. Examined and rejected: Corteva's 31% drop in Latin American sales on Brazil credit stress (AGCO, Mosaic and FMC had already reported and repriced the same weakness), the Formosa Point Comfort polyethylene force majeure (unit and capacity unconfirmed, two weeks old), Hormuz mine strikes on tankers (no change in flows, which were already near zero), Nvidia's leadership crisis (first-order), India's ban on battery black-mass exports (no US-listed link) and Lithium Americas' 31% Thacker Pass cost increase (first-order). Most quote pages could not be opened; the open GE Vernova idea's kill condition has not hit."
+    },
+    {
+      "date": "2026-11-13",
+      "summary": "One new idea. Applied Materials guided above consensus, put 2027 wafer-fab-equipment growth above 30% and said nearly all of its suppliers must add capacity, a read-through to subsystem maker Ultra Clean Holdings, which gets about 59% of revenue from Lam and Applied. Examined and rejected: Samsung's reported bid for Modine (first-order, peers unclear), Houthi claims of strikes on the East-West pipeline and Yanbu (unconfirmed, Brent already up 3.3%), a mine strike on a gas carrier east of Hormuz (Gulf LNG flows already near zero), the record LME aluminium backwardation (cash price fell and the 2027 balance is forecast in surplus), Nvidia's CEO exit and Nebius' capex raise (first-order). Quote pages and most web pages could not be opened after a fetch-permission timeout; open GE Vernova and Powell kill conditions could not be fully checked."
     }
   ],
   "ideas": [
@@ -438,6 +442,34 @@
       "priced_in": "Siemens rose about 4% in Frankfurt on Nov 12, but US power-equipment names had not yet traded on it, and Nvidia's leadership turmoil had US futures lower before the open. POWL's Nov 11 close could not be opened (Nov 10 close $138.21, 52-week range $92.59-$328). Powell missed consensus in each of its first three fiscal 2026 quarters, so the Nov 16 report is a two-sided risk.",
       "kill": "Powell's Nov 16 report shows backlog below $2.2 billion or a cancelled data-center order, or POWL closes below $120.",
       "book": "Adds to the AI-capex and power factor; overlaps with VRT, CAT and the open GEV idea."
+    },
+    {
+      "id": "2026-11-13-wfesupply-uctt",
+      "published": "2026-11-13T07:20:00-05:00",
+      "theme": "Chip-tool supply chain",
+      "event": "Applied Materials reported record fiscal Q4 revenue of $10.41 billion, up 53%, guided Q1 to $11.1 billion, said wafer fab equipment demand should rise more than 30% in 2027, and said it is investing to double systems output from Q4 2026 levels by 2028.",
+      "source": {
+        "title": "Applied Materials Announces Fourth Quarter and Fiscal Year 2026 Results (GlobeNewswire)",
+        "url": "https://www.globenewswire.com/news-release/2026/11/12/3402149/0/en/applied-materials-announces-fourth-quarter-and-fiscal-year-2026-results.html"
+      },
+      "source2": {
+        "title": "Investing.com: Earnings call transcript: Applied Materials tops Q4 2026 forecasts as AI demand lifts outlook",
+        "url": "https://ng.investing.com/news/stock-market-news/earnings-call-transcript-applied-materials-tops-q4-2026-forecasts-as-ai-demand-lifts-outlook-93CH-2804532"
+      },
+      "chain": [
+        "On the call, Applied said it has raised its demand forecast to suppliers every quarter this year, that nearly all of its more than 2,000 suppliers need to add capacity and labor, and that Q1 revenue would be higher if parts were fully available.",
+        "Leading-edge logic and DRAM fabs are running at full utilization and customers are asking to pull in deliveries, so the bottleneck shifts to the subsystems that go inside the tools.",
+        "Ultra Clean Holdings builds gas-delivery and other subsystems for tool makers; Lam Research was 37.0% and Applied Materials 21.7% of its fiscal 2025 revenue, per its 10-K, and that revenue fell 2.1% last year.",
+        "Ultra Clean Holdings (UCTT), a lightly covered supplier, should see the order ramp that Applied describes, while chip stocks sold off on Nov 12 on Nvidia's leadership news rather than on demand."
+      ],
+      "ticker": "UCTT",
+      "name": "Ultra Clean Holdings",
+      "side": "long",
+      "horizon": 10,
+      "conviction": 1,
+      "priced_in": "Applied rose under 1% after hours on Nov 12 after falling 3.6% in the session; the Taiex fell 2.6% and ASML about 3% on Nvidia's CEO exit. The supplier read-through had not been drawn in the coverage found. UCTT's own quote page could not be opened, so its Nov 12 move is unknown, and the supplier quotes from the call come from a summarized transcript.",
+      "kill": "Lam Research or Applied Materials cuts its 2027 equipment outlook, UCTT guides its next quarter below the prior quarter, or UCTT trails AMAT by more than 10% over the horizon.",
+      "book": "Adds to the AI-capex factor (semicap); overlaps with INTC as a fab customer."
     }
   ]
 }
