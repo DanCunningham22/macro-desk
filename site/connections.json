@@ -1,5 +1,5 @@
 {
-  "updated": "2026-11-13T07:20:00-05:00",
+  "updated": "2026-11-16T07:30:00-05:00",
   "scans": [
     {
       "date": "2026-10-13",
@@ -36,6 +36,10 @@
     {
       "date": "2026-11-13",
       "summary": "One new idea. Applied Materials guided above consensus, put 2027 wafer-fab-equipment growth above 30% and said nearly all of its suppliers must add capacity, a read-through to subsystem maker Ultra Clean Holdings, which gets about 59% of revenue from Lam and Applied. Examined and rejected: Samsung's reported bid for Modine (first-order, peers unclear), Houthi claims of strikes on the East-West pipeline and Yanbu (unconfirmed, Brent already up 3.3%), a mine strike on a gas carrier east of Hormuz (Gulf LNG flows already near zero), the record LME aluminium backwardation (cash price fell and the 2027 balance is forecast in surplus), Nvidia's CEO exit and Nebius' capex raise (first-order). Quote pages and most web pages could not be opened after a fetch-permission timeout; open GE Vernova and Powell kill conditions could not be fully checked."
+    },
+    {
+      "date": "2026-11-16",
+      "summary": "Two new ideas. ULA's Vulcan failure grounds a second rocket Amazon relies on for its Leo constellation, while space stocks sold off in sympathy, a read toward SpaceX as the substitute launcher and Starlink's rival falling further behind; Richemont's jewelry miss came from the Gulf while its Americas sales rose 23%, yet US-focused Signet fell 3.6% the same day. Examined and rejected: a Pilgrim's Pride short on Tyson's weaker chicken outlook (JBS has proposed buying out minority holders, which sets a floor), a Century Aluminum short on EGA restarting 61% of its smelter cells (quotes could not be opened), Indonesia's single-gate coal exports and Prabowo's 70% state-benefit remark (policy dates from June, no new shipment disruption found), Samsung's reported bid for Modine as a read to nVent (sentiment only), and Tyson, Nvidia and the Anthropic IPO as first-order. Open GE Vernova, Powell and Ultra Clean kill conditions are not met; Powell reports after today's close."
     }
   ],
   "ideas": [
@@ -470,6 +474,62 @@
       "priced_in": "Applied rose under 1% after hours on Nov 12 after falling 3.6% in the session; the Taiex fell 2.6% and ASML about 3% on Nvidia's CEO exit. The supplier read-through had not been drawn in the coverage found. UCTT's own quote page could not be opened, so its Nov 12 move is unknown, and the supplier quotes from the call come from a summarized transcript.",
       "kill": "Lam Research or Applied Materials cuts its 2027 equipment outlook, UCTT guides its next quarter below the prior quarter, or UCTT trails AMAT by more than 10% over the horizon.",
       "book": "Adds to the AI-capex factor (semicap); overlaps with INTC as a fab customer."
+    },
+    {
+      "id": "2026-11-16-launch-spcx",
+      "published": "2026-11-16T07:30:00-05:00",
+      "theme": "Launch capacity",
+      "event": "ULA's Vulcan rocket failed about 10 minutes into flight on Nov 15, destroying 40 Amazon Leo satellites, ULA's first total mission failure since 2006 and the first of 38 Vulcan launches Amazon bought.",
+      "source": {
+        "title": "Spaceflight Now: ULA suffers first total mission failure with loss of Vulcan rocket carrying 40 Amazon Leo satellites",
+        "url": "https://spaceflightnow.com/2026/11/15/ula-suffers-first-total-mission-failure-with-loss-of-vulcan-rocket-carrying-40-amazon-leo-satellites/"
+      },
+      "source2": {
+        "title": "Yahoo Finance: ASTS, RKLB, LUNR fall after Vulcan failure",
+        "url": "https://finance.yahoo.com/markets/stocks/articles/asts-rklb-lunr-fly-fall-055834650.html"
+      },
+      "chain": [
+        "Amazon booked 38 Vulcan and 24 New Glenn launches for Leo; New Glenn has not flown since a May on-pad explosion, and Vulcan now faces a failure investigation of unknown length, so 62 booked launches sit on two grounded rockets.",
+        "The Space Force had already paused Vulcan national-security launches over earlier nozzle problems, so the failure also lengthens the queue of government payloads waiting on Vulcan.",
+        "Amazon's remaining options are Ariane 6 (24 launches) and Falcon 9 (13); Falcon 9 is the only US rocket flying at volume, and Leo, with about 436 satellites launched of more than 3,300 planned, falls further behind Starlink.",
+        "SpaceX (SPCX) gains twice, as the substitute launcher and as Starlink's lead over its main broadband rival widens, yet it traded lower after hours and space names were sold in sympathy."
+      ],
+      "ticker": "SPCX",
+      "name": "Space Exploration Technologies (SpaceX)",
+      "side": "long",
+      "horizon": 10,
+      "conviction": 1,
+      "priced_in": "SPCX closed at $139.11 on Nov 13 and traded at $136.26 after hours (-2.1%), about 38% below its 52-week high of $225.64. Overnight, ASTS and RKLB fell about 3-4% in sympathy with the failure, treating it as bad for space rather than as lost capacity at a rival. Monday pre-market SPCX quotes could not be opened, and Nasdaq futures were down about 0.8% on AI-related selling, which SPCX tends to trade with.",
+      "kill": "ULA identifies the cause and sets a return to flight within about 30 days, or New Glenn returns to flight, or SPCX trails SPY by more than 8% over the horizon.",
+      "book": "Adds to an existing holding (SPCX), so it raises concentration rather than diversifying; trades with the high-beta growth and AI factor."
+    },
+    {
+      "id": "2026-11-16-jewelry-sig",
+      "published": "2026-11-16T07:30:00-05:00",
+      "theme": "Jewelry demand",
+      "event": "Richemont reported first-half sales up 17% at constant currency, with Q2 jewelry growth of 14% against about 16% expected; Middle East and Africa sales fell 7% in Q2 while the Americas rose 23% in the half, and its shares opened more than 4% lower on Nov 13.",
+      "source": {
+        "title": "BigGo Finance: Richemont first-half results",
+        "url": "https://finance.biggo.com/news/4d673cf4-e5a7-47d7-8f05-488582f80eb9"
+      },
+      "source2": {
+        "title": "StockAnalysis: Signet Jewelers (SIG) quote",
+        "url": "https://stockanalysis.com/stocks/SIG"
+      },
+      "chain": [
+        "Richemont's jewelry miss came from the Gulf: Middle East and Africa fell 7% in Q2, which management tied to regional tensions and weaker Dubai tourist spending.",
+        "Its US business did the opposite, with Americas sales up 23% in the half, the strongest region after Japan (+30%).",
+        "Signet, the largest US jewelry retailer, sells almost entirely in North America and has no Gulf exposure, so the regional detail is a positive read on US jewelry demand going into the holiday quarter.",
+        "Signet Jewelers (SIG) nonetheless fell 3.6% on the day of Richemont's report, a move the regional figures do not support."
+      ],
+      "ticker": "SIG",
+      "name": "Signet Jewelers",
+      "side": "long",
+      "horizon": 10,
+      "conviction": 1,
+      "priced_in": "SIG fell 3.59% to $113.98 on Nov 13 (52-week range $71.62-$129.26); the cause of the drop was not confirmed in the sources found, and chip stocks also fell about 3% that day. The headline read was a luxury-jewelry miss; the US growth figure was not widely drawn through to Signet. Risk: gold near $3,870 raises Signet's metal costs, which cost Richemont 70 basis points of gross margin. Signet reports on Dec 2, after the 10-session horizon. Pre-market quotes could not be opened.",
+      "kill": "Signet pre-announces weaker holiday trends, a US jewelry peer reports falling US sales, or SIG closes below $105.",
+      "book": "US consumer discretionary; diversifies the AI-capex factor, with mild consumer overlap with WMT."
     }
   ]
 }
