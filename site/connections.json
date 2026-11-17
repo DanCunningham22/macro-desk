@@ -1,5 +1,5 @@
 {
-  "updated": "2026-11-16T07:30:00-05:00",
+  "updated": "2026-11-17T07:21:00-05:00",
   "scans": [
     {
       "date": "2026-10-13",
@@ -40,6 +40,10 @@
     {
       "date": "2026-11-16",
       "summary": "Two new ideas. ULA's Vulcan failure grounds a second rocket Amazon relies on for its Leo constellation, while space stocks sold off in sympathy, a read toward SpaceX as the substitute launcher and Starlink's rival falling further behind; Richemont's jewelry miss came from the Gulf while its Americas sales rose 23%, yet US-focused Signet fell 3.6% the same day. Examined and rejected: a Pilgrim's Pride short on Tyson's weaker chicken outlook (JBS has proposed buying out minority holders, which sets a floor), a Century Aluminum short on EGA restarting 61% of its smelter cells (quotes could not be opened), Indonesia's single-gate coal exports and Prabowo's 70% state-benefit remark (policy dates from June, no new shipment disruption found), Samsung's reported bid for Modine as a read to nVent (sentiment only), and Tyson, Nvidia and the Anthropic IPO as first-order. Open GE Vernova, Powell and Ultra Clean kill conditions are not met; Powell reports after today's close."
+    },
+    {
+      "date": "2026-11-17",
+      "summary": "One new idea. Oil's 16% weekly drop and eight-month-low gasoline futures are widening the gap between pump and wholesale prices, a lagged margin gain for fuel retailer Murphy USA rather than the refiners and airlines the headlines focus on. Examined and rejected: a GDS short on the new BIS licence rule for AI chips in Malaysia, Singapore, Indonesia, Thailand and Brazil (GDS already fell 11% on Nov 12 on the same fear and DayOne's customer exposure could not be verified), a BioNTech read from the FDA's ivonescimab rejection (direction of the class read is ambiguous), Chevron's reported $5 billion Beacon Offshore deal as a comparable for Gulf producers (no valuation metrics found), the Highland Valley Copper strike (Teck is first-order and copper is at a four-month low), the FAA outage (first-order for airlines and L3Harris), and Samsung's foundry price rises (August news). Open idea check: Powell reported a $2.7 billion backlog and $710 million of orders, so its kill condition is not met; GE Vernova and Signet remain above their kill levels on Nov 16 closes; quote pages could not be opened this run."
     }
   ],
   "ideas": [
@@ -530,6 +534,34 @@
       "priced_in": "SIG fell 3.59% to $113.98 on Nov 13 (52-week range $71.62-$129.26); the cause of the drop was not confirmed in the sources found, and chip stocks also fell about 3% that day. The headline read was a luxury-jewelry miss; the US growth figure was not widely drawn through to Signet. Risk: gold near $3,870 raises Signet's metal costs, which cost Richemont 70 basis points of gross margin. Signet reports on Dec 2, after the 10-session horizon. Pre-market quotes could not be opened.",
       "kill": "Signet pre-announces weaker holiday trends, a US jewelry peer reports falling US sales, or SIG closes below $105.",
       "book": "US consumer discretionary; diversifies the AI-capex factor, with mild consumer overlap with WMT."
+    },
+    {
+      "id": "2026-11-17-fuelmargin-musa",
+      "published": "2026-11-17T07:21:00-05:00",
+      "theme": "Retail fuel margins",
+      "event": "Oil fell about 16% (Brent) the prior week and fell again on Nov 16, with gasoline futures settling below $2.60 a gallon, an eight-month low, while the AAA national average for regular eased only to $3.81 from $3.87 on Friday.",
+      "source": {
+        "title": "Newsquawk: US Market Wrap, 16th November 2026",
+        "url": "https://www.newsquawk.com/headlines/us-market-wrap---16th-november-2026-risk-off-trade-as-tech-rout-resumes-supporting-havens-"
+      },
+      "source2": {
+        "title": "Energy News Beat: Gas prices were already down 32.5 cents before the midterms; diesel is still near $6",
+        "url": "https://energynewsbeat.co/diesel/gas-prices-were-already-down-32-5-cents-before-the-midterms-diesel-is-still-near-6/"
+      },
+      "chain": [
+        "Wholesale gasoline is falling faster than pump prices: per EIA and AAA data, the gap between the US retail price and New York Harbor spot gasoline (including about 52 cents of taxes and freight) widened from about 94 cents on Sept 21 to about 139 cents on Nov 9, before last week's further 16% drop in crude.",
+        "Pump prices follow wholesale down with a lag ('rockets and feathers'); a BLS study of the 2014 oil collapse found the retail gasoline margin index rose 41% in Q4 2014 while WTI fell 36%.",
+        "That spread accrues to high-volume, low-price fuel retailers, whose fuel margin in cents per gallon is the main driver of quarterly earnings, while headlines treat falling oil as a story about refiners, producers and airlines.",
+        "Murphy USA (MUSA), the largest pure-play US fuel retailer, books the widened spread in its December quarter, and weekly OPIS and EIA margin data should make it visible to the market before results."
+      ],
+      "ticker": "MUSA",
+      "name": "Murphy USA",
+      "side": "long",
+      "horizon": 20,
+      "conviction": 1,
+      "priced_in": "MUSA was about $510 on Nov 10, up 26% in 2026, so part of the fuel-margin tailwind from the September-October decline may already be in the price; the leg from last week's 16% crude drop is newer. Consumer staples was the only S&P sector to rise on Nov 16 (+0.34%). MUSA's pre-market quote could not be opened during the scan (quote pages were blocked), so its Nov 16 move is unknown. Risk: a quick oil rebound on Hormuz or Gulf attacks would compress retail margins.",
+      "kill": "RBOB gasoline futures rebound more than 15% from their Nov 16 settle, retail prices catch down so the retail-minus-spot gap returns to its September level (about 94 cents), or MUSA closes more than 8% below its entry.",
+      "book": "Diversifies the AI-capex factor (fuel retail benefits from cheaper oil and tends to trade defensively); modest overlap with WMT, since most Murphy USA stations sit near Walmart stores."
     }
   ]
 }
