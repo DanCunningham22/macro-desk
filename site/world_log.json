@@ -1,13 +1,20 @@
 {
- "updated": "2026-11-16T21:19:40.289597+00:00",
+ "updated": "2026-11-17T04:18:04.390636+00:00",
  "log": [
   "IMF/BIS: cached",
   "prices: 62 tickers",
   "wrote world.json (35 countries, 33 ETFs priced)",
   "Comtrade annual: 37/37 products have data",
+  "Comtrade call 1 failed: HTTPError: HTTP Error 400: Bad Request",
+  "Comtrade monthly 2603 failed: HTTPError: HTTP Error 400: Bad Request",
+  "Comtrade call 2 failed: HTTPError: HTTP Error 400: Bad Request",
+  "Comtrade monthly 7403 failed: HTTPError: HTTP Error 400: Bad Request",
+  "Comtrade call 3 failed: HTTPError: HTTP Error 400: Bad Request",
+  "Comtrade unreachable (HTTPError: HTTP Error 400: Bad Request); skipping the rest this run. URL tried: https://comtradeapi.un.org/public/v1/preview/C/M/HS?includeDesc=true&breakdownMode=classic&partner2Code=0&customsCode=C00&motCode=0&period=202609,202608,202607,",
+  "Comtrade monthly 2601 failed: HTTPError: HTTP Error 400: Bad Request",
   "Comtrade monthly: 0/37 products scanned this week, 0 shifts",
   "prices: 62 tickers",
   "wrote world.json (35 countries, 33 ETFs priced)",
-  "wrote trade.json (37 products, 0 shifts; Comtrade calls 68, failed 0)"
+  "wrote trade.json (37 products, 0 shifts; Comtrade calls 3, failed 3)"
  ]
 }
