@@ -1,5 +1,5 @@
 {
-  "updated": "2026-11-18T07:22:00-05:00",
+  "updated": "2026-11-19T07:26:00-05:00",
   "scans": [
     {
       "date": "2026-10-13",
@@ -48,6 +48,10 @@
     {
       "date": "2026-11-18",
       "summary": "Two new ideas. The FCC's plan to block new Chinese optical transceivers and Beijing's vow of countermeasures put AXT, which makes all its indium phosphide substrates in China under export permits, in the path of any retaliation, while the market bid up US optics makers; Nvidia's $390 billion of purchase commitments and a new SPIL packaging deal point to SPIL parent ASE Technology. Examined and rejected: Experian and CMS anti-fraud rule read-throughs (primary pages could not be opened), Russian refinery strikes (diesel ideas already failed as oil fell), lithium and iron ore lows (first-order), and the BNSF flood hit to J.B. Hunt (October event). Signet closed at $104.18 on Nov 17, triggering its kill; GE Vernova ($779.91) and Powell ($150.86) are above their kill levels."
+    },
+    {
+      "date": "2026-11-19",
+      "summary": "Two new ideas. Anthropic priced its IPO above range, which lowers counterparty risk for TeraWulf, whose $19 billion, 20-year Kentucky lease is with Anthropic and carries no reported Google backstop; another large US gasoline build pushes wholesale prices lower ahead of Casey's Dec 7 report, where it usually gives the quarter-to-date fuel margin. Examined and rejected: CMS's CRUSH anti-fraud rule (insurers already fell about 6%, and pass-through of Medicare Advantage audit recoupments to agilon could not be verified), Lenovo's net loss (driven by a $1.9 billion warrant charge, not memory costs), Gulf aluminium (Alba's outage is months old), Zoom's Anthropic stake (stake size at the IPO price could not be opened), and Taiwan's 4.4% Nov 19 drop (first-order). Open idea check: GE Vernova (about $772), Powell (about $155) and Murphy USA remain inside their kill levels on Nov 18 scoring data; the outcome of the Nov 19 Trump-Xi-Putin meeting for the AXTI idea was not yet available; ASE fell about 6.8% in Taipei on Nov 19, a risk to the ASX idea's relative-to-SOXX kill test."
     }
   ],
   "ideas": [
@@ -622,6 +626,62 @@
       "priced_in": "Earlier reports already said Nvidia was financing SPIL's CoWoS expansion, so part of the link is known. Nvidia rose about 4% after hours and European chip-equipment names (ASML +1.8%, ASM International +2%) rose on Nov 18. ASX's Nov 17 close and pre-market quote could not be opened. Risk: Beijing's promised countermeasures and the Taiwan-heavy AI selloff in November (Taiex -2.5% on Nov 17).",
       "kill": "Nvidia or ASE cuts or delays advanced-packaging capacity plans, Taiwan's November export orders fall, or ASX trails the SOXX semiconductor ETF by more than 6% over the horizon.",
       "book": "Adds to the AI-capex factor (overlaps with the INTC and JBL hardware exposure); size accordingly."
+    },
+    {
+      "id": "2026-11-19-ipolessor-wulf",
+      "published": "2026-11-19T07:26:00-05:00",
+      "theme": "Anthropic compute lessors",
+      "event": "Anthropic priced its Nasdaq IPO at $83 a share on Nov 18, above the initial $70-78 range, and increased the offering size ahead of its first trade on Nov 19.",
+      "source": {
+        "title": "Yahoo Finance: Stock market today, Nov 18 (Anthropic IPO pricing)",
+        "url": "https://finance.yahoo.com/markets/live/stock-market-today-wednesday-november-18-dow-sp-500-nasdaq-nvidia-earnings-anthropic-ipo-143530588.html"
+      },
+      "source2": {
+        "title": "Decrypt: Bitcoin mining stocks jump after TeraWulf signs $19 billion lease with Anthropic",
+        "url": "https://decrypt.co/372810"
+      },
+      "chain": [
+        "Anthropic priced above its range and, per IPO coverage, expects about $213 billion of cash and investments after the deal, while its prospectus warns of liquidity risk because compute payments fall due before capacity comes online.",
+        "TeraWulf signed a 20-year lease worth about $19 billion with Anthropic in July for the roughly 401 MW Hawesville, Kentucky campus (first phase online in 2H 2027); unlike Hut 8's River Bend site, no Google backstop was reported.",
+        "AI data-center landlords sold off from October on neocloud financing fears (CoreWeave, Nebius and IREN each fell more than 30% in October), raising the risk premium on single-tenant lessors that still need project debt.",
+        "A tenant holding about $213 billion of cash lowers the counterparty risk on TeraWulf's largest contract and the cost of financing the build, a read-through IPO coverage focused on Google, Amazon and the valuation does not draw: TeraWulf (WULF)."
+      ],
+      "ticker": "WULF",
+      "name": "TeraWulf Inc.",
+      "side": "long",
+      "horizon": 10,
+      "conviction": 1,
+      "priced_in": "The above-range pricing was reported on Nov 18, and neocloud names (NBIS, CRWV, IREN, APLD) rose that day after Nvidia's neocloud comments, so part of the relief may already be in WULF; its Nov 18 close and pre-market quote could not be opened (quote pages were blocked). The tenant structure is not fully confirmed: Decrypt describes the lease as with Anthropic, while Fluidstack leases some other sites on Anthropic's behalf. Risk: a weak Anthropic debut or a renewed AI selloff (Taiwan's Taiex fell 4.4% on Nov 19).",
+      "kill": "Anthropic (ANT) closes below its $83 IPO price within its first five sessions, TeraWulf reports a delay or renegotiation of the Hawesville lease or its financing, or WULF trails SPY by more than 10% over the horizon.",
+      "book": "Adds to the AI-capex factor (same driver as VRT, SPCX and the hyperscaler holdings) with high beta; size small."
+    },
+    {
+      "id": "2026-11-19-fuelmargin-casy",
+      "published": "2026-11-19T07:26:00-05:00",
+      "theme": "Retail fuel margins",
+      "event": "WTI crude settled down 3.2% at $83.26 on Nov 18, its lowest since Aug 27, after the EIA reported a 5.2 million-barrel US gasoline stock build against a 1.6 million-barrel forecast.",
+      "source": {
+        "title": "Investrade: Market Review, November 18, 2026",
+        "url": "https://investrade.com/market-review-november-18-2026/"
+      },
+      "source2": {
+        "title": "Trefis: The dates that matter most for Casey's stock (Nov 11, 2026)",
+        "url": "https://www.trefis.com/stock/casy/articles/624401/the-dates-that-matter-most-for-caseys-stock/2026-11-11"
+      },
+      "chain": [
+        "Wholesale gasoline keeps falling into the holiday season on a larger-than-expected stock build, and GasBuddy's Patrick De Haan said on Nov 16 that pump prices should keep declining over the next couple of weeks.",
+        "Pump prices lag wholesale on the way down, so retailers' cents-per-gallon margins widen in a falling market; Casey's fuel margin was 47.8 cents in fiscal Q1, with August in the low 40s.",
+        "Casey's reports fiscal Q2 on Dec 7 and gave the quarter-to-date fuel margin on its last call, so the November margin should be disclosed inside a 20-session window.",
+        "Fuel produced about $448 million of Casey's $1.24 billion quarterly gross profit (about 36%), so a few cents per gallon move earnings: Casey's General Stores (CASY)."
+      ],
+      "ticker": "CASY",
+      "name": "Casey's General Stores",
+      "side": "long",
+      "horizon": 20,
+      "conviction": 1,
+      "priced_in": "CASY rose about 19% from $584.83 on Sept 22 to $698.48 on Nov 10, so some margin recovery is priced; its Nov 18 close could not be opened. Same theme as the open MUSA idea (down about 3% since Nov 17), a sign the market is not yet paying for the retail-wholesale gap. Risk: Iranian attacks around Hormuz (three tankers reported disabled by mines on Nov 18) could lift wholesale prices quickly.",
+      "kill": "RBOB gasoline futures rise more than 15% from their Nov 18 settle before Dec 7, Casey's reports a quarter-to-date fuel margin below 40 cents a gallon, or CASY trails SPY by more than 8% over the horizon.",
+      "book": "Diversifies the AI-capex book; a rural convenience retailer with an energy-margin driver, with some consumer overlap with WMT."
     }
   ]
 }
