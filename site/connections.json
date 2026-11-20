@@ -1,5 +1,5 @@
 {
-  "updated": "2026-11-19T07:26:00-05:00",
+  "updated": "2026-11-20T07:22:00-05:00",
   "scans": [
     {
       "date": "2026-10-13",
@@ -52,6 +52,10 @@
     {
       "date": "2026-11-19",
       "summary": "Two new ideas. Anthropic priced its IPO above range, which lowers counterparty risk for TeraWulf, whose $19 billion, 20-year Kentucky lease is with Anthropic and carries no reported Google backstop; another large US gasoline build pushes wholesale prices lower ahead of Casey's Dec 7 report, where it usually gives the quarter-to-date fuel margin. Examined and rejected: CMS's CRUSH anti-fraud rule (insurers already fell about 6%, and pass-through of Medicare Advantage audit recoupments to agilon could not be verified), Lenovo's net loss (driven by a $1.9 billion warrant charge, not memory costs), Gulf aluminium (Alba's outage is months old), Zoom's Anthropic stake (stake size at the IPO price could not be opened), and Taiwan's 4.4% Nov 19 drop (first-order). Open idea check: GE Vernova (about $772), Powell (about $155) and Murphy USA remain inside their kill levels on Nov 18 scoring data; the outcome of the Nov 19 Trump-Xi-Putin meeting for the AXTI idea was not yet available; ASE fell about 6.8% in Taipei on Nov 19, a risk to the ASX idea's relative-to-SOXX kill test."
+    },
+    {
+      "date": "2026-11-20",
+      "summary": "Two new ideas. Intuit cut Credit Karma's revenue outlook on higher rates, slower lender expansion and a faster shift to AI tools for product discovery, a read-through to the loan marketplaces NerdWallet and LendingTree. Examined and rejected: Microsoft's adoption of Intel's EMIB packaging as a lead for Amkor, Intel's outside EMIB assembler (no current Amkor quote could be opened, and the AI selloff, with Taiwan down about 6% and Korea down about 5% on Nov 20, makes the entry noisy); Russian refinery strikes (diesel cracks and pump prices are falling, and earlier diesel ideas failed); Bank Indonesia's surprise hike (first-order); Walmart, Ross and Gap retail read-throughs (no clear chain). Open idea check: the Nov 19 Trump-Xi meeting produced no truce extension or easing of Chinese export controls, so the AXTI kill has not been met; Anthropic closed at $97.17 on its first day, above the $83 level in the WULF kill; GE Vernova's Nov 19 close could not be opened, so its $747 kill level could not be checked."
     }
   ],
   "ideas": [
@@ -682,6 +686,62 @@
       "priced_in": "CASY rose about 19% from $584.83 on Sept 22 to $698.48 on Nov 10, so some margin recovery is priced; its Nov 18 close could not be opened. Same theme as the open MUSA idea (down about 3% since Nov 17), a sign the market is not yet paying for the retail-wholesale gap. Risk: Iranian attacks around Hormuz (three tankers reported disabled by mines on Nov 18) could lift wholesale prices quickly.",
       "kill": "RBOB gasoline futures rise more than 15% from their Nov 18 settle before Dec 7, Casey's reports a quarter-to-date fuel margin below 40 cents a gallon, or CASY trails SPY by more than 8% over the horizon.",
       "book": "Diversifies the AI-capex book; a rural convenience retailer with an energy-margin driver, with some consumer overlap with WMT."
+    },
+    {
+      "id": "2026-11-20-leadgen-nrds",
+      "published": "2026-11-20T07:22:00-05:00",
+      "theme": "Loan marketplaces",
+      "event": "Intuit cut its fiscal 2027 Credit Karma revenue outlook on Nov 19 to $2.72-2.83 billion (3-7% growth) from $2.92-2.97 billion (11-13%), citing higher-than-expected interest rates, tighter lending conditions and a faster-than-expected shift of consumers to AI tools for finding financial products.",
+      "source": {
+        "title": "Fortune: Intuit moves to sell Mailchimp for $3.68 billion as AI reshapes its growth strategy (Nov 20, 2026)",
+        "url": "https://fortune.com/2026/11/20/intuit-sell-mailchimp-3-68-billion-ai-reshapes-growth-strategy-cfo"
+      },
+      "source2": {
+        "title": "NerdWallet Q3 2026 earnings release (SEC 8-K, Nov 5, 2026)",
+        "url": "https://www.sec.gov/Archives/edgar/data/0001625278/000162527826000069/earningsreleaseq3fy26.htm"
+      },
+      "chain": [
+        "Credit Karma earns fees when lenders and insurers win customers through its marketplace; Intuit's CFO said lending partners are still expanding, but at a slower pace, in a tightening rate environment, and cut its growth outlook by about $173 million at the midpoint.",
+        "NerdWallet sells the same product, comparison leads for card issuers, personal lenders, banks and insurers, so the same partner budgets and the same rate backdrop set its revenue.",
+        "Intuit also said consumers are moving to AI tools to find financial products faster than expected, even though search drove under 1% of Credit Karma traffic; NerdWallet is far more dependent on search and content, which its CEO said on Nov 5 is a fraction of what it once was.",
+        "NerdWallet guided Q4 revenue down 13% at the midpoint but said it expects 2027 revenue to grow, and its Q3 growth leaned on personal loans (+$13.3 million) and deposits (+$8.6 million) as partners expanded budgets, the categories now slowing at the larger peer: NerdWallet (NRDS)."
+      ],
+      "ticker": "NRDS",
+      "name": "NerdWallet",
+      "side": "short",
+      "horizon": 10,
+      "conviction": 1,
+      "priced_in": "INTU fell about 10-13% after hours on Nov 19, so the first-order move is in Intuit. NRDS already fell after its Nov 5 guide-down, so part of the weakness is priced; the read-through to its 2027 growth claim and its loan and deposit verticals is new. NRDS quotes after Oct 26 (about $10.80) could not be opened, so the move since then is unknown. Risk: a broad rebound in beaten-down small caps.",
+      "kill": "The Fed holds rates on Dec 9 and the 10-year Treasury yield falls below 4.75%, NerdWallet reaffirms 2027 growth with higher loan-partner demand, or NRDS beats SPY by more than 10% over the horizon.",
+      "book": "Diversifies the AI-capex book; a consumer-finance lead-generation short with no overlap with current holdings."
+    },
+    {
+      "id": "2026-11-20-leadgen-tree",
+      "published": "2026-11-20T07:22:00-05:00",
+      "theme": "Loan marketplaces",
+      "event": "Intuit cut its fiscal 2027 Credit Karma revenue outlook on Nov 19 to $2.72-2.83 billion (3-7% growth) from $2.92-2.97 billion (11-13%), citing higher-than-expected interest rates, tighter lending conditions and a faster-than-expected shift of consumers to AI tools for finding financial products.",
+      "source": {
+        "title": "Fortune: Intuit moves to sell Mailchimp for $3.68 billion as AI reshapes its growth strategy (Nov 20, 2026)",
+        "url": "https://fortune.com/2026/11/20/intuit-sell-mailchimp-3-68-billion-ai-reshapes-growth-strategy-cfo"
+      },
+      "source2": {
+        "title": "TradingKey: Intuit slides after cutting its Credit Karma outlook and selling Mailchimp (Nov 20, 2026)",
+        "url": "https://www.tradingkey.com/analysis/stocks/us-stocks/262314593-intuit-slides-toward-279-66-credit-karma-outlook-cut-mailchimp-sale-november-20-2026-tradingkey"
+      },
+      "chain": [
+        "Credit Karma's outlook cut came only from that unit, with Intuit's other guidance kept, so the cause is its lender marketplace rather than Intuit as a whole.",
+        "Intuit tied the cut to higher rates slowing consumer demand in its categories and lending partners expanding more slowly; markets price about a 96% chance of a Fed hike on Dec 9 and the 10-year yield was 5.04% on Nov 19.",
+        "LendingTree runs the same kind of marketplace, with lenders paying per lead or closed loan across mortgages, home equity, personal loans and cards, plus insurance, so lender marketing budgets and rate-driven loan demand drive its revenue.",
+        "With a market cap of about $356 million (mid-October) and the same lender partners, LendingTree (TREE) is the less-covered direct read-through of the Credit Karma cut."
+      ],
+      "ticker": "TREE",
+      "name": "LendingTree",
+      "side": "short",
+      "horizon": 10,
+      "conviction": 1,
+      "priced_in": "The first-order move is in INTU, down about 10-13% after hours on Nov 19. TREE was already down about 58% over the year to mid-October and about 8% of its float was short then, so much bad news is known; the latest TREE quote that could be opened was $25.50 on Oct 15, so the move since then is unknown. Insurance, which does not depend on rates, is a large part of its revenue and dilutes the link. Same chain as the NRDS idea published today, so the two are correlated.",
+      "kill": "The Fed holds rates on Dec 9 and the 10-year Treasury yield falls below 4.75%, LendingTree raises guidance or reports stronger lender demand, or TREE beats SPY by more than 10% over the horizon.",
+      "book": "Diversifies the AI-capex book; a rate-sensitive consumer-lending short with no overlap with current holdings."
     }
   ]
 }
