@@ -1,5 +1,5 @@
 {
-  "updated": "2026-11-20T07:22:00-05:00",
+  "updated": "2026-11-23T07:25:00-05:00",
   "scans": [
     {
       "date": "2026-10-13",
@@ -56,6 +56,10 @@
     {
       "date": "2026-11-20",
       "summary": "Two new ideas. Intuit cut Credit Karma's revenue outlook on higher rates, slower lender expansion and a faster shift to AI tools for product discovery, a read-through to the loan marketplaces NerdWallet and LendingTree. Examined and rejected: Microsoft's adoption of Intel's EMIB packaging as a lead for Amkor, Intel's outside EMIB assembler (no current Amkor quote could be opened, and the AI selloff, with Taiwan down about 6% and Korea down about 5% on Nov 20, makes the entry noisy); Russian refinery strikes (diesel cracks and pump prices are falling, and earlier diesel ideas failed); Bank Indonesia's surprise hike (first-order); Walmart, Ross and Gap retail read-throughs (no clear chain). Open idea check: the Nov 19 Trump-Xi meeting produced no truce extension or easing of Chinese export controls, so the AXTI kill has not been met; Anthropic closed at $97.17 on its first day, above the $83 level in the WULF kill; GE Vernova's Nov 19 close could not be opened, so its $747 kill level could not be checked."
+    },
+    {
+      "date": "2026-11-23",
+      "summary": "One new idea. CrowdStrike agreed to buy Zscaler for about $43.9 billion in stock, a read-through to Netskope as the remaining independent SSE vendor through integration-driven share shifts and a higher takeover value. Examined and rejected: the Houthi strike claim on Saudi Arabia's Rabigh refinery and the Iranian strike near Bahrain's Sitra refinery (no damage assessment), the VLCC rate collapse (rates already down about 60% from the October record), Keysight's AI supply constraints in capacitors and photodiodes (MLCC tightness dates to the summer), and Trump's threatened tax on US firms building data centers abroad (no mechanism yet). Open idea check: scoring data through Nov 20 show the kill conditions met for GEV, SIG, AXTI and WULF; the UCTT and ASX relative tests against AMAT and SOXX could not be checked."
     }
   ],
   "ideas": [
@@ -431,7 +435,7 @@
       "side": "long",
       "horizon": 10,
       "conviction": 1,
-      "priced_in": "GEV closed Nov 9 at $829 and fell about 4% on Nov 10 (about $779 at 2:30 PM, low $747), after a 9% and 7% drop on Nov 4-5. Siemens Energy rose about 7% in Frankfurt on Nov 11, so part of the read-through may show at the US open, and CNBC and TIKR already argue the selloff is overdone. Pre-market GEV quotes could not be opened during the scan.",
+      "priced_in": "GEV closed Nov 9 at $829 and fell about 4% on Nov 10 (about $779 at 2:30 PM, low $747), after a 9% and 7% drop on Nov 4-5. Siemens Energy rose about 7% in Frankfurt on Nov 11, so part of the read-through may show at the US open, and CNBC and TIKR already argue the selloff is overdone. Pre-market GEV quotes could not be opened during the scan. Update Nov 23: Kill condition met. Scoring data through the Nov 20 close put GEV near $699, below the $747 Nov 10 low named in the kill condition, amid the broad AI-infrastructure selloff.",
       "kill": "SoftBank or another developer cancels reserved GE Vernova turbine slots that are not resold, or GEV closes below its Nov 10 low of $747.",
       "book": "Adds to the AI-capex and power factor; overlaps with CAT (Solar Turbines gas gensets) and VRT."
     },
@@ -543,7 +547,7 @@
       "side": "long",
       "horizon": 10,
       "conviction": 1,
-      "priced_in": "SIG fell 3.59% to $113.98 on Nov 13 (52-week range $71.62-$129.26); the cause of the drop was not confirmed in the sources found, and chip stocks also fell about 3% that day. The headline read was a luxury-jewelry miss; the US growth figure was not widely drawn through to Signet. Risk: gold near $3,870 raises Signet's metal costs, which cost Richemont 70 basis points of gross margin. Signet reports on Dec 2, after the 10-session horizon. Pre-market quotes could not be opened. Update Nov 18: SIG closed at $104.18 on Nov 17 (down 4.6% on the day), below the $105 kill level, so the kill condition has been met; the cause of the drop was not found in the scan.",
+      "priced_in": "SIG fell 3.59% to $113.98 on Nov 13 (52-week range $71.62-$129.26); the cause of the drop was not confirmed in the sources found, and chip stocks also fell about 3% that day. The headline read was a luxury-jewelry miss; the US growth figure was not widely drawn through to Signet. Risk: gold near $3,870 raises Signet's metal costs, which cost Richemont 70 basis points of gross margin. Signet reports on Dec 2, after the 10-session horizon. Pre-market quotes could not be opened. Update Nov 18: SIG closed at $104.18 on Nov 17 (down 4.6% on the day), below the $105 kill level, so the kill condition has been met; the cause of the drop was not found in the scan. Update Nov 23: Kill condition met. Scoring data through the Nov 20 close put SIG near $98, below the $105 kill level.",
       "kill": "Signet pre-announces weaker holiday trends, a US jewelry peer reports falling US sales, or SIG closes below $105.",
       "book": "US consumer discretionary; diversifies the AI-capex factor, with mild consumer overlap with WMT."
     },
@@ -599,7 +603,7 @@
       "side": "short",
       "horizon": 10,
       "conviction": 1,
-      "priced_in": "Coherent rose 3.65% on Nov 17 and about 7% after hours, and Lumentum rose 2.6%, as the market priced the US-supplier side of the ban. AXTI had already fallen about 14% in the week after its record Q3 report and closed at $41.84 on Nov 13 (after hours $40.73); its Nov 16-17 moves could not be opened. Risk: Trump meets Xi in Shenzhen on Nov 19 and a truce extension that eases export controls would reverse the trade; the FCC rule is still a proposal.",
+      "priced_in": "Coherent rose 3.65% on Nov 17 and about 7% after hours, and Lumentum rose 2.6%, as the market priced the US-supplier side of the ban. AXTI had already fallen about 14% in the week after its record Q3 report and closed at $41.84 on Nov 13 (after hours $40.73); its Nov 16-17 moves could not be opened. Risk: Trump meets Xi in Shenzhen on Nov 19 and a truce extension that eases export controls would reverse the trade; the FCC rule is still a proposal. Update Nov 23: Kill condition met for this short. Scoring data through the Nov 20 close show AXTI up about 18% since entry and about 12% ahead of SPY, beyond the 10% outperformance limit.",
       "kill": "The Nov 19 Trump-Xi meeting produces a truce extension that eases Chinese export controls, AXT announces new InP export permits for US or Japanese customers, or AXTI beats SPY by more than 10% over the horizon.",
       "book": "Short in an optical-component supplier; partly hedges the AI-capex factor in the book rather than adding to it."
     },
@@ -655,7 +659,7 @@
       "side": "long",
       "horizon": 10,
       "conviction": 1,
-      "priced_in": "The above-range pricing was reported on Nov 18, and neocloud names (NBIS, CRWV, IREN, APLD) rose that day after Nvidia's neocloud comments, so part of the relief may already be in WULF; its Nov 18 close and pre-market quote could not be opened (quote pages were blocked). The tenant structure is not fully confirmed: Decrypt describes the lease as with Anthropic, while Fluidstack leases some other sites on Anthropic's behalf. Risk: a weak Anthropic debut or a renewed AI selloff (Taiwan's Taiex fell 4.4% on Nov 19).",
+      "priced_in": "The above-range pricing was reported on Nov 18, and neocloud names (NBIS, CRWV, IREN, APLD) rose that day after Nvidia's neocloud comments, so part of the relief may already be in WULF; its Nov 18 close and pre-market quote could not be opened (quote pages were blocked). The tenant structure is not fully confirmed: Decrypt describes the lease as with Anthropic, while Fluidstack leases some other sites on Anthropic's behalf. Risk: a weak Anthropic debut or a renewed AI selloff (Taiwan's Taiex fell 4.4% on Nov 19). Update Nov 23: Kill condition met. Scoring data through the Nov 20 close show WULF down about 22% since entry and about 15% behind SPY, beyond the 10% limit; Anthropic itself closed at $88.91 on Nov 20, still above its $83 IPO price.",
       "kill": "Anthropic (ANT) closes below its $83 IPO price within its first five sessions, TeraWulf reports a delay or renegotiation of the Hawesville lease or its financing, or WULF trails SPY by more than 10% over the horizon.",
       "book": "Adds to the AI-capex factor (same driver as VRT, SPCX and the hyperscaler holdings) with high beta; size small."
     },
@@ -742,6 +746,34 @@
       "priced_in": "The first-order move is in INTU, down about 10-13% after hours on Nov 19. TREE was already down about 58% over the year to mid-October and about 8% of its float was short then, so much bad news is known; the latest TREE quote that could be opened was $25.50 on Oct 15, so the move since then is unknown. Insurance, which does not depend on rates, is a large part of its revenue and dilutes the link. Same chain as the NRDS idea published today, so the two are correlated.",
       "kill": "The Fed holds rates on Dec 9 and the 10-year Treasury yield falls below 4.75%, LendingTree raises guidance or reports stronger lender demand, or TREE beats SPY by more than 10% over the horizon.",
       "book": "Diversifies the AI-capex book; a rate-sensitive consumer-lending short with no overlap with current holdings."
+    },
+    {
+      "id": "2026-11-23-secconsol-ntsk",
+      "published": "2026-11-23T07:25:00-05:00",
+      "theme": "Security consolidation",
+      "event": "CrowdStrike agreed on Nov 23 to buy Zscaler in an all-stock deal valuing it at about $43.9 billion, 1.135 CrowdStrike shares per Zscaler share, about a 34% premium to the Nov 20 close, with closing expected in the second half of CrowdStrike's fiscal 2028.",
+      "source": {
+        "title": "CrowdStrike and Zscaler joint press release (SEC Exhibit 99.1)",
+        "url": "https://www.sec.gov/Archives/edgar/data/0001535527/000110465926130785/tm2630454d1_ex99-1.htm"
+      },
+      "source2": {
+        "title": "Stocktwits: ZS soars after hours while CRWD slips on reported takeover talks",
+        "url": "https://stocktwits.com/news-articles/markets/equity/zs-stock-soars-after-hours-while-crwd-slips-on-reported-265-b-takeover-talks/cNbSHb0R91a"
+      },
+      "chain": [
+        "Zscaler, the largest independent security service edge (SSE) vendor with $3.9 billion of ARR, will become part of CrowdStrike's endpoint platform after a closing that is roughly 9 to 14 months away.",
+        "Long integrations push some Zscaler customers, half the Fortune 500, to re-run vendor reviews, and buyers that want a network-security provider separate from their endpoint vendor have fewer independent choices.",
+        "A 34% premium for a SASE/SSE asset also resets the takeover value of the remaining listed pure play.",
+        "Netskope, the main independent SSE rival to Zscaler, stands to gain from both share shifts during the integration and a higher strategic value."
+      ],
+      "ticker": "NTSK",
+      "name": "Netskope",
+      "side": "long",
+      "horizon": 20,
+      "conviction": 1,
+      "priced_in": "Zscaler jumped about 16-20% after hours on Nov 20 on Bloomberg's talks report, and CrowdStrike fell about 8%. Netskope's move since Nov 20 could not be checked because its quote pages were blocked; it traded at $23.06 on Nov 18, about 13% below its 52-week high. The market's first read is the target and acquirer; the competitive and scarcity read-through to Netskope usually takes longer, but a peer pop in the Nov 23 session would reduce the edge. Risk: the AI and software selloff (Nasdaq-100 down 5.6% on Nov 20) dominates single-name moves.",
+      "kill": "The CrowdStrike-Zscaler deal is terminated or blocked, Netskope guides its next quarter below consensus, or NTSK trails the IGV software ETF by more than 10% over the horizon.",
+      "book": "Software rather than AI hardware; modest overlap with the MSFT and GOOG security businesses, mostly diversifies the AI-capex factor."
     }
   ]
 }
