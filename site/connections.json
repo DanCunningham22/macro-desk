@@ -1,5 +1,5 @@
 {
-  "updated": "2026-11-23T07:25:00-05:00",
+  "updated": "2026-11-24T07:26:00-05:00",
   "scans": [
     {
       "date": "2026-10-13",
@@ -60,6 +60,10 @@
     {
       "date": "2026-11-23",
       "summary": "One new idea. CrowdStrike agreed to buy Zscaler for about $43.9 billion in stock, a read-through to Netskope as the remaining independent SSE vendor through integration-driven share shifts and a higher takeover value. Examined and rejected: the Houthi strike claim on Saudi Arabia's Rabigh refinery and the Iranian strike near Bahrain's Sitra refinery (no damage assessment), the VLCC rate collapse (rates already down about 60% from the October record), Keysight's AI supply constraints in capacitors and photodiodes (MLCC tightness dates to the summer), and Trump's threatened tax on US firms building data centers abroad (no mechanism yet). Open idea check: scoring data through Nov 20 show the kill conditions met for GEV, SIG, AXTI and WULF; the UCTT and ASX relative tests against AMAT and SOXX could not be checked."
+    },
+    {
+      "date": "2026-11-24",
+      "summary": "One new idea. European gas jumped on a cold-snap forecast with EU storage at a decade-low 69%, extending the curtailment of European ammonia while Gulf urea exports stay disrupted, which favors low-cost US nitrogen producers; LSB Industries has fallen in November while CF has rallied. Examined and rejected: a SanDisk short on TrendForce's forecast of falling NAND contract prices in 2027 (first-order, already hit Nov 20), Boston Scientific after Medtronic's 58% ablation growth (Medtronic's growth slowed from 88% and BSX is already down about 55% this year), Freeport on Indonesia's 70% state-take plan (existing contracts to be honored), GameStop on Best Buy's trading-card-driven entertainment comps (GME up 10% this month with two new $33 targets), Venture Global on European gas (spot exposure could not be verified), ARK fund flows (about $9 billion of the $12.5 billion inflow reversed), and the Libya, Cobre Panama and DRC cobalt news (no clear US-listed second-order name). Open idea check: no new kill conditions confirmed; ASX has outperformed SMH since entry, and UCTT-vs-AMAT and NTSK-vs-IGV tests could not be checked."
     }
   ],
   "ideas": [
@@ -774,6 +778,34 @@
       "priced_in": "Zscaler jumped about 16-20% after hours on Nov 20 on Bloomberg's talks report, and CrowdStrike fell about 8%. Netskope's move since Nov 20 could not be checked because its quote pages were blocked; it traded at $23.06 on Nov 18, about 13% below its 52-week high. The market's first read is the target and acquirer; the competitive and scarcity read-through to Netskope usually takes longer, but a peer pop in the Nov 23 session would reduce the edge. Risk: the AI and software selloff (Nasdaq-100 down 5.6% on Nov 20) dominates single-name moves.",
       "kill": "The CrowdStrike-Zscaler deal is terminated or blocked, Netskope guides its next quarter below consensus, or NTSK trails the IGV software ETF by more than 10% over the horizon.",
       "book": "Software rather than AI hardware; modest overlap with the MSFT and GOOG security businesses, mostly diversifies the AI-capex factor."
+    },
+    {
+      "id": "2026-11-24-nitrogen-lxu",
+      "published": "2026-11-24T07:26:00-05:00",
+      "theme": "Nitrogen gas spread",
+      "event": "Dutch TTF front-month gas rose as much as 8.6% on Nov 23 to EUR 96.08/MWh, its highest since Nov 13, on forecasts of a prolonged northwest European cold snap, with EU storage 69.2% full, the lowest for the date in more than a decade, against about 81% a year earlier.",
+      "source": {
+        "title": "The News: European natural gas prices surge 8.6% as forecast cold snap deepens winter supply fears",
+        "url": "https://www.thenews.com.pk/latest/1424778-european-natural-gas-prices-surge-86-as-forecast-cold-snap-deepens-winter-supply-fears"
+      },
+      "source2": {
+        "title": "CF Industries Q3 2026 earnings release (SEC Exhibit 99.1)",
+        "url": "https://www.sec.gov/Archives/edgar/data/0001324404/000132440426000023/cf-11042026_ex991xearnings.htm"
+      },
+      "chain": [
+        "European ammonia is made from TTF-priced gas, which at EUR 92-96/MWh costs several times the $3.54/MMBtu Henry Hub price, and CF Industries estimated that about 37% of Europe's nameplate ammonia capacity was offline or running at reduced rates in October.",
+        "A colder winter on record-low storage keeps those plants curtailed and import prices high; the November Tampa ammonia contract had already settled at $645/t, up $95, on European gas costs and curtailments.",
+        "Gulf supply is also short: CF estimates only about half of normal Middle East urea exports have left the Gulf since the Iran conflict began, and Saudi Arabia and Oman were 12% of 2025 world nitrogen-fertilizer exports, with the Netherlands and Germany another 10%.",
+        "LSB Industries, a small US producer that paid $2.93/MMBtu for gas in Q3 and raised its ammonia netback 32% to $528/ton, keeps most of that spread, yet LXU fell about 16% in November to $9.29 on Nov 19 while CF is up about 53% this year."
+      ],
+      "ticker": "LXU",
+      "name": "LSB Industries",
+      "side": "long",
+      "horizon": 10,
+      "conviction": 1,
+      "priced_in": "CF Industries has already rerated on the nitrogen shortage (about +53% year to date per Trefis). LXU went the other way: it closed at $9.29 on Nov 19, down 2.9% that day and about 16% month to date, below its 50- and 200-day averages (Gotrade data); the cause of a reported 7.9% drop on Nov 18 could not be opened, and its Nov 20-23 closes could not be checked. Leverage is partial: ammonia was $45.2 million of $158.6 million Q3 sales, with ammonium nitrate and nitric acid ($80.9 million) tied more to mining and industrial demand. A further rise in Henry Hub gas would narrow the spread.",
+      "kill": "TTF front-month gas falls back below EUR 75/MWh, the December Tampa ammonia contract settles below November's $645/t, LSB reports an unplanned plant outage, or LXU trails CF by more than 10% over the horizon.",
+      "book": "Diversifies: a fertilizer and natural-gas spread with no AI-capex link beyond small ammonium nitrate sales to mining and construction."
     }
   ]
 }
