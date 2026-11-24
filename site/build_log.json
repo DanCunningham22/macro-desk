@@ -1,5 +1,5 @@
 {
- "updated": "2026-11-24T12:47Z",
+ "updated": "2026-11-24T21:14Z",
  "log": [
   "FRED DGS10 failed: TimeoutError: The read operation timed out",
   "FRED keyless endpoint unreachable; using primary-source fallbacks",
