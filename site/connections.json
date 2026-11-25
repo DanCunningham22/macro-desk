@@ -1,5 +1,5 @@
 {
-  "updated": "2026-11-24T07:26:00-05:00",
+  "updated": "2026-11-25T07:31:00-05:00",
   "scans": [
     {
       "date": "2026-10-13",
@@ -64,6 +64,10 @@
     {
       "date": "2026-11-24",
       "summary": "One new idea. European gas jumped on a cold-snap forecast with EU storage at a decade-low 69%, extending the curtailment of European ammonia while Gulf urea exports stay disrupted, which favors low-cost US nitrogen producers; LSB Industries has fallen in November while CF has rallied. Examined and rejected: a SanDisk short on TrendForce's forecast of falling NAND contract prices in 2027 (first-order, already hit Nov 20), Boston Scientific after Medtronic's 58% ablation growth (Medtronic's growth slowed from 88% and BSX is already down about 55% this year), Freeport on Indonesia's 70% state-take plan (existing contracts to be honored), GameStop on Best Buy's trading-card-driven entertainment comps (GME up 10% this month with two new $33 targets), Venture Global on European gas (spot exposure could not be verified), ARK fund flows (about $9 billion of the $12.5 billion inflow reversed), and the Libya, Cobre Panama and DRC cobalt news (no clear US-listed second-order name). Open idea check: no new kill conditions confirmed; ASX has outperformed SMH since entry, and UCTT-vs-AMAT and NTSK-vs-IGV tests could not be checked."
+    },
+    {
+      "date": "2026-11-25",
+      "summary": "Three new ideas. Deere guided 2027 profit below estimates but forecast the US and Canada large-ag equipment industry up 5-15%, the first upturn call of the cycle, a read-through to component supplier Titan International and rival CNH; Dycom warned that large customers are slowing fiber-to-the-home builds, a read-through to FTTH supplier Clearfield, whose guide relies on larger carriers. Examined and rejected: the planned Section 301 tariffs on 16 economies (no rates published; allies expect a 15% cap), Ambarella's memory-driven guide cut (no clean US-listed customer; Synaptics and GoPro are in pending mergers), Sanofi's $41 billion Insmed deal (direction for inhaled-treprostinil rivals unclear), Amentum's buyback-driven jump, HPE and Dell AI-server margin pressure (first-order), and the three Sinokor VLCCs struck near Hormuz (no damage assessment). Open idea check: Anthropic closed below its $83 IPO price on Nov 24, a further kill condition for WULF; relative tests for UCTT, ASX and LXU could not be checked."
     }
   ],
   "ideas": [
@@ -663,7 +667,7 @@
       "side": "long",
       "horizon": 10,
       "conviction": 1,
-      "priced_in": "The above-range pricing was reported on Nov 18, and neocloud names (NBIS, CRWV, IREN, APLD) rose that day after Nvidia's neocloud comments, so part of the relief may already be in WULF; its Nov 18 close and pre-market quote could not be opened (quote pages were blocked). The tenant structure is not fully confirmed: Decrypt describes the lease as with Anthropic, while Fluidstack leases some other sites on Anthropic's behalf. Risk: a weak Anthropic debut or a renewed AI selloff (Taiwan's Taiex fell 4.4% on Nov 19). Update Nov 23: Kill condition met. Scoring data through the Nov 20 close show WULF down about 22% since entry and about 15% behind SPY, beyond the 10% limit; Anthropic itself closed at $88.91 on Nov 20, still above its $83 IPO price.",
+      "priced_in": "The above-range pricing was reported on Nov 18, and neocloud names (NBIS, CRWV, IREN, APLD) rose that day after Nvidia's neocloud comments, so part of the relief may already be in WULF; its Nov 18 close and pre-market quote could not be opened (quote pages were blocked). The tenant structure is not fully confirmed: Decrypt describes the lease as with Anthropic, while Fluidstack leases some other sites on Anthropic's behalf. Risk: a weak Anthropic debut or a renewed AI selloff (Taiwan's Taiex fell 4.4% on Nov 19). Update Nov 23: Kill condition met. Scoring data through the Nov 20 close show WULF down about 22% since entry and about 15% behind SPY, beyond the 10% limit; Anthropic itself closed at $88.91 on Nov 20, still above its $83 IPO price. Update Nov 25: Anthropic (ANT) closed at $81.91 on Nov 24, its fourth session, below the $83 IPO price, which also meets the first kill condition.",
       "kill": "Anthropic (ANT) closes below its $83 IPO price within its first five sessions, TeraWulf reports a delay or renegotiation of the Hawesville lease or its financing, or WULF trails SPY by more than 10% over the horizon.",
       "book": "Adds to the AI-capex factor (same driver as VRT, SPCX and the hyperscaler holdings) with high beta; size small."
     },
@@ -806,6 +810,90 @@
       "priced_in": "CF Industries has already rerated on the nitrogen shortage (about +53% year to date per Trefis). LXU went the other way: it closed at $9.29 on Nov 19, down 2.9% that day and about 16% month to date, below its 50- and 200-day averages (Gotrade data); the cause of a reported 7.9% drop on Nov 18 could not be opened, and its Nov 20-23 closes could not be checked. Leverage is partial: ammonia was $45.2 million of $158.6 million Q3 sales, with ammonium nitrate and nitric acid ($80.9 million) tied more to mining and industrial demand. A further rise in Henry Hub gas would narrow the spread.",
       "kill": "TTF front-month gas falls back below EUR 75/MWh, the December Tampa ammonia contract settles below November's $645/t, LSB reports an unplanned plant outage, or LXU trails CF by more than 10% over the horizon.",
       "book": "Diversifies: a fertilizer and natural-gas spread with no AI-capex link beyond small ammonium nitrate sales to mining and construction."
+    },
+    {
+      "id": "2026-11-25-agturn-twi",
+      "published": "2026-11-25T07:31:00-05:00",
+      "theme": "Large-ag upturn",
+      "event": "Deere forecast fiscal 2027 net income of $4.50-5.25 billion, below the roughly $5.9 billion analysts expected, but projected the US and Canada large-agriculture equipment industry up 5-15% and its own Production & Precision Ag sales up 5-15%, after those segment sales fell 15% in fiscal Q4.",
+      "source": {
+        "title": "Deere & Company Q4 fiscal 2026 earnings release (SEC Exhibit 99.1)",
+        "url": "https://www.sec.gov/Archives/edgar/data/0000315189/000110465926131741/de-ex99d1.htm"
+      },
+      "source2": {
+        "title": "Titan International Q3 2026 earnings release (SEC Exhibit 99)",
+        "url": "https://www.sec.gov/Archives/edgar/data/0000899751/000089975126000084/q326earningsreleaseex99.htm"
+      },
+      "chain": [
+        "A year ago Deere forecast North American large-ag industry sales down 15-20%; its first 2027 view now calls for a 5-15% rise, the first upturn forecast of the cycle.",
+        "The headline miss comes from items outside equipment volumes: a $0.25-0.40 billion pension settlement charge and lower financial-services profit, so Deere shares fell about 4% pre-market on the profit number rather than on demand.",
+        "OEM production increases reach component suppliers quickly when channel stocks are lean; Titan said in October that wheel and tire channel inventories were at relatively low levels and that a demand recovery would flow to suppliers 'rather quickly'.",
+        "Titan International (about $440 million market value) gets 40% of continuing sales from agriculture, with Deere alone 10% of 2025 sales, and its ag sales fell 12% in Q3 on OEM destocking, so a large-ag production upturn hits its volumes directly."
+      ],
+      "ticker": "TWI",
+      "name": "Titan International",
+      "side": "long",
+      "horizon": 20,
+      "conviction": 1,
+      "priced_in": "TWI fell about 27% in the month to Nov 10 (about $4.96 that day, per MarketScreener) after weak Q3 results and a loss in its ag segment, and is about 36% lower this year; its quote after Nov 10 could not be opened. Deere's headline profit miss is the first-order story and was hitting farm-equipment names pre-market, which may push TWI lower at the open before the industry forecast is digested. Risks: Titan's net debt of about $393 million, Latin American ag weakness (-19% in Q3), and a Fed hike that raises farm financing costs.",
+      "kill": "Deere or CNH cuts its North American large-ag industry outlook, Titan guides 2027 ag sales lower or reports further OEM destocking, or TWI trails SPY by more than 12% over the horizon.",
+      "book": "Diversifies: farm-equipment cycle exposure with no AI-capex link; mild overlap with CAT through heavy-equipment demand."
+    },
+    {
+      "id": "2026-11-25-agturn-cnh",
+      "published": "2026-11-25T07:31:00-05:00",
+      "theme": "Large-ag upturn",
+      "event": "Deere forecast the US and Canada large-agriculture equipment industry up 5-15% in fiscal 2027, while guiding its own 2027 net income below Wall Street estimates; Deere shares fell about 4% before the open.",
+      "source": {
+        "title": "Deere & Company Q4 fiscal 2026 earnings release (SEC Exhibit 99.1)",
+        "url": "https://www.sec.gov/Archives/edgar/data/0000315189/000110465926131741/de-ex99d1.htm"
+      },
+      "source2": {
+        "title": "CNH Industrial Q3 2026 earnings release (SEC Exhibit 99.1)",
+        "url": "https://www.sec.gov/Archives/edgar/data/0001567094/000156709426000020/ex991q326.htm"
+      },
+      "chain": [
+        "Deere is the largest North American farm-equipment maker, so its annual industry forecast sets the market's view of the whole sector; last November its -15-20% large-ag forecast led JPMorgan to downgrade CNH the next session.",
+        "This year the forecast flipped to +5-15% for US and Canada large ag, with Deere expecting about 3% price realization in that segment, a supportive pricing umbrella for its main rival.",
+        "CNH reported North American high-horsepower tractor units down 5% and combines down 13% in Q3, called the industry 'approaching the end of this cyclical trough' and gave no numeric 2027 view, while cutting dealer inventories.",
+        "CNH Industrial gains from a North American volume recovery after its own destocking, but Deere's company-specific miss (pension charge, lower finance profit) may drag CNH lower at the open."
+      ],
+      "ticker": "CNH",
+      "name": "CNH Industrial",
+      "side": "long",
+      "horizon": 10,
+      "conviction": 1,
+      "priced_in": "Deere's profit miss is the first-order headline and was weighing on the group pre-market. The latest CNH quote that could be opened was $11.25 on Oct 26, before its Nov 9 results, so its move since then is unknown; several brokers raised targets in August-October on an expected 2027 recovery, so part of the upturn is already expected. CNH's exposure to South America and Europe, where Deere sees flat to down 5% in Europe, dilutes the link, and its Q3 ag margin was helped by one-off tariff refunds.",
+      "kill": "CNH guides 2027 North American industry volumes down, US farm-income or crop-price news prompts Deere or AGCO to cut the industry view, or CNH trails SPY by more than 8% over the horizon.",
+      "book": "Diversifies: farm-equipment cycle exposure with no AI-capex link; correlated with the TWI idea published today and mildly with CAT."
+    },
+    {
+      "id": "2026-11-25-ftthpace-clfd",
+      "published": "2026-11-25T07:31:00-05:00",
+      "theme": "FTTH build slowdown",
+      "event": "Dycom raised fiscal 2027 revenue guidance to $7.66-7.73 billion but said several large customers are moderating fiber-to-the-home construction plans, so that revenue should decline in fiscal 2028, and it reserved $22.7 million after a rural customer filed for Chapter 11; DY fell about 16% on Nov 24.",
+      "source": {
+        "title": "The Financial: Dycom's records lose to a warning about next year's fiber builds",
+        "url": "https://finchannel.com/dycoms-records-lose-to-a-warning-about-next-years-fiber-builds/142932/american-business-trends/2026/11/"
+      },
+      "source2": {
+        "title": "Clearfield Q4 fiscal 2026 earnings release (SEC Exhibit 99.1)",
+        "url": "https://www.sec.gov/Archives/edgar/data/0000796505/000117184326007330/exh_991.htm"
+      },
+      "chain": [
+        "Dycom is the largest US fiber-construction contractor, so its build plans are an early read on the fiber-to-the-home volumes that equipment suppliers ship into in the following quarters.",
+        "Its warning names large customers moderating FTTH pacing in its fiscal 2028 (from February 2027), plus customer credit stress in the rural segment.",
+        "Clearfield guided fiscal 2027 (to September 2027) sales to $195-205 million, about 30% growth, with roughly $160 million from broadband that it said is moving toward 'large regionals and some of the national carriers', and its gross margin has fallen four quarters in a row to 30.7%.",
+        "Clearfield, a $150 million-revenue FTTH connectivity supplier, faces the same carriers slowing builds against a guide that needs broadband growth, and the read-through from a contractor to a component supplier is rarely drawn on the day."
+      ],
+      "ticker": "CLFD",
+      "name": "Clearfield",
+      "side": "short",
+      "horizon": 20,
+      "conviction": 1,
+      "priced_in": "Dycom fell about 16% on the warning, but no coverage found linked it to fiber-equipment suppliers. CLFD entered its Nov 10 report at $30.55 and had fallen about 12.7% on a Nov 5 BEAD-related item; its moves since Nov 10 could not be opened. About $40 million of the fiscal 2027 guide comes from a hyperscale data-center customer, which the FTTH slowdown does not touch, and Clearfield has $157 million of cash and no debt, so the downside is limited to the broadband part. Dycom still expects fiscal 2028 FTTH revenue above fiscal 2026 levels and communications revenue up mid-single digits.",
+      "kill": "Clearfield reaffirms or raises its fiscal 2027 guidance with higher broadband bookings, a major US carrier announces a larger 2027 fiber-passings target, or CLFD beats SPY by more than 10% over the horizon.",
+      "book": "Diversifies: a short on telecom fiber construction; its data-center line ties it slightly to AI capex, so it offsets a little of the book's AI exposure."
     }
   ]
 }
