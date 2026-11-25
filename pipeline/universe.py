@@ -75,6 +75,21 @@ ASSETS = [
     ("CAT", "Caterpillar", "Holdings", (-5, -1.0, 0.10, -9)),
     ("WMT", "Walmart", "Holdings", (-3, -0.3, -0.05, -2)),
     ("MA", "Mastercard", "Holdings", (-6, -0.7, 0.00, -6)),
+    # Dan's personal account (Nov 2026): funds, then stocks. Tickers only, no
+    # share counts or costs, because this repo is public.
+    ("ITOT", "US total market", "Holdings", (-6, -0.5, 0.00, -7)),
+    ("IXUS", "Intl ex-US", "Holdings", (-5, -1.2, 0.03, -8)),
+    ("IJH", "US mid caps", "Holdings", (-7, -0.6, 0.02, -9)),
+    ("NVDA", "Nvidia", "Holdings", (-14, -0.9, 0.00, -13)),
+    ("GEV", "GE Vernova", "Holdings", (-10, -0.8, 0.00, -11)),
+    ("CVX", "Chevron", "Holdings", (0, -0.6, 0.45, -6)),
+    ("ISRG", "Intuitive Surgical", "Holdings", (-9, -0.6, -0.02, -7)),
+    ("GWW", "Grainger", "Holdings", (-5, -0.5, 0.02, -7)),
+    ("ABNB", "Airbnb", "Holdings", (-9, -0.7, -0.05, -11)),
+    ("EBAY", "eBay", "Holdings", (-6, -0.5, -0.02, -7)),
+    ("TW", "Tradeweb", "Holdings", (-5, -0.3, 0.00, -6)),
+    ("EW", "Edwards Lifesciences", "Holdings", (-6, -0.6, -0.02, -6)),
+    ("SN", "SharkNinja", "Holdings", (-8, -0.7, -0.03, -10)),
 ]
 
 # Yahoo quotes these as USD per foreign unit; invert so "up" always means the

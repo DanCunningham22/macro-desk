@@ -38,7 +38,9 @@ WORLD_OUT = ROOT / "site" / "world.json"
 TRADE_OUT = ROOT / "site" / "trade.json"
 UA = {"User-Agent": "macro-desk-pipeline/1.0 (+https://github.com/DanCunningham22/macro-desk)", "Accept": "*/*"}
 LOG: list[str] = []
-BOOK = ["PLTR", "META", "MSFT", "GOOG", "SPCX", "INTC", "VRT", "TSLA", "JBL", "CAT", "WMT", "MA"]
+BOOK = ["PLTR", "META", "MSFT", "GOOG", "SPCX", "INTC", "VRT", "TSLA", "JBL", "CAT", "WMT", "MA",
+        # personal account (Nov 2026)
+        "ITOT", "IXUS", "IJH", "NVDA", "GEV", "CVX", "ISRG", "GWW", "ABNB", "EBAY", "TW", "EW", "SN"]
 
 
 def log(msg):
@@ -143,7 +145,7 @@ PRODUCTS = [
     ("2710", "Refined fuels", "Energy", ["VLO", "MPC", "PSX"]),
     ("2711", "Natural gas & LNG", "Energy", ["LNG", "EQT", "TTE"]),
     ("2701", "Coal", "Energy", ["BTU", "AMR"]),
-    ("8542", "Chips", "Tech hardware", ["TSM", "MU", "INTC", "SMH"]),
+    ("8542", "Chips", "Tech hardware", ["TSM", "NVDA", "MU", "INTC", "SMH"]),
     ("8486", "Chipmaking tools", "Tech hardware", ["ASML", "AMAT", "LRCX", "KLAC"]),
     ("8471", "Computers & servers", "Tech hardware", ["DELL", "SMCI", "HPE", "JBL"]),
     ("8517", "Phones & network gear", "Tech hardware", ["AAPL", "CSCO", "ERIC"]),
@@ -156,7 +158,7 @@ PRODUCTS = [
     ("8802", "Aircraft", "Industrial", ["BA", "GE", "HWM"]),
     ("7208", "Flat-rolled steel", "Industrial", ["NUE", "STLD", "MT"]),
     ("3004", "Medicines", "Health & consumer", ["PFE", "MRK", "AZN"]),
-    ("9018", "Medical instruments", "Health & consumer", ["ISRG", "MDT", "BSX"]),
+    ("9018", "Medical instruments", "Health & consumer", ["ISRG", "EW", "MDT", "BSX"]),
     ("2203", "Beer", "Health & consumer", ["STZ", "BUD", "TAP"]),
     ("9503", "Toys", "Health & consumer", ["HAS", "MAT"]),
     ("9401", "Furniture & seats", "Health & consumer", ["WSM", "RH"]),
@@ -394,6 +396,10 @@ def build_trade_slow(prev: dict, force: bool) -> dict:
                 done[code] = old
     products = [done.get(c) or {"code": c, "name": n, "group": g, "tickers": t, "book": [x for x in t if x in BOOK]}
                 for c, n, g, t in PRODUCTS]
+    # Cached rows keep last week's ticker lists; refresh them so a change to
+    # PRODUCTS or BOOK shows on the next run instead of a week later.
+    for p, (_c, _n, _g, t) in zip(products, PRODUCTS):
+        p["tickers"], p["book"] = t, [x for x in t if x in BOOK]
     ok = sum(1 for p in products if p.get("exporters"))
     log(f"Comtrade annual: {ok}/{len(PRODUCTS)} products have data")
     return {"products": products}
