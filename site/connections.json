@@ -1,5 +1,5 @@
 {
-  "updated": "2026-11-25T07:31:00-05:00",
+  "updated": "2026-11-27T07:19:00-05:00",
   "scans": [
     {
       "date": "2026-10-13",
@@ -68,6 +68,10 @@
     {
       "date": "2026-11-25",
       "summary": "Three new ideas. Deere guided 2027 profit below estimates but forecast the US and Canada large-ag equipment industry up 5-15%, the first upturn call of the cycle, a read-through to component supplier Titan International and rival CNH; Dycom warned that large customers are slowing fiber-to-the-home builds, a read-through to FTTH supplier Clearfield, whose guide relies on larger carriers. Examined and rejected: the planned Section 301 tariffs on 16 economies (no rates published; allies expect a 15% cap), Ambarella's memory-driven guide cut (no clean US-listed customer; Synaptics and GoPro are in pending mergers), Sanofi's $41 billion Insmed deal (direction for inhaled-treprostinil rivals unclear), Amentum's buyback-driven jump, HPE and Dell AI-server margin pressure (first-order), and the three Sinokor VLCCs struck near Hormuz (no damage assessment). Open idea check: Anthropic closed below its $83 IPO price on Nov 24, a further kill condition for WULF; relative tests for UCTT, ASX and LXU could not be checked."
+    },
+    {
+      "date": "2026-11-27",
+      "summary": "One new idea. The FDA pushed Vertex's povetacicept decision for IgA nephropathy out to as late as Feb 28, 2027, which gives Vera Therapeutics' newly launched TRUTAKNA up to three more months as the only approved dual BAFF/APRIL inhibitor. Examined and rejected: Nvidia's reported halt of server shipments to Malaysia, Singapore, Thailand and Indonesia and the stalled $7.8 billion of Chinese-tenant data-center loans (no US-listed name with verifiable exposure; Supermicro's regional revenue could not be confirmed), Pharming's RUCONEST production pause (the main oral alternative, KalVista, is now owned by Chiesi), Samsung and DB HiTek 8-inch foundry price increases (rises date back to March; Tower trades on silicon photonics), the Ras Tanura attack and Hormuz mine strikes (first-order oil, Brent already up 3.5%), Ero Copper's Tucumã suspension (first-order), Alvotech's golimumab injunction (granted in October), and the proposed Section 301 tariffs (proposals only). Open idea check: no new kill conditions confirmed; current quotes could not be opened, so the UCTT-vs-AMAT, NTSK-vs-IGV and LXU-vs-CF tests and the RBOB and TTF thresholds could not be checked."
     }
   ],
   "ideas": [
@@ -894,6 +898,34 @@
       "priced_in": "Dycom fell about 16% on the warning, but no coverage found linked it to fiber-equipment suppliers. CLFD entered its Nov 10 report at $30.55 and had fallen about 12.7% on a Nov 5 BEAD-related item; its moves since Nov 10 could not be opened. About $40 million of the fiscal 2027 guide comes from a hyperscale data-center customer, which the FTTH slowdown does not touch, and Clearfield has $157 million of cash and no debt, so the downside is limited to the broadband part. Dycom still expects fiscal 2028 FTTH revenue above fiscal 2026 levels and communications revenue up mid-single digits.",
       "kill": "Clearfield reaffirms or raises its fiscal 2027 guidance with higher broadband bookings, a major US carrier announces a larger 2027 fiber-passings target, or CLFD beats SPY by more than 10% over the horizon.",
       "book": "Diversifies: a short on telecom fiber construction; its data-center line ties it slightly to AI capex, so it offsets a little of the book's AI exposure."
+    },
+    {
+      "id": "2026-11-27-igan-vera",
+      "published": "2026-11-27T07:19:00-05:00",
+      "theme": "IgAN review delay",
+      "event": "The FDA extended its review of Vertex's povetacicept for IgA nephropathy by up to three months, from Nov 30, 2026 to no later than Feb 28, 2027, after classifying Vertex's answer to a late information request as a major amendment; VRTX was down about 7% before the Nov 27 open.",
+      "source": {
+        "title": "Vertex announces extension of PDUFA target action date for povetacicept (Business Wire via StockTitan)",
+        "url": "https://www.stocktitan.net/news/VRTX/vertex-announces-extension-of-pdufa-target-action-date-by-up-to-drf6l31zd0qe.html"
+      },
+      "source2": {
+        "title": "Vera Therapeutics third quarter 2026 business update",
+        "url": "https://ir.veratx.com/news-releases/news-release-details/vera-therapeutics-provides-business-update-and-reports-third-3"
+      },
+      "chain": [
+        "Povetacicept and Vera's TRUTAKNA (atacicept) are both dual BAFF/APRIL inhibitors for IgA nephropathy, and povetacicept was set to become the second drug of that class on Nov 30.",
+        "TRUTAKNA won accelerated approval on July 7, 2026 and is still early in launch: $10.3 million of Q3 net sales and about 700 patient start forms against roughly 160,000 diagnosed US patients.",
+        "Povetacicept is planned as a once-every-four-weeks auto-injector versus TRUTAKNA's weekly shot, so each month without it on the market lets Vera sign up nephrologists and patients without that convenience comparison.",
+        "Vera Therapeutics gets up to three more months as the only approved drug of its class during the launch phase when prescribing habits form, a read-through the market tends to price after the first-order Vertex drop."
+      ],
+      "ticker": "VERA",
+      "name": "Vera Therapeutics",
+      "side": "long",
+      "horizon": 10,
+      "conviction": 1,
+      "priced_in": "Vertex fell about 7.3% to $522.99 before the open on Nov 27, the first session after the Nov 25 after-hours release. No coverage found linked the delay to Vera, but it is the obvious competitor, so part of the gain may come at the open. VERA quote pages that could be opened were stale (latest close found $28.30 on Oct 26), so its Nov 25 close and pre-market move are unknown. The delay is up to three months and the FDA did not reject povetacicept; Vera's cash was $384 million at Sep 30 with a $75 million debt draw in October, so dilution risk remains, and the biotech tape follows the broader AI-led rally.",
+      "kill": "The FDA approves povetacicept before Dec 31, 2026, Vera reports weaker-than-expected TRUTAKNA uptake or announces an equity raise, or VERA trails the XBI biotech ETF by more than 10% over the horizon.",
+      "book": "Diversifies: a small-cap biotech launch story with no link to AI capex or the book's holdings."
     }
   ]
 }
